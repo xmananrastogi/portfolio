@@ -317,40 +317,6 @@ if (statsContainer) {
   statsObserver.observe(statsContainer);
 }
 
-// Form submission handler
-const contactForm = document.querySelector('.form');
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const formData = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      message: document.getElementById('message').value
-    };
-    
-    // Simulate form submission
-    const submitBtn = contactForm.querySelector('.btn-primary');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-    
-    setTimeout(() => {
-      submitBtn.textContent = '✓ Execution Successful!';
-      submitBtn.style.background = '#238636';
-      submitBtn.style.color = '#ffffff';
-      contactForm.reset();
-      
-      setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.style.background = '';
-        submitBtn.style.color = '';
-        submitBtn.disabled = false;
-      }, 2500);
-    }, 1500);
-  });
-}
-
 // Add stagger animation to project cards
 const projectCards = document.querySelectorAll('.project-card');
 projectCards.forEach((card, index) => {
@@ -393,29 +359,55 @@ window.addEventListener('scroll', () => {
     }
   });
 });
+// Form submission handler
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
   if (!form) return;
 
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Stop the default submit
+
+    const submitBtn = form.querySelector('.btn-primary');
+    const originalText = submitBtn.textContent;
+
+    // 1. Show loading state
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
 
     const data = new FormData(form);
 
-    fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
+    try {
+      // 2. Send data to Formspree
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      // 3. Handle the response
       if (response.ok) {
-        alert('Message sent successfully! Thank you.');
+        submitBtn.textContent = '✓ Execution Successful!';
+        submitBtn.style.background = '#238636';
+        submitBtn.style.color = '#ffffff';
         form.reset();
       } else {
-        alert('Oops! There was an error submitting the form.');
+        submitBtn.textContent = 'Error! Try Again.';
+        submitBtn.style.background = '#ff5f56'; // Red color
+        submitBtn.style.color = '#ffffff';
       }
-    }).catch(() => {
-      alert('Oops! There was an error submitting the form.');
-    });
+    } catch (error) {
+      submitBtn.textContent = 'Error! Check Console.';
+      submitBtn.style.background = '#ff5f56';
+      submitBtn.style.color = '#ffffff';
+    }
+
+    // 4. Reset button after 3 seconds
+    setTimeout(() => {
+      submitBtn.textContent = originalText;
+      submitBtn.style.background = '';
+      submitBtn.style.color = '';
+      submitBtn.disabled = false;
+    }, 3000);
   });
 });
 
