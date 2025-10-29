@@ -393,6 +393,32 @@ window.addEventListener('scroll', () => {
     }
   });
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const data = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        alert('Message sent successfully! Thank you.');
+        form.reset();
+      } else {
+        alert('Oops! There was an error submitting the form.');
+      }
+    }).catch(() => {
+      alert('Oops! There was an error submitting the form.');
+    });
+  });
+});
+
 
 // Console easter egg - Coder Style
 console.log('%c>>> System Initialized', 'font-family: "Fira Code", monospace; font-size: 16px; font-weight: bold; color: #3fb950;');
