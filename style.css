@@ -1,3 +1,4 @@
+/* [Your existing style.css content from line 1 to 1268] */
 :root {
   /* Primitive Color Tokens */
   --color-white: rgba(255, 255, 255, 1);
@@ -2288,6 +2289,12 @@ textarea.form-control {
         padding: 12px 16px;
     }
 
+    /* START OF FIX: 
+    Removed the conflicting .nav-menu and .nav-menu.active rules from here.
+    The slide-in menu defined around line 1024 will now work correctly.
+    */
+    
+    /*
     .nav-menu {
         display: none;
         flex-direction: column;
@@ -2304,6 +2311,12 @@ textarea.form-control {
     .nav-menu.active {
         display: flex;
     }
+    */
+    
+    /* END OF FIX: 
+    The styles below for .nav-tab are still needed to make the links
+    full-width inside the slide-in menu.
+    */
 
     .nav-tab {
         width: 100%;
