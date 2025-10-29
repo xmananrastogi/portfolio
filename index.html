@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manan Rastogi | Biomedical Engineer &amp; Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="particleCanvas"></canvas>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="ide-logo">VS Portfolio</div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu">
+        <li class="nav-tab">
+          <a href="#about" class="nav-link">
+            <span class="file-icon">📄</span>
+            <span class="file-name">about.js</span>
+            <span class="tab-close">×</span>
+          </a>
+        </li>
+        <li class="nav-tab">
+          <a href="#projects" class="nav-link">
+            <span class="file-icon">🐍</span>
+            <span class="file-name">projects.py</span>
+            <span class="tab-close">×</span>
+          </a>
+        </li>
+        <li class="nav-tab">
+          <a href="#skills" class="nav-link">
+            <span class="file-icon">⚙️</span>
+            <span class="file-name">skills.cpp</span>
+            <span class="tab-close">×</span>
+          </a>
+        </li>
+        <li class="nav-tab">
+          <a href="#contact" class="nav-link">
+            <span class="file-icon">📧</span>
+            <span class="file-name">contact.md</span>
+            <span class="tab-close">×</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <span class="terminal-button red"></span>
+          <span class="terminal-button yellow"></span>
+          <span class="terminal-button green"></span>
+          <span class="terminal-title">manan@portfolio:~</span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="prompt">user@portfolio:~$</span>
+            <span class="command">whoami</span>
+          </div>
+          <div class="terminal-output">
+            <h1 class="hero-title">
+              <span class="syntax-keyword">const</span> <span class="syntax-variable">developer</span> = <span class="syntax-string">"MANAN RASTOGI"</span><span class="cursor-blink">_</span>
+            </h1>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">user@portfolio:~$</span>
+            <span class="command">cat role.txt</span>
+          </div>
+          <div class="terminal-output">
+            <p class="hero-subtitle">
+              <span class="syntax-comment">// </span>
+              <span class="typing-text"></span>
+              <span class="cursor">|</span>
+            </p>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">user@portfolio:~$</span>
+            <span class="command-cursor">█</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">git clone projects</a>
+        <a href="#contact" class="btn btn-secondary">./contact.sh</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="code-header">
+        <span class="file-path">📁 ~/portfolio/about.js</span>
+      </div>
+      <div class="about-content">
+        <div class="profile-container">
+          <div class="profile-image-wrapper">
+            <div class="profile-image">
+              <img src="profile.jpeg" alt="Profile Photo" style="width: 100%; height: auto; border-radius: 50%; box-shadow: 0 2px 10px rgba(0,0,0,0.10);" />
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <div class="code-block">
+            <div class="line-numbers">
+              <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+            </div>
+            <div class="code-content">
+              <div class="about-intro">
+                <pre class="code-text"><span class="syntax-keyword">const</span> <span class="syntax-variable">manan</span> = {
+  <span class="syntax-property">role</span>: <span class="syntax-string">"Biomedical Engineer &amp; Full-Stack Developer"</span>,
+  <span class="syntax-property">location</span>: <span class="syntax-string">"VIT Vellore"</span>,
+  <span class="syntax-property">education</span>: <span class="syntax-string">"B.Tech in ECE (Biomedical)"</span>,
+  <span class="syntax-property">expertise</span>: [<span class="syntax-string">"Biomedical Imaging"</span>, <span class="syntax-string">"Web Development"</span>, <span class="syntax-string">"System Design"</span>],
+  <span class="syntax-property">currentlyLearning</span>: [<span class="syntax-string">"Advanced ML"</span>, <span class="syntax-string">"Cloud Architecture"</span>],
+  <span class="syntax-property">passion</span>: <span class="syntax-string">"Bridging healthcare &amp; technology"</span>,
+  <span class="syntax-property">skills</span>: <span class="syntax-function">this</span>.<span class="syntax-method">getAllSkills</span>(),
+  <span class="syntax-property">projects</span>: <span class="syntax-number">20</span>+
+};</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats-container">
+            <div class="stat-item">
+              <div class="stat-value" data-target="1">0</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" data-target="10">0</div>
+              <div class="stat-label">Technologies</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" data-target="50">0</div>
+              <div class="stat-label">Lines of Code (K+)</div>
+            </div>
+          </div>
+
+          <div class="skills-badges">
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">Flask</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">HTML/CSS</span>
+            <span class="skill-badge">OpenCV</span>
+            <span class="skill-badge">Matplotlib</span>
+            <span class="skill-badge">Pandas</span>
+            <span class="skill-badge">Swift</span>
+            <span class="skill-badge">Verilog</span>
+            <span class="skill-badge">React</span>
+            <span class="skill-badge">Node.js</span>
+            <span class="skill-badge">MongoDB</span>
+            <span class="skill-badge">Git</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <div class="code-header">
+        <span class="file-path">🐍 ~/portfolio/projects.py</span>
+      </div>
+
+      <div class="featured-project">
+        <div class="project-content">
+          <div class="code-block python-code">
+            <div class="line-numbers">
+              <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+            </div>
+            <div class="code-content">
+              <pre class="code-text"><span class="syntax-keyword">def</span> <span class="syntax-function">wound_healing_platform</span>():
+    <span class="syntax-string">"""</span>
+    <span class="syntax-string">Biomedical Image Analysis &amp; Full-stack Integration</span>
+    <span class="syntax-string">"""</span>
+    features = [
+        <span class="syntax-string">"Flask backend server and RESTful APIs"</span>,
+        <span class="syntax-string">"Interactive dashboard with filters and tooltips"</span>,
+        <span class="syntax-string">"Real-time progress updates and batch processing"</span>,
+        <span class="syntax-string">"Deployment packaging for local/server execution"</span>,
+        <span class="syntax-string">"End-to-end scalable system design"</span>
+    ]
+
+    tech_stack = [<span class="syntax-string">"Python"</span>, <span class="syntax-string">"Flask"</span>, <span class="syntax-string">"JavaScript"</span>,
+                  <span class="syntax-string">"HTML/CSS"</span>, <span class="syntax-string">"OpenCV"</span>, <span class="syntax-string">"Matplotlib"</span>, <span class="syntax-string">"Pandas"</span>]
+
+    <span class="syntax-keyword">return</span> render_template(<span class="syntax-string">'success'</span>)
+
+<span class="syntax-comment"># Execute the platform</span>
+result = wound_healing_platform()
+<span class="syntax-function">print</span>(<span class="syntax-string">f"Status: </span><span class="syntax-variable">{result}</span><span class="syntax-string">"</span>)</pre>
+            </div>
+          </div>
+          <div class="project-header">
+            <h3 class="project-title">Biomedical Image Analysis &amp; Full-stack Integration</h3>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Flask</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">Data Science</span>
+            </div>
+          </div>
+
+          <div class="project-description">
+            <ul class="feature-list">
+              <li>Developed the Flask backend server and RESTful APIs to host a live wound healing analysis platform</li>
+              <li>Designed and implemented the interactive web dashboard with advanced features such as condition-based filters, tooltips explaining complex metrics, dynamic charts, and CSV export functionality</li>
+              <li>Integrated the image analysis pipeline with the web interface providing real-time progress updates, automated batch processing, and visualization of wound healing results</li>
+              <li>Managed deployment and packaging of the complete biomedical data solution, enabling replicable local or server-based executions</li>
+              <li>Collaborated closely on end-to-end system design ensuring scalability, usability, and scientific rigor</li>
+            </ul>
+          </div>
+
+          <div class="project-tech">
+            <h4>Technologies Used:</h4>
+            <div class="tech-stack">
+              <span class="tech-item">Python</span>
+              <span class="tech-item">Flask</span>
+              <span class="tech-item">JavaScript</span>
+              <span class="tech-item">HTML/CSS</span>
+              <span class="tech-item">OpenCV</span>
+              <span class="tech-item">Matplotlib</span>
+              <span class="tech-item">Pandas</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <a href="#contact" class="btn btn-primary">View Live</a>
+            <a href="#contact" class="btn btn-secondary">View Code</a>
+          </div>
+        </div>
+
+        <div class="project-images">
+          <div class="image-wrapper">
+            <img src="Dashboard Screenshot.png" alt="Dashboard Screenshot" style="width:100%;height:auto;border-radius:12px;box-shadow:0 4px 18px rgba(0,0,0,0.14);"/>
+          </div>
+          <div class="image-grid" style="display:flex;gap:16px;margin-top:18px;">
+            <div class="image-wrapper small" style="flex:1;">
+              <img src="Image Analysis.png" alt="Image Analysis Pipeline" style="width:100%;height:auto;border-radius:10px;box-shadow:0 3px 14px rgba(0,0,0,0.11);"/>
+            </div>
+            <div class="image-wrapper small" style="flex:1;">
+              <img src="Results.png" alt="Results Visualization" style="width:100%;height:auto;border-radius:10px;box-shadow:0 3px 14px rgba(0,0,0,0.11);"/>
+            </div>
+          </div>
+          <div class="image-wrapper small" style="margin-top:18px;">
+            <img src="Batch Processing Interface.png" alt="Batch Processing Interface" style="width:100%;height:auto;border-radius:12px;box-shadow:0 4px 18px rgba(0,0,0,0.12);"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section other-projects-section">
+    <div class="container">
+      <h2 class="section-title">Other Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="card-image">
+            <svg width="100%" height="100%" viewBox="0 0 400 250">
+              <rect width="400" height="250" fill="rgba(0, 217, 255, 0.1)"/>
+              <text x="50%" y="50%" text-anchor="middle" fill="rgba(0, 217, 255, 0.6)" font-size="18">Project Image</text>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Project Title</h3>
+            <p class="card-description">Brief description of the project and its key features...</p>
+            <div class="card-tags">
+              <span class="card-tag">Python</span>
+              <span class="card-tag">React</span>
+              <span class="card-tag">Node.js</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="card-image">
+            <svg width="100%" height="100%" viewBox="0 0 400 250">
+              <rect width="400" height="250" fill="rgba(255, 107, 229, 0.1)"/>
+              <text x="50%" y="50%" text-anchor="middle" fill="rgba(255, 107, 229, 0.6)" font-size="18">Project Image</text>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Project Title</h3>
+            <p class="card-description">Brief description of the project and its key features...</p>
+            <div class="card-tags">
+              <span class="card-tag">Swift</span>
+              <span class="card-tag">HealthKit</span>
+              <span class="card-tag">CoreData</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="card-image">
+            <svg width="100%" height="100%" viewBox="0 0 400 250">
+              <rect width="400" height="250" fill="rgba(0, 255, 136, 0.1)"/>
+              <text x="50%" y="50%" text-anchor="middle" fill="rgba(0, 255, 136, 0.6)" font-size="18">Project Image</text>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Project Title</h3>
+            <p class="card-description">Brief description of the project and its key features...</p>
+            <div class="card-tags">
+              <span class="card-tag">Verilog</span>
+              <span class="card-tag">FPGA</span>
+              <span class="card-tag">ModelSim</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="card-image">
+            <svg width="100%" height="100%" viewBox="0 0 400 250">
+              <rect width="400" height="250" fill="rgba(0, 217, 255, 0.1)"/>
+              <text x="50%" y="50%" text-anchor="middle" fill="rgba(0, 217, 255, 0.6)" font-size="18">Project Image</text>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Project Title</h3>
+            <p class="card-description">Brief description of the project and its key features...</p>
+            <div class="card-tags">
+              <span class="card-tag">JavaScript</span>
+              <span class="card-tag">WebGL</span>
+              <span class="card-tag">Three.js</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <div class="code-header">
+        <span class="file-path">⚙️ ~/portfolio/skills.cpp</span>
+      </div>
+      <div class="code-block skills-code">
+        <div class="line-numbers">
+          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+        </div>
+        <div class="code-content">
+          <pre class="code-text"><span class="syntax-comment">// Core Technologies</span>
+<span class="syntax-keyword">import</span> python;
+<span class="syntax-keyword">import</span> flask;
+<span class="syntax-keyword">import</span> javascript;
+<span class="syntax-keyword">from</span> opencv <span class="syntax-keyword">import</span> cv2;
+<span class="syntax-keyword">import</span> pandas <span class="syntax-keyword">as</span> pd;
+<span class="syntax-keyword">import</span> matplotlib;
+<span class="syntax-keyword">from</span> swift <span class="syntax-keyword">import</span> UIKit;
+<span class="syntax-keyword">import</span> verilog;
+<span class="syntax-keyword">import</span> react;
+<span class="syntax-keyword">import</span> nodejs;
+<span class="syntax-keyword">import</span> git;
+
+<span class="syntax-comment">// let experience = "Full-Stack Development";</span>
+<span class="syntax-comment">// const passion = "Biomedical Innovation";</span></pre>
+        </div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3 class="category-title">Languages</h3>
+          <div class="skill-items">
+            <span class="skill-item">Python</span>
+            <span class="skill-item">JavaScript</span>
+            <span class="skill-item">Swift</span>
+            <span class="skill-item">Verilog</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 class="category-title">Web Development</h3>
+          <div class="skill-items">
+            <span class="skill-item">Flask</span>
+            <span class="skill-item">HTML/CSS</span>
+            <span class="skill-item">JavaScript</span>
+            <span class="skill-item">RESTful APIs</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 class="category-title">Data &amp; Analysis</h3>
+          <div class="skill-items">
+            <span class="skill-item">OpenCV</span>
+            <span class="skill-item">Pandas</span>
+            <span class="skill-item">Matplotlib</span>
+            <span class="skill-item">Data Visualization</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 class="category-title">Tools &amp; Other</h3>
+          <div class="skill-items">
+            <span class="skill-item">Git</span>
+            <span class="skill-item">Image Processing</span>
+            <span class="skill-item">System Design</span>
+            <span class="skill-item">Problem Solving</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="code-header">
+        <span class="file-path">📧 ~/portfolio/contact.md</span>
+      </div>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="code-block cli-code">
+            <div class="line-numbers">
+              <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+            </div>
+            <div class="code-content">
+              <pre class="code-text"><span class="syntax-comment"># Contact Information</span>
+<span class="prompt">$</span> ./contact.sh --email mananrastogi2k8.210@gmail.com
+<span class="prompt">$</span> ./social.sh --github https://github.com/xmananrastogi
+<span class="prompt">$</span> ./social.sh --linkedin linkedin.com/in/manan-rastogi-402697288/
+<span class="prompt">$</span>
+<span class="syntax-comment"># Always open to collaboration and new opportunities</span>
+<span class="prompt">$</span> <span class="command-cursor">█</span></pre>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="mailto:mananrastogi2k8.210@gmail.com" class="social-link" target="_blank" rel="noopener" aria-label="Email">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>mananrastogi2k8.210@gmail.com</span>
+            </a>
+
+            <a href="https://github.com/xmananrastogi" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              <span>github.com/xmananrastogi</span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/manan-rastogi-402697288/" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              <span>linkedin.com/in/manan-rastogi-402697288</span>
+            </a>
+          </div>
+        </div>
+
+        <form class="form cli-form">
+          <div class="cli-input-group">
+            <span class="cli-prompt">$</span>
+            <span class="cli-label">--name</span>
+            <input type="text" id="name" name="name" class="form-control cli-input" placeholder="your_name" required>
+          </div>
+
+          <div class="cli-input-group">
+            <span class="cli-prompt">$</span>
+            <span class="cli-label">--email</span>
+            <input type="email" id="email" name="email" class="form-control cli-input" placeholder="your@email.com" required>
+          </div>
+
+          <div class="cli-input-group">
+            <span class="cli-prompt">$</span>
+            <span class="cli-label">--message</span>
+            <textarea id="message" name="message" rows="5" class="form-control cli-input" placeholder="Your message here..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary cli-execute">&gt; execute --send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Manan Rastogi. Built with passion and code.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
