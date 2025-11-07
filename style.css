@@ -875,7 +875,7 @@ body {
   color: var(--color-white);
   background-color: #0d1117;
   background-image: none;
-  overflow-x: hidden;
+  /* overflow-x: hidden;  <-- REMOVED THIS LINE. This was hiding the real problems. */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -2380,7 +2380,9 @@ textarea.form-control {
 
     .code-text {
         font-size: 11px;
-        overflow-x: auto;
+        /* Allow code to wrap on small screens instead of overflowing */
+        white-space: pre-wrap;
+        word-break: break-all;
     }
 
     /* Sections */
@@ -2439,8 +2441,9 @@ textarea.form-control {
         gap: 15px;
     }
 
-    .project-image {
-        max-height: 200px;
+    /* ADDED THIS RULE: Forces your inline-styled flex images to stack */
+    .featured-project .image-grid {
+      flex-direction: column;
     }
 
     /* Buttons */
