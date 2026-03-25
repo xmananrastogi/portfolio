@@ -43,6 +43,15 @@
     </div>
   </nav>
 
+  <!-- Mobile full-screen menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
+    <a href="#about" class="nav-link"><span class="file-icon">📄</span> about.js</a>
+    <a href="#projects" class="nav-link"><span class="file-icon">🐍</span> projects.py</a>
+    <a href="#skills" class="nav-link"><span class="file-icon">⚙️</span> skills.cpp</a>
+    <a href="#contact" class="nav-link"><span class="file-icon">📧</span> contact.md</a>
+  </div>
+
   <section id="hero" class="hero">
     <div class="hero-content">
       <div class="terminal-window glass-panel">
@@ -317,7 +326,7 @@ result = woundhealing_ai_platform()
             </div>
             <div class="code-content">
               <pre class="code-text"><span class="syntax-comment"># Contact Information</span>
-<span class="prompt">$</span> ./contact.sh --email mananrastogi2k8.210@gmail.com
+<span class="prompt">$</span> ./contact.sh --email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4e232f202f203c2f3d3a2129277c2576607c7f7e0e29232f2722602d2123">[email&#160;protected]</a>
 <span class="prompt">$</span> ./social.sh --github https://github.com/xmananrastogi
 <span class="prompt">$</span> ./social.sh --linkedin linkedin.com/in/manan-rastogi-402697288/
 <span class="prompt">$</span>
@@ -327,12 +336,12 @@ result = woundhealing_ai_platform()
           </div>
 
           <div class="social-links">
-            <a href="mailto:mananrastogi2k8.210@gmail.com" class="social-link glass-panel" target="_blank" rel="noopener" aria-label="Email">
+            <a href="/cdn-cgi/l/email-protection#c8a5a9a6a9a6baa9bbbca7afa1faa3f0e6faf9f888afa5a9a1a4e6aba7a5" class="social-link glass-panel" target="_blank" rel="noopener" aria-label="Email">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
-              <span>mananrastogi2k8.210@gmail.com</span>
+              <span><span class="__cf_email__" data-cfemail="2d404c434c435f4c5e59424a441f4615031f1c1d6d4a404c4441034e4240">[email&#160;protected]</span></span>
             </a>
             <a href="https://github.com/xmananrastogi" class="social-link glass-panel" target="_blank" rel="noopener" aria-label="GitHub">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -367,18 +376,14 @@ result = woundhealing_ai_platform()
             <span class="cli-label">--message</span>
             <textarea id="message" name="message" rows="5" class="form-control cli-input" placeholder="Your message here..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary cli-execute">&gt; execute --send</button>
+          <button type="submit" class="btn btn-primary cli-execute">./send-message.sh</button>
         </form>
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    <div class="container">
-      <p>&copy; 2025 Manan Rastogi. Built with passion and code.</p>
-    </div>
-  </footer>
-
-  <script src="app.js"></script>
+    <p>Built with <span style="color:var(--accent-primary)">▹</span> by Manan Rastogi &nbsp;·&nbsp; <span style="font-family:'Fira Code',monospace;">manan@portfolio:~$ _</span></p>
+  </footer>  <script src="app.js"></script>
 </body>
 </html>
