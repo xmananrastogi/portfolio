@@ -27,19 +27,19 @@ export const portfolioData = {
   projects: [
     {
       id: "woundhealing-ai",
-      title: "WoundTrack AI Platform",
-      tags: ["Python", "OpenCV", "Biomedical", "Full-Stack"],
+      title: "WoundTrack AI Diagnostic Dashboard",
+      tags: ["Biomedical", "OpenCV", "Kinetic Tracking", "Full-Stack"],
       description: [
-        "Architected a full-stack automated analysis platform for in-vitro wound healing videos.",
-        "Engineered an OpenCV/scikit-image pipeline for high-precision wound area segmentation.",
-        "Implemented multi-object cellular tracking using Trackpy/SciPy for microscopic kinetic analysis.",
-        "Developed a responsive Plotly.js dashboard for real-time telemetry and clinical data visualization.",
-        "Integrated a Flask REST API with SQLite for persistent analysis job management."
+        "Architected a clinical-grade diagnostic engine in Python for the quantification of in-vitro wound healing assays.",
+        "Engineered a high-precision OpenCV/scikit-image pipeline featuring Ensemble Segmentation (Variance + Entropy + Ridge filtering).",
+        "Implemented 'Healing Entropy' and 'Wavefront Roughness' metrics via fractal dimension analysis to quantify cellular migration disorder.",
+        "Developed a temporal smoothing layer using 1D Gaussian kernels to eliminate microscopic sensor noise from kinetic velocity curves.",
+        "Integrated a Flask/SQLite hybrid backend for persistent batch-processing of research datasets."
       ],
-      techStack: ["Python", "Flask", "JavaScript", "OpenCV", "Plotly.js", "SQLite", "SciPy", "Trackpy"],
+      techStack: ["Python 3.12", "Flask", "OpenCV", "NumPy", "SciPy", "Trackpy", "SQLite", "Plotly.js"],
       links: {
         live: "https://xmananrastogi-woundtrack-ai.hf.space/",
-        code: "https://github.com/xmananrastogi/wound-healing-analysis"
+        code: "https://github.com/xmananrastogi/WoundTrack-AI"
       },
       images: [
         "assets/images/Dashboard Screenshot.jpeg",
