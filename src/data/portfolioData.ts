@@ -38,7 +38,7 @@ export const portfolioData = {
       ],
       techStack: ["Python 3.12", "Flask", "OpenCV", "NumPy", "SciPy", "Trackpy", "SQLite", "Plotly.js"],
       links: {
-        live: "https://xmananrastogi-woundtrack-ai.hf.space/",
+        live: "https://xmananrastogi-woundtrackai.hf.space/",
         code: "https://github.com/xmananrastogi/WoundTrack-AI"
       },
       images: [
