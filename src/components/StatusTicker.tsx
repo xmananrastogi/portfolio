@@ -3,16 +3,16 @@ import { motion } from 'framer-motion';
 
 const StatusTicker = () => {
   const tickerItems = [
-    "ECG Signal Analysis: Optimal",
-    "Neural Network Weights: Loaded",
-    "System Diagnostics: Passing",
-    "Firmware Version: 1.0.4r2",
-    "Signal-to-Noise Ratio: 45dB",
-    "Impedance Check: 10k Ohms",
-    "Real-time Tracking: Active",
-    "Biomedical Sync: Established",
-    "Vitals Monitor: Online",
-    "Algorithm Convergence: True"
+    "Logic Core 0: Operational",
+    "Neural Engine: Inference Mode",
+    "Bitstream CRC: Pass",
+    "FPGA Thermal: 42°C",
+    "Signal SNR: 52dB",
+    "Logic Gate Latency: 0.2ms",
+    "Bus Frequency: 4.2GHz",
+    "Firmware v1.0.4r2: Active",
+    "Oscilloscope Sync: True",
+    "Neural Weights: Optimized"
   ];
 
   return (

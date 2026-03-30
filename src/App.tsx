@@ -10,6 +10,7 @@ import ProjectsSection from './components/ProjectsSection';
 import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
 import StatusTicker from './components/StatusTicker';
+import MananOSCLI from './components/MananOSCLI';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const PortfolioContent = () => {
@@ -39,6 +40,7 @@ const PortfolioContent = () => {
           </div>
 
           <StatusTicker />
+          <MananOSCLI />
           
           <footer className="py-12 px-6 flex justify-center text-[10px] font-mono tracking-[0.3em] uppercase text-white/10 select-none">
             Built with precision by Manan Rastogi · /bin/portfolio

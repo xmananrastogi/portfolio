@@ -1,70 +1,88 @@
 export const portfolioData = {
   name: "MANAN RASTOGI",
+  resumeLink: "https://drive.google.com/file/d/1_lEEhM5dyYXu85KtgyC3IX2vOfIUA_XI/view",
   roles: [
     "ECE & Biomedical Engineer",
     "Full-Stack Developer",
-    "Problem Solver",
-    "Innovation Enthusiast"
+    "Neural Network Researcher"
   ],
   about: {
-    role: "ECE & Biomedical Engineer & Full-Stack Developer",
-    location: "VIT Vellore",
-    education: "B.Tech in ECE (Biomedical)",
-    expertise: ["Biomedical Imaging", "Web Development", "System Design"],
-    currentlyLearning: ["Advanced ML", "Cloud Architecture"],
-    passion: "Bridging healthcare & technology",
+    role: "ECE & BML Engineer @ VIT Vellore",
+    location: "VIT Vellore, India",
+    education: "B.Tech in ECE (Biomedical Engineering)",
+    expertise: ["Digital Systems", "Biomedical Imaging", "Neural Architectures", "System Design"],
+    currentlyLearning: ["Edge AI Acceleration", "FPGA Digital Signal Processing"],
+    passion: "Developing high-performance digital-biological hybrid systems",
     stats: [
-      { label: "Projects Completed", value: "1" },
-      { label: "Technologies", value: "10+" },
+      { label: "Projects Completed", value: "2+" },
+      { label: "Technologies", value: "12+" },
       { label: "Lines of Code (K+)", value: "50k+" }
     ],
     skills: [
       "Python", "Flask", "JavaScript", "HTML/CSS", "OpenCV", 
       "Matplotlib", "Pandas", "Swift", "Verilog", "React", 
-      "Node.js", "MongoDB", "Git"
+      "Node.js", "MongoDB", "Git", "SciPy", "Trackpy"
     ]
   },
   projects: [
     {
       id: "woundhealing-ai",
-      title: "woundhealing-ai",
-      tags: ["Python", "Flask", "JavaScript", "OpenCV", "Data Science"],
+      title: "WoundTrack AI Platform",
+      tags: ["Python", "OpenCV", "Biomedical", "Full-Stack"],
       description: [
-        "Built a full-stack web app for automated, multi-scale analysis of in-vitro wound healing videos.",
-        "Developed a Python-Flask REST API with an SQLite DB to manage analysis jobs & persist results.",
-        "Engineered an OpenCV/Scikit-image pipeline for automated wound area segmentation.",
-        "Implemented a Trackpy/SciPy multi-object cell tracking system to calculate microscopic metrics.",
-        "Built a responsive Plotly.js dashboard for data visualization, comparison, and statistics."
+        "Architected a full-stack automated analysis platform for in-vitro wound healing videos.",
+        "Engineered an OpenCV/scikit-image pipeline for high-precision wound area segmentation.",
+        "Implemented multi-object cellular tracking using Trackpy/SciPy for microscopic kinetic analysis.",
+        "Developed a responsive Plotly.js dashboard for real-time telemetry and clinical data visualization.",
+        "Integrated a Flask REST API with SQLite for persistent analysis job management."
       ],
-      techStack: ["Python", "Flask", "JavaScript", "HTML/CSS", "OpenCV", "Plotly.js", "SQLite", "Pandas"],
+      techStack: ["Python", "Flask", "JavaScript", "OpenCV", "Plotly.js", "SQLite", "SciPy", "Trackpy"],
       links: {
         live: "https://xmananrastogi-woundtrack-ai.hf.space/",
         code: "https://github.com/xmananrastogi/wound-healing-analysis"
       },
       images: [
-        "assets/images/Dashboard Screenshot.jpeg",
-        "assets/images/Image Analysis.jpeg",
-        "assets/images/Results.jpeg",
-        "assets/images/Batch Processing Interface.jpeg"
+        "/assets/images/Dashboard Screenshot.jpeg",
+        "/assets/images/Image Analysis.jpeg",
+        "/assets/images/Results.jpeg",
+        "/assets/images/Batch Processing Interface.jpeg"
       ]
+    },
+    {
+      id: "modern-portfolio",
+      title: "Interactive Engineering Portfolio",
+      tags: ["React", "Three.js", "Vite", "GSAP"],
+      description: [
+        "Designed a high-fidelity 3D portfolio showcasing the intersection of ECE and Computer Science.",
+        "Developed a custom React Three Fiber scene with dynamic Silicon Chip and Neural Bus motifs.",
+        "Implemented advanced Framer Motion and GSAP animations for a fluid, dashboard-like experience.",
+        "Integrated a system-init sequence and magnetic interaction layers for premium UX.",
+        "Built with TypeScript and Tailwind CSS for scalable, performant architecture."
+      ],
+      techStack: ["React", "TypeScript", "Three.js", "Framer Motion", "GSAP", "Tailwind CSS"],
+      links: {
+        live: "#",
+        code: "https://github.com/xmananrastogi/portfolio"
+      },
+      images: []
     }
   ],
   skillsCategories: [
     {
       title: "Languages",
-      items: ["Python", "JavaScript", "Swift", "Verilog"]
+      items: ["Python", "JavaScript", "Swift", "Verilog", "C++"]
     },
     {
-      title: "Web Development",
-      items: ["Flask", "HTML/CSS", "JavaScript", "RESTful APIs"]
+      title: "Full-Stack & Web",
+      items: ["React", "Node.js", "Flask", "HTML/CSS", "Tailwind"]
     },
     {
-      title: "Data & Analysis",
-      items: ["OpenCV", "Pandas", "Matplotlib", "Data Visualization"]
+      title: "Architecture & Data",
+      items: ["Neural Networks", "OpenCV", "SciPy", "System Design", "MongoDB"]
     },
     {
-      title: "Tools & Other",
-      items: ["Git", "Image Processing", "System Design", "Problem Solving"]
+      title: "Tools & Hardware",
+      items: ["Git", "FPGA Basics", "Matplotlib", "Digital Logic", "Edge Computing"]
     }
   ],
   socials: {

@@ -8,13 +8,13 @@ const InitializationLoader = () => {
   const [logs, setLogs] = useState<string[]>([]);
 
   const bootLogs = [
-    "Initializing neural core...",
-    "Loading ECE hardware abstractions...",
-    "Scanning biomedical signal pathways...",
-    "Calibrating diagnostic sensors...",
-    "Establishing encrypted connection...",
-    "Compiling engineering workspace...",
-    "System Ready."
+    "Initializing hardware abstraction layer...",
+    "Mounting logic buffers and bitstreams...",
+    "Calibrating PLL and clock synthesizers...",
+    "Synchronizing parallel data buses...",
+    "Loading neural weights into cache...",
+    "Verifying FPGA logic gates...",
+    "System Core: Online."
   ];
 
   useEffect(() => {

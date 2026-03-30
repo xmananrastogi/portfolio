@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, FileCode, Hash, Settings, Mail } from 'lucide-react';
+import { Menu, X, FileCode, Hash, Settings, Mail, FileText } from 'lucide-react';
+import { portfolioData } from '../data/portfolioData';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,7 @@ const Navbar = () => {
       let currentIdx = 0;
       sections.forEach((section, idx) => {
         const top = section.getBoundingClientRect().top;
-        if (top <= 100) {
+        if (top <= 150) {
           currentIdx = idx;
         }
       });
@@ -31,19 +32,21 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-32px)] max-w-[680px]">
-        <div className="bg-glass-bg/90 backdrop-blur-md border border-glass-border rounded-full p-1.5 shadow-2xl flex items-center justify-between">
-          <div className="flex md:hidden px-4 text-xs font-mono text-accent-primary">IDE_v1.0</div>
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-32px)] max-w-[750px]">
+        <div className="bg-glass-bg/95 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl flex items-center justify-between">
+          <div className="flex px-4 text-xs font-mono font-black text-white/90 uppercase tracking-[0.3em]">
+             M<span className="text-accent-primary">·</span>RASTOGI
+          </div>
           
-          <ul className="hidden md:flex items-center gap-1 w-full justify-center">
+          <ul className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <li key={item.id}>
                 <a
                   href={item.id}
                   className={`
-                    flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono transition-all duration-200
+                    flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-200
                     ${activeHash === item.id 
-                      ? 'bg-white/10 text-white border border-white/5 shadow-inner' 
+                      ? 'bg-white/10 text-white shadow-inner' 
                       : 'text-white/40 hover:text-white/70 hover:bg-white/5'}
                   `}
                 >
@@ -52,6 +55,17 @@ const Navbar = () => {
                 </a>
               </li>
             ))}
+            
+            <div className="w-px h-4 bg-white/10 mx-2" />
+            
+            <a 
+              href={portfolioData.resumeLink} 
+              target="_blank" 
+              className="flex items-center gap-2 px-4 py-2 bg-accent-primary/10 border border-accent-primary/20 text-accent-primary rounded-xl text-[10px] font-mono font-black uppercase hover:bg-accent-primary hover:text-black transition-all"
+            >
+               <FileText size={14} />
+               RESUME
+            </a>
           </ul>
 
           <button 
@@ -69,19 +83,28 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-[99] bg-background/95 backdrop-blur-xl flex flex-col items-center justify-center gap-6 p-6 md:hidden"
+            className="fixed inset-0 z-[99] bg-background/98 backdrop-blur-3xl flex flex-col items-center justify-center gap-8 p-6 md:hidden"
           >
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={item.id}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-4 text-xl font-mono text-white/60 hover:text-accent-primary"
+                className="flex items-center gap-4 text-2xl font-mono font-bold text-white/60 hover:text-accent-primary"
               >
                 <span className={item.color}>{item.icon}</span>
                 {item.label}
               </a>
             ))}
+            <a 
+              href={portfolioData.resumeLink} 
+              target="_blank"
+              onClick={() => setIsOpen(false)}
+              className="mt-4 flex items-center gap-4 text-2xl font-mono font-black text-accent-primary"
+            >
+               <FileText size={24} />
+               VIEW RESUME
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
