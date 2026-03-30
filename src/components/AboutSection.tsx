@@ -29,7 +29,7 @@ const AboutSection = () => {
                 <div className="relative w-48 h-48 shrink-0">
                   <div className="absolute inset-0 bg-accent-primary blur-[60px] opacity-20 animate-pulse" />
                   <img 
-                    src="/assets/images/profile.jpeg" 
+                    src="assets/images/profile.jpeg" 
                     alt="Profile" 
                     className="relative w-full h-full object-cover rounded-2xl border-2 border-white/10 shadow-2xl"
                   />

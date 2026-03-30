@@ -42,10 +42,10 @@ export const portfolioData = {
         code: "https://github.com/xmananrastogi/wound-healing-analysis"
       },
       images: [
-        "/assets/images/Dashboard Screenshot.jpeg",
-        "/assets/images/Image Analysis.jpeg",
-        "/assets/images/Results.jpeg",
-        "/assets/images/Batch Processing Interface.jpeg"
+        "assets/images/Dashboard Screenshot.jpeg",
+        "assets/images/Image Analysis.jpeg",
+        "assets/images/Results.jpeg",
+        "assets/images/Batch Processing Interface.jpeg"
       ]
     },
     {
