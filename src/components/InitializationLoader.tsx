@@ -12,18 +12,18 @@ const InitializationLoader = () => {
     "नमस्ते", 
     "Welcome",
     "வணக்கம்", 
-    "నమస్కారం", 
     "ನಮಸ್ಕಾರ", 
+    "നമസ്കാരം",
+    "నమస్కారం", 
     "नमस्कार", 
     "নমস্কার", 
-    "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ", 
-    "നമസ്കാരം", 
+    "ਸਤਿ ਸ੍ਰੀ ਅಕਾਲ", 
     "નમસ્તે"
   ];
 
   useEffect(() => {
-    // Total duration ~4-5 seconds
-    const duration = 4000; 
+    // Total duration ~5 seconds to ensure visibility of all requested languages
+    const duration = 5000; 
     const intervalTime = 50;
     const increment = (100 / (duration / intervalTime));
 
@@ -40,7 +40,7 @@ const InitializationLoader = () => {
 
     const greetingInterval = setInterval(() => {
       setCurrentGreetingIndex(prev => (prev + 1) % mainGreetings.length);
-    }, 1200);
+    }, 1000);
 
     return () => {
       clearInterval(progressInterval);
