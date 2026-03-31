@@ -21,19 +21,42 @@ const MananOSCLI = () => {
   }, [history]);
 
   const handleCommand = (cmd: string) => {
-    const cleanCmd = cmd.toLowerCase().trim();
+    const [mainCmd, ...args] = cmd.toLowerCase().trim().split(' ');
     let response = [`> ${cmd}`];
 
-    switch (cleanCmd) {
+    switch (mainCmd) {
       case 'help':
         response.push(
           "Available Commands:",
-          "  - about     Explore identity and education",
-          "  - skills    List core technical proficiencies",
-          "  - projects  View featured engineering work",
-          "  - resume    Open the digital lab report",
-          "  - clear     Wipe logic buffer",
-          "  - whoami    Identity verification"
+          "  - goto <id>   Teleport to section (about, projects, skills, contact)",
+          "  - status      Run system diagnostic suite",
+          "  - about       Explore identity and education",
+          "  - skills      List core technical proficiencies",
+          "  - projects    View featured engineering work",
+          "  - resume      Open the digital lab report",
+          "  - clear       Wipe logic buffer",
+          "  - whoami      Identity verification"
+        );
+        break;
+      case 'goto':
+        const target = args[0];
+        const element = document.getElementById(target);
+        if (element && (window as any).lenis) {
+          (window as any).lenis.scrollTo(element);
+          response.push(`Navigating to [${target}]...`);
+        } else {
+          response.push(`Target [${target}] NOT FOUND in local buffer.`);
+        }
+        break;
+      case 'status':
+        const perf = performance as any;
+        response.push(
+          "INITIALIZING DIAGNOSTIC SUITE...",
+          `[OK] Kernel: MananOS v2.4.0`,
+          `[OK] Memory: ${Math.round(perf.memory?.usedJSHeapSize / 1024 / 1024) || '—'} MB / ${Math.round(perf.memory?.jsHeapSizeLimit / 1024 / 1024) || '—'} MB`,
+          `[OK] Latency: ${Math.round(performance.now())}ms since boot`,
+          `[OK] Connection: Authorized / TLS 1.3`,
+          `[OK] UI Engine: Pro-Max Grid System 1.0`
         );
         break;
       case 'about':
@@ -48,7 +71,7 @@ const MananOSCLI = () => {
         response.push(`Technical Matrix: ${portfolioData.about.skills.join(', ')}`);
         break;
       case 'projects':
-        response.push("System Deployments:", ...portfolioData.projects.map(p => ` - ${p.title} (${p.techStack[0]})`));
+        response.push("System Deployments:", ...portfolioData.projects.map(p => ` - ${p.id} (${p.techStack[0]})`));
         break;
       case 'resume':
         response.push("Redirecting to [resume.pdf] in new buffer...");
@@ -63,7 +86,7 @@ const MananOSCLI = () => {
       case '':
         return;
       default:
-        response.push(`'${cleanCmd}': Command unknown. Initializing diagnostic...`);
+        response.push(`'${mainCmd}': Command unknown. Initializing diagnostic...`);
     }
 
     setHistory(prev => [...prev, ...response]);
@@ -91,7 +114,11 @@ const MananOSCLI = () => {
                   <Trash2 size={14} />
                 </button>
                 <div className="w-px h-3 bg-white/10" />
-                <button onClick={() => setIsOpen(false)} className="text-white/30 hover:text-white transition-colors">
+                <button 
+                  onClick={() => setIsOpen(false)} 
+                  className="text-white/30 hover:text-white transition-colors"
+                  aria-label="Close terminal"
+                >
                   <X size={16} />
                 </button>
               </div>
@@ -136,6 +163,7 @@ const MananOSCLI = () => {
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
             className="w-14 h-14 bg-accent-primary text-black rounded-2xl shadow-[0_0_30px_rgba(0,255,148,0.4)] border border-white/20 flex items-center justify-center group relative overflow-hidden"
+            aria-label="Open MananOS Terminal"
           >
             <div className="absolute inset-0 bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
             <Terminal size={24} className="relative z-10" />

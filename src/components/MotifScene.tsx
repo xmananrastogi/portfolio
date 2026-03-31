@@ -85,10 +85,15 @@ declare global {
 
 const SiliconChip = () => {
   const groupRef = useRef<THREE.Group>(null);
+  
   useFrame((state) => {
+    const scroll = (window as any).lenis?.scroll || 0;
+    const scrollFactor = scroll / 2000; // Normalize scroll
+
     if (groupRef.current) {
-      groupRef.current.rotation.y = state.clock.getElapsedTime() * 0.2;
-      groupRef.current.rotation.z = Math.sin(state.clock.getElapsedTime() * 0.5) * 0.1;
+      groupRef.current.rotation.y = state.clock.getElapsedTime() * 0.2 + scrollFactor * 2;
+      groupRef.current.rotation.z = Math.sin(state.clock.getElapsedTime() * 0.5) * 0.1 + scrollFactor;
+      groupRef.current.position.y = Math.sin(state.clock.getElapsedTime()) * 0.2 - scrollFactor * 0.5;
     }
   });
 

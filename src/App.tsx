@@ -11,6 +11,7 @@ import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
 import StatusTicker from './components/StatusTicker';
 import MananOSCLI from './components/MananOSCLI';
+import SmoothScroll from './components/SmoothScroll';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const PortfolioContent = () => {
@@ -54,7 +55,9 @@ const PortfolioContent = () => {
 function App() {
   return (
     <LoadingProvider>
-      <PortfolioContent />
+      <SmoothScroll>
+        <PortfolioContent />
+      </SmoothScroll>
     </LoadingProvider>
   );
 }

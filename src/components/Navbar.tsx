@@ -61,6 +61,8 @@ const Navbar = () => {
             <a 
               href={portfolioData.resumeLink} 
               target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="View Resume (Opens in new tab)"
               className="flex items-center gap-2 px-4 py-2 bg-accent-primary/10 border border-accent-primary/20 text-accent-primary rounded-xl text-[10px] font-mono font-black uppercase hover:bg-accent-primary hover:text-black transition-all"
             >
                <FileText size={14} />
@@ -71,6 +73,8 @@ const Navbar = () => {
           <button 
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 text-white/60 hover:text-white"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
