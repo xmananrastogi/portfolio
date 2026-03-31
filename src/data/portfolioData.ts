@@ -1,6 +1,6 @@
 export const portfolioData = {
   name: "MANAN RASTOGI",
-  resumeLink: "https://drive.google.com/file/d/1_lEEhM5dyYXu85KtgyC3IX2vOfIUA_XI/view",
+  resumeLink: "https://drive.google.com/file/d/12WWLMK3u079zUcsO0HwMXNmcZHQCiYC6/view?usp=sharing",
   roles: [
     "Biomedical Systems Engineer",
     "Full-Stack Technical Architect",
