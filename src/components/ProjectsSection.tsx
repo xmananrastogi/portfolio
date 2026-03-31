@@ -19,13 +19,15 @@ const ProjectsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{ y: -5 }}
-            onClick={() => setSelectedProject(project)}
             className={`cursor-pointer rounded-3xl overflow-hidden border border-white/10 group bg-neutral-900/40 backdrop-blur-sm relative ${
               isFirst ? 'md:col-span-4 md:row-span-2' : 'md:col-span-2 md:row-span-2'
             }`}
           >
             {/* Background Media */}
-            <div className="absolute inset-0">
+            <div 
+              className="absolute inset-0"
+              onClick={() => setSelectedProject(project)}
+            >
                {project.images.length > 0 ? (
                   <img src={project.images[0]} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-40 group-hover:opacity-60" />
                ) : (
@@ -36,8 +38,39 @@ const ProjectsSection = () => {
                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
             </div>
 
+            {/* Direct Links Overlay (Shows on Hover) */}
+            <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+               {project.links.code && (
+                 <a 
+                   href={project.links.code} 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   className="p-3 bg-black/60 backdrop-blur-md border border-white/10 rounded-xl text-white hover:bg-accent-primary hover:text-black transition-all"
+                   aria-label="View Source on GitHub"
+                   onClick={(e) => e.stopPropagation()}
+                 >
+                   <Github size={18} />
+                 </a>
+               )}
+               {project.links.live && (
+                 <a 
+                   href={project.links.live} 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   className="p-3 bg-black/60 backdrop-blur-md border border-white/10 rounded-xl text-white hover:bg-accent-secondary hover:text-black transition-all"
+                   aria-label="View Live Site"
+                   onClick={(e) => e.stopPropagation()}
+                 >
+                   <ExternalLink size={18} />
+                 </a>
+               )}
+            </div>
+
             {/* Content Overlays */}
-            <div className="absolute inset-0 p-8 flex flex-col justify-end space-y-4">
+            <div 
+              className="absolute inset-0 p-8 flex flex-col justify-end space-y-4 pointer-events-none"
+              onClick={() => setSelectedProject(project)}
+            >
               <div className="flex flex-wrap gap-2">
                 {project.tags.map(tag => (
                    <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-[9px] font-mono text-white/50 uppercase tracking-widest">
@@ -47,7 +80,7 @@ const ProjectsSection = () => {
               </div>
               
               <div className="space-y-2">
-                <h3 className="text-2xl md:text-3xl font-black text-white/95 tracking-tight group-hover:text-accent-primary transition-colors leading-tight">
+                <h3 className="text-2xl md:text-3xl font-black text-white/95 tracking-tight group-hover:text-accent-primary transition-colors leading-tight pointer-events-auto">
                   {project.title}
                 </h3>
                 <p className="text-sm text-white/40 line-clamp-2 font-medium max-w-lg">
@@ -137,27 +170,47 @@ const ProjectsSection = () => {
                  <X size={20} />
                </button>
 
-               {/* Left: Project Imagery */}
-               <div className="w-full md:w-1/2 h-64 md:h-full bg-black relative">
-                  {selectedProject.images.length > 0 ? (
-                    <img 
-                      src={selectedProject.images[0]} 
-                      className="w-full h-full object-cover opacity-60"
-                      alt={selectedProject.title}
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-accent-primary/10 flex items-center justify-center">
-                       <Terminal size={64} className="text-accent-primary/20" />
+               {/* Left: Project Imagery & Gallery */}
+               <div className="w-full md:w-1/2 flex flex-col bg-black">
+                  <div className="flex-1 relative overflow-hidden">
+                    {selectedProject.images.length > 0 ? (
+                      <img 
+                        src={selectedProject.images[0]} 
+                        className="w-full h-full object-cover opacity-60"
+                        alt={selectedProject.title}
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-accent-primary/10 flex items-center justify-center">
+                         <Terminal size={64} className="text-accent-primary/20" />
+                      </div>
+                    )}
+                    <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black to-transparent">
+                       <h2 className="text-4xl font-black text-white mb-2">{selectedProject.title}</h2>
+                       <div className="flex gap-2">
+                          {selectedProject.tags.map((tag: string) => (
+                             <span key={tag} className="text-[10px] font-mono text-accent-primary uppercase tracking-widest">{tag}</span>
+                          ))}
+                       </div>
+                    </div>
+                  </div>
+
+                  {/* Multi-image Thumbnail Gallery */}
+                  {selectedProject.images.length > 1 && (
+                    <div className="p-4 bg-black/40 flex gap-4 overflow-x-auto scrollbar-hide border-t border-white/5">
+                       {selectedProject.images.map((img: string, i: number) => (
+                         <motion.div 
+                           key={i} 
+                           whileHover={{ scale: 1.05 }}
+                           className="flex-shrink-0 w-24 aspect-video rounded-lg border border-white/10 overflow-hidden cursor-pointer"
+                           onClick={() => {
+                             // Simple image swap logic could be added here if needed
+                           }}
+                         >
+                            <img src={img} className="w-full h-full object-cover opacity-50 hover:opacity-100 transition-opacity" alt={`Screenshot ${i}`} />
+                         </motion.div>
+                       ))}
                     </div>
                   )}
-                  <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black to-transparent">
-                     <h2 className="text-4xl font-black text-white mb-2">{selectedProject.title}</h2>
-                     <div className="flex gap-2">
-                        {selectedProject.tags.map((tag: string) => (
-                           <span key={tag} className="text-[10px] font-mono text-accent-primary uppercase tracking-widest">{tag}</span>
-                        ))}
-                     </div>
-                  </div>
                </div>
 
                {/* Right: Technical Deep Dive */}
@@ -176,10 +229,33 @@ const ProjectsSection = () => {
                         ))}
                      </div>
                   </div>
+
+                  {/* Systems Stack Indicator */}
+                  <div className="pt-8 border-t border-white/5">
+                     <h4 className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/20 mb-6 flex items-center gap-3">
+                      <Terminal size={14} /> Systems stack
+                     </h4>
+                     <div className="flex flex-wrap gap-x-8 gap-y-4">
+                        {selectedProject.techStack.map((tech: string) => (
+                          <div key={tech} className="flex items-center gap-2 group/tech cursor-pointer">
+                             <div className="w-1.5 h-1.5 rounded-full bg-accent-secondary group-hover/tech:scale-150 transition-transform shadow-[0_0_8px_rgba(0,184,255,0.5)]" />
+                             <span className="text-xs font-mono font-bold text-white/40 group-hover/tech:text-accent-secondary transition-colors uppercase">
+                              {tech}
+                             </span>
+                          </div>
+                        ))}
+                     </div>
+                  </div>
                   
                   <div className="pt-8 border-t border-white/5 flex gap-4">
-                     <a href={selectedProject.links.live} target="_blank" rel="noopener noreferrer" className="flex-1 py-4 bg-accent-primary text-black font-black uppercase tracking-widest text-center rounded-xl hover:scale-[1.02] transition-transform">Live preview</a>
-                     <a href={selectedProject.links.code} target="_blank" rel="noopener noreferrer" className="px-6 py-4 border border-white/10 text-white font-black uppercase tracking-widest text-center rounded-xl hover:bg-white/10 transition-all">Source</a>
+                     {selectedProject.links.live && (
+                       <a href={selectedProject.links.live} target="_blank" rel="noopener noreferrer" className="flex-1 py-4 bg-accent-primary text-black font-black uppercase tracking-widest text-center rounded-xl hover:scale-[1.02] transition-transform">Live preview</a>
+                     )}
+                     {selectedProject.links.code && (
+                       <a href={selectedProject.links.code} target="_blank" rel="noopener noreferrer" className="px-6 py-4 border border-white/10 text-white font-black uppercase tracking-widest text-center rounded-xl hover:bg-white/10 transition-all flex items-center justify-center gap-3">
+                          <Github size={20} /> Source
+                       </a>
+                     )}
                   </div>
                </div>
             </motion.div>

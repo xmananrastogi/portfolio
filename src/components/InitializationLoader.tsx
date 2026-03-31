@@ -9,7 +9,6 @@ const InitializationLoader = () => {
   const [currentGreetingIndex, setCurrentGreetingIndex] = useState(0);
 
   const mainGreetings = [
-    "Welcome", 
     "नमस्ते", 
     "வணக்கம்", 
     "నమస్కారం", 
@@ -18,7 +17,8 @@ const InitializationLoader = () => {
     "নমস্কার", 
     "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ", 
     "നമസ്കാരം", 
-    "નમસ્તે"
+    "નમસ્તે",
+    "Welcome"
   ];
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const InitializationLoader = () => {
 
     const greetingInterval = setInterval(() => {
       setCurrentGreetingIndex(prev => (prev + 1) % mainGreetings.length);
-    }, 400);
+    }, 1200);
 
     return () => {
       clearInterval(progressInterval);
