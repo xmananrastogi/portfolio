@@ -10,6 +10,7 @@ const InitializationLoader = () => {
 
   const mainGreetings = [
     "नमस्ते", 
+    "Welcome",
     "வணக்கம்", 
     "నమస్కారం", 
     "ನಮಸ್ಕಾರ", 
@@ -17,8 +18,7 @@ const InitializationLoader = () => {
     "নমস্কার", 
     "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ", 
     "നമസ്കാരം", 
-    "નમસ્તે",
-    "Welcome"
+    "નમસ્તે"
   ];
 
   useEffect(() => {
