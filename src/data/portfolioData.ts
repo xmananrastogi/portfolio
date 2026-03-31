@@ -2,26 +2,38 @@ export const portfolioData = {
   name: "MANAN RASTOGI",
   resumeLink: "https://drive.google.com/file/d/1_lEEhM5dyYXu85KtgyC3IX2vOfIUA_XI/view",
   roles: [
-    "ECE & Biomedical Engineer",
-    "Full-Stack Developer",
+    "Biomedical Systems Engineer",
+    "Full-Stack Technical Architect",
     "Neural Network Researcher"
   ],
   about: {
     role: "ECE & BML Engineer @ VIT Vellore",
     location: "VIT Vellore, India",
     education: "B.Tech in ECE (Biomedical Engineering)",
-    expertise: ["Digital Systems", "Biomedical Imaging", "Neural Architectures", "System Design"],
-    currentlyLearning: ["Edge AI Acceleration", "FPGA Digital Signal Processing"],
-    passion: "Developing high-performance digital-biological hybrid systems",
+    expertise: [
+      "Diagnostic Algorithms", 
+      "Computer Vision", 
+      "3D Generative UI", 
+      "System Architecture", 
+      "Biomedical Imaging", 
+      "Neural Architectures"
+    ],
+    currentlyLearning: [
+      "Advanced GLSL / Shader Physics", 
+      "Edge AI Acceleration", 
+      "FPGA Digital Signal Processing",
+      "Real-time Bio-Signal Processing"
+    ],
+    passion: "Architecting high-performance digital-biological hybrid systems",
     stats: [
-      { label: "Projects Completed", value: "2+" },
-      { label: "Technologies", value: "12+" },
+      { label: "Research Projects", value: "3+" },
+      { label: "Technical Stacks", value: "18+" },
       { label: "Lines of Code (K+)", value: "50k+" }
     ],
     skills: [
-      "Python", "Flask", "JavaScript", "HTML/CSS", "OpenCV", 
-      "Matplotlib", "Pandas", "Swift", "Verilog", "React", 
-      "Node.js", "MongoDB", "Git", "SciPy", "Trackpy"
+      "Python 3.12", "React", "TypeScript", "Three.js", "OpenCV", 
+      "SciPy", "Trackpy", "Flask", "Node.js", "Verilog", "GSAP", 
+      "Framer Motion", "Tailwind CSS", "MongoDB", "SQLite"
     ]
   },
   projects: [
@@ -59,7 +71,7 @@ export const portfolioData = {
         "Integrated a system-init sequence and magnetic interaction layers for premium UX.",
         "Built with TypeScript and Tailwind CSS for scalable, performant architecture."
       ],
-      techStack: ["React", "TypeScript", "Three.js", "Framer Motion", "GSAP", "Tailwind CSS"],
+      techStack: ["React", "TypeScript", "Three.js (R3F)", "Framer Motion", "GSAP", "Tailwind CSS"],
       links: {
         live: "#",
         code: "https://github.com/xmananrastogi/portfolio"
@@ -69,20 +81,20 @@ export const portfolioData = {
   ],
   skillsCategories: [
     {
-      title: "Languages",
-      items: ["Python", "JavaScript", "Swift", "Verilog", "C++"]
+      title: "Diagnostic Engineering",
+      items: ["Python 3.12", "OpenCV", "NumPy", "SciPy", "Trackpy", "scikit-image"]
     },
     {
-      title: "Full-Stack & Web",
-      items: ["React", "Node.js", "Flask", "HTML/CSS", "Tailwind"]
+      title: "Frontend Architecture",
+      items: ["React", "TypeScript", "Three.js (R3F)", "GSAP", "Framer Motion", "Tailwind CSS"]
     },
     {
-      title: "Architecture & Data",
-      items: ["Neural Networks", "OpenCV", "SciPy", "System Design", "MongoDB"]
+      title: "Systems & Backend",
+      items: ["Flask", "Node.js", "SQLite", "MongoDB", "REST APIs", "System Design"]
     },
     {
-      title: "Tools & Hardware",
-      items: ["Git", "FPGA Basics", "Matplotlib", "Digital Logic", "Edge Computing"]
+      title: "Hardware & Logic",
+      items: ["Verilog", "Digital Logic", "FPGA Basics", "Edge Computing", "C++", "Git"]
     }
   ],
   socials: {
