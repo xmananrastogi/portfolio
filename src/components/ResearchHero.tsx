@@ -42,15 +42,12 @@ const ResearchHero = () => {
             Applied AI + Full-Stack Engineer
           </div>
 
-          <div className="space-y-5">
-            <p className="font-mono text-xs font-semibold uppercase tracking-[0.32em] text-signal-cyan">
+          <div className="space-y-4">
+            <h1 className="text-5xl font-semibold leading-[0.95] tracking-tight text-text-primary md:text-7xl lg:text-8xl">
               Manan Rastogi
-            </p>
-            <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-tight text-text-primary md:text-7xl lg:text-8xl">
-              I build technical products that look polished and work under scrutiny.
             </h1>
             <p className="max-w-3xl text-xl leading-9 text-text-secondary md:text-2xl">
-              My work spans computer vision, LLM evaluation, full-stack interfaces, and systems-oriented engineering.
+              I build technical products that look polished and work under scrutiny.
             </p>
           </div>
 
