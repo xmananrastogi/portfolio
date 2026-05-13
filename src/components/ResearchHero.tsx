@@ -46,7 +46,7 @@ const ResearchHero = () => {
             <p className="font-mono text-sm font-semibold uppercase tracking-[0.32em] text-signal-cyan md:text-base">
               Manan Rastogi
             </p>
-            <h1 className="max-w-5xl text-4xl font-semibold leading-[0.95] tracking-tight text-text-primary md:text-6xl lg:text-7xl">
+            <h1 className="max-w-[1000px] text-5xl font-semibold leading-[0.95] tracking-tight text-text-primary md:text-[4rem] lg:text-[5.25rem]">
               I build technical products that look polished and work under scrutiny.
             </h1>
             <p className="max-w-3xl text-lg leading-8 text-text-secondary md:text-xl">
