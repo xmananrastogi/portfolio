@@ -182,7 +182,7 @@ export const portfolioData = {
     },
     {
       id: "portfolio-research-os",
-      title: "MananOS Portfolio",
+      title: "Interactive 3D Portfolio",
       eyebrow: "Interactive engineering portfolio",
       oneLine:
         "Interactive React portfolio built with TypeScript, real-time 3D, motion, and responsive project presentation.",
