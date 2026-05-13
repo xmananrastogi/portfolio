@@ -23,5 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
+# Python
+.venv
+__pycache__
+
 # Resume (Local only)
 resume.html

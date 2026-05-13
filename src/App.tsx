@@ -1,64 +1,64 @@
-import React, { Suspense, lazy } from 'react';
-import './App.css';
-import { LoadingProvider, useLoading } from './context/LoadingProvider';
-import InitializationLoader from './components/InitializationLoader';
-import MagneticCursor from './components/MagneticCursor';
-import Navbar from './components/Navbar';
-import TerminalHero from './components/TerminalHero';
+import { lazy, Suspense } from 'react';
+import IntroScreen from './components/IntroScreen';
+import ResearchHero from './components/ResearchHero';
+import PortfolioBento from './components/PortfolioBento';
 import AboutSection from './components/AboutSection';
-import ProjectsSection from './components/ProjectsSection';
+import SystemsSection from './components/SystemsSection';
+import GitHubActivity from './components/GitHubActivity';
 import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
-import StatusTicker from './components/StatusTicker';
-import MananOSCLI from './components/MananOSCLI';
 import SmoothScroll from './components/SmoothScroll';
-import { AnimatePresence, motion } from 'framer-motion';
+import Navbar from './components/Navbar';
+import ErrorBoundary from './components/ErrorBoundary';
+import { motion } from 'framer-motion';
 
-const PortfolioContent = () => {
-  const { isLoading } = useLoading();
-
-  return (
-    <AnimatePresence mode="wait">
-      {isLoading ? (
-        <InitializationLoader key="loader" />
-      ) : (
-        <motion.main
-          key="content"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="min-h-screen bg-background relative"
-        >
-          <MagneticCursor />
-          <Navbar />
-          
-          <div className="relative z-10 pb-32">
-            <TerminalHero />
-            <AboutSection />
-            <ProjectsSection />
-            <SkillsSection />
-            <ContactSection />
-          </div>
-
-          <StatusTicker />
-          <MananOSCLI />
-          
-          <footer className="py-12 px-6 flex justify-center text-[10px] font-mono tracking-[0.3em] uppercase text-white/10 select-none">
-            Built with precision by Manan Rastogi · /bin/portfolio
-          </footer>
-        </motion.main>
-      )}
-    </AnimatePresence>
-  );
-};
+// Lazy-load 3D scene to avoid blocking initial render
+const Scene3D = lazy(() => import('./components/Scene3D'));
 
 function App() {
   return (
-    <LoadingProvider>
+    <ErrorBoundary>
       <SmoothScroll>
-        <PortfolioContent />
+        <Navbar />
+
+        {/* 3D background — lazy loaded, hidden on reduced motion via CSS */}
+        <Suspense fallback={null}>
+          <Scene3D />
+        </Suspense>
+
+        <motion.main
+          id="main-content"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], staggerChildren: 0.1 }}
+          className="relative z-10 min-h-screen bg-transparent text-text-primary"
+          role="main"
+        >
+          <IntroScreen />
+          <ResearchHero />
+          <PortfolioBento />
+          <SystemsSection />
+          <GitHubActivity />
+          <AboutSection />
+          <SkillsSection />
+          <ContactSection />
+
+          <footer className="border-t border-white/10 px-6 py-10 text-center text-xs text-muted">
+            <p>© {new Date().getFullYear()} Manan Rastogi</p>
+            <p className="mt-2">
+              Applied AI, full-stack engineering, and computer vision.
+            </p>
+            <a
+              href="#hero"
+              className="mt-4 inline-block text-text-secondary transition hover:text-signal-cyan"
+              aria-label="Back to top"
+            >
+              ↑ Back to top
+            </a>
+          </footer>
+        </motion.main>
       </SmoothScroll>
-    </LoadingProvider>
+    </ErrorBoundary>
   );
 }
 

@@ -3,33 +3,144 @@
 @tailwind utilities;
 
 :root {
-  --bg-dark: #050505;
-  --accent-primary: #00FF94;
-  --accent-secondary: #00B8FF;
+  --bg-dark: #08090a;
+  --surface: #101214;
+  --surface-raised: #15181c;
+  --text-primary: #f4f5f5;
+  --text-secondary: #a7adb2;
+  --muted: #6e7681;
+  --cv-green: #2dd37f;
+  --signal-cyan: #38bdf8;
+  --biomed-red: #f87171;
+  --research-amber: #f5b84b;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px; /* account for sticky navbar */
 }
 
 body {
-  @apply bg-background text-white antialiased font-sans overflow-x-hidden;
+  @apply overflow-x-hidden bg-background font-sans text-text-primary antialiased;
   background-image:
-    radial-gradient(circle at 15% 50%, rgba(0, 255, 148, 0.03), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(0, 184, 255, 0.03), transparent 25%);
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.09), transparent 32%),
+    radial-gradient(circle at 82% 8%, rgba(245, 184, 75, 0.08), transparent 28%);
+  background-size: 48px 48px, 48px 48px, auto, auto;
 }
 
-.glass-panel {
-  @apply bg-glass-bg backdrop-blur-xl border border-glass-border shadow-2xl;
+/* ======= Accessibility ======= */
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
-/* Custom scrollbar */
+/* Focus-visible ring for all interactive elements */
+*:focus-visible {
+  outline: 2px solid rgba(56, 189, 248, 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove default focus outline (focus-visible handles it) */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ======= Component Styles ======= */
+
+.intro-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(circle at center, black 48%, transparent 100%);
+}
+
+.intro-pill {
+  @apply inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 font-mono text-lg font-semibold tracking-[0.18em] text-text-primary backdrop-blur-xl md:px-8 md:py-5 md:text-4xl;
+}
+
+.intro-pill-accent {
+  @apply border-signal-cyan/20 bg-signal-cyan/10 text-signal-cyan;
+}
+
+.hero-glow {
+  @apply absolute rounded-full blur-[150px];
+}
+
+.hero-glow-left {
+  left: -8%;
+  top: 18%;
+  height: 34rem;
+  width: 34rem;
+  background: rgba(56, 189, 248, 0.12);
+}
+
+.hero-glow-right {
+  right: -8%;
+  top: 10%;
+  height: 40rem;
+  width: 40rem;
+  background: rgba(245, 184, 75, 0.1);
+}
+
+/* ======= Selection ======= */
+
+::selection {
+  background: rgba(56, 189, 248, 0.28);
+  color: #fff;
+}
+
+/* ======= Scrollbar ======= */
+
 ::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  @apply bg-background;
-}
-::-webkit-scrollbar-thumb {
-  @apply bg-[#333] rounded-full hover:bg-accent-secondary transition-colors;
+  width: 8px;
 }
 
-/* Animations */
-@keyframes cursorBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-.cursor-blink { animation: cursorBlink 1s infinite; }
+::-webkit-scrollbar-track {
+  background: #08090a;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ======= Reduced Motion ======= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Hide 3D canvas entirely for reduced motion */
+  canvas {
+    display: none !important;
+  }
+}
+
+/* ======= ARIA live region ======= */
+
+[role="status"] {
+  position: relative;
+}

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://xmananrastogi.github.io/portfolio/sitemap.xml

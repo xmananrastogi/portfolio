@@ -1,119 +1,141 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, FileCode, Hash, Settings, Mail, FileText } from 'lucide-react';
+import { Menu, X, FileText } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeHash, setActiveHash] = useState('#hero');
+const navLinks = [
+  { href: '#systems', label: 'Projects' },
+  { href: '#stack', label: 'Skills' },
+  { href: '#about', label: 'About' },
+  { href: '#contact', label: 'Contact' },
+];
 
-  const navItems = [
-    { id: '#about', label: 'about.js', icon: <FileCode size={14} />, color: 'text-blue-400' },
-    { id: '#projects', label: 'projects.py', icon: <Hash size={14} />, color: 'text-emerald-400' },
-    { id: '#skills', label: 'skills.cpp', icon: <Settings size={14} />, color: 'text-purple-400' },
-    { id: '#contact', label: 'contact.md', icon: <Mail size={14} />, color: 'text-orange-400' },
-  ];
+export default function Navbar() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = document.querySelectorAll('section');
-      let currentIdx = 0;
-      sections.forEach((section, idx) => {
-        const top = section.getBoundingClientRect().top;
-        if (top <= 150) {
-          currentIdx = idx;
-        }
-      });
-      setActiveHash(`#${sections[currentIdx]?.id || 'hero'}`);
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(total > 0 ? window.scrollY / total : 0);
+      setScrolled(window.scrollY > 60);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on resize
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth >= 768) setMobileOpen(false); };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   return (
-    <>
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-32px)] max-w-[750px]">
-        <div className="bg-glass-bg/95 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl flex items-center justify-between">
-          <div className="flex px-4 text-xs font-mono font-black text-white/90 uppercase tracking-[0.3em]">
-             M<span className="text-accent-primary">·</span>RASTOGI
-          </div>
-          
-          <ul className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={item.id}
-                  className={`
-                    flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-200
-                    ${activeHash === item.id 
-                      ? 'bg-white/10 text-white shadow-inner' 
-                      : 'text-white/40 hover:text-white/70 hover:bg-white/5'}
-                  `}
-                >
-                  <span className={activeHash === item.id ? item.color : ''}>{item.icon}</span>
-                  {item.label}
-                </a>
-              </li>
-            ))}
-            
-            <div className="w-px h-4 bg-white/10 mx-2" />
-            
-            <a 
-              href={portfolioData.resumeLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="View Resume (Opens in new tab)"
-              className="flex items-center gap-2 px-4 py-2 bg-accent-primary/10 border border-accent-primary/20 text-accent-primary rounded-xl text-[10px] font-mono font-black uppercase hover:bg-accent-primary hover:text-black transition-all"
-            >
-               <FileText size={14} />
-               RESUME
-            </a>
-          </ul>
+    <nav
+      className="fixed top-0 left-0 right-0 z-[100]"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      {/* Scroll progress */}
+      <div className="h-[2px] bg-transparent" aria-hidden="true">
+        <motion.div
+          className="h-full bg-gradient-to-r from-signal-cyan via-cv-green to-research-amber"
+          style={{ width: `${scrollProgress * 100}%` }}
+        />
+      </div>
 
-          <button 
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-white/60 hover:text-white"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isOpen}
+      {/* Nav bar */}
+      <div
+        className={`transition-all duration-300 ${
+          scrolled
+            ? 'bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/10'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
+          <a
+            href="#hero"
+            className="font-mono text-sm font-semibold tracking-[0.2em] text-text-primary transition hover:text-signal-cyan"
+            aria-label="Back to top"
           >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </nav>
+            MR
+          </a>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-[99] bg-background/98 backdrop-blur-3xl flex flex-col items-center justify-center gap-8 p-6 md:hidden"
-          >
-            {navItems.map((item) => (
+          {/* Desktop links */}
+          <div className="hidden items-center gap-1 md:flex">
+            {navLinks.map((link) => (
               <a
-                key={item.id}
-                href={item.id}
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-4 text-2xl font-mono font-bold text-white/60 hover:text-accent-primary"
+                key={link.href}
+                href={link.href}
+                className="rounded-lg px-3 py-2 text-sm font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-cyan/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                <span className={item.color}>{item.icon}</span>
-                {item.label}
+                {link.label}
               </a>
             ))}
-            <a 
-              href={portfolioData.resumeLink} 
+            <a
+              href={portfolioData.resumeLink}
               target="_blank"
-              onClick={() => setIsOpen(false)}
-              className="mt-4 flex items-center gap-4 text-2xl font-mono font-black text-accent-primary"
+              rel="noopener noreferrer"
+              className="ml-2 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-text-primary transition hover:border-white/20 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-cyan/50"
+              aria-label="Download resume (opens in new tab)"
             >
-               <FileText size={24} />
-               VIEW RESUME
+              <FileText size={15} />
+              Resume
             </a>
+          </div>
+
+          {/* Mobile toggle */}
+          <button
+            className="rounded-lg p-2 text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-cyan/50"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="border-b border-white/10 bg-background/95 backdrop-blur-xl md:hidden"
+          >
+            <div className="flex flex-col gap-1 px-4 py-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="rounded-lg px-3 py-3 text-base font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-cyan/50"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <a
+                href={portfolioData.resumeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-text-primary"
+                aria-label="Download resume (opens in new tab)"
+              >
+                <FileText size={15} />
+                Resume
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </nav>
   );
-};
-
-export default Navbar;
+}

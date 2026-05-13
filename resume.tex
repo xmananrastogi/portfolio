@@ -1,0 +1,117 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Required packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.45in]{geometry} % Optimized for single-page density
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{charter} 
+\usepackage{fontawesome5}
+
+% Custom colors
+\definecolor{primary}{HTML}{000000}
+\definecolor{secondary}{HTML}{444444}
+\definecolor{linkcolor}{HTML}{0B51C1}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    filecolor=magenta,      
+    urlcolor=linkcolor,
+}
+
+% Section formatting - Compact & Professional
+\titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{12pt}{4pt}
+
+% Custom commands for entries
+\newcommand{\resumeEntryHeader}[4]{
+    \noindent \textbf{#1} \hfill #2 \\
+    \noindent \textit{#3} \hfill \textbf{#4} \\
+}
+
+\begin{document}
+
+% Header - Clean & Compact
+\begin{center}
+     {\Huge \textbf{MANAN RASTOGI}} \\ [2pt]
+     \small \textbf{AI Product Engineer | Applied CV, LLM Evaluation, Full-Stack Systems} \\ [4pt]
+    \small
+    \faPhone\ +91 9548594935 \hspace{8pt}
+    \faEnvelope\ \href{mailto:mananrastogi2k8.210@gmail.com}{mananrastogi2k8.210@gmail.com} \hspace{8pt}
+    \faLinkedin\ \href{https://www.linkedin.com/in/manan-rastogi-402697288/}{linkedin.com/in/manan-rastogi} \hspace{8pt}
+    \faGithub\ \href{https://github.com/xmananrastogi}{github.com/xmananrastogi}
+\end{center}
+
+% Education Section
+\section{Education}
+\resumeEntryHeader{Vellore Institute of Technology (VIT)}{Vellore, India}{B.Tech in Electronics \& Communication Engineering (Biomedical Specialization)}{2024 -- PRESENT}
+\begin{itemize}[noitemsep, topsep=2pt]
+    \item \textbf{Core Academics:} Digital Signal Processing, Signals \& Systems, Neural Networks, Biomedical Imaging, Embedded Systems, Microprocessors \& Microcontrollers.
+\end{itemize}
+
+\vspace{4pt}
+
+\resumeEntryHeader{IIT Madras}{Online, India}{BS in Data Science \& Applications}{2025 -- PRESENT}
+\begin{itemize}[noitemsep, topsep=2pt]
+    \item \textbf{Core Academics:} Machine Learning Foundations, Statistical Modeling, Algorithmic Design, Business Data Analytics, Programming in Python \& Java.
+\end{itemize}
+
+% Technical Expertise
+\section{Technical Expertise}
+\begin{description}[font=\bfseries, labelsep=1.5em, leftmargin=1.7in, noitemsep, topsep=2pt, itemsep=2pt]
+    \item[Applied AI \& Evaluation] Python 3.12, LLM APIs, prompt evaluation, rule-based validation, OpenCV, scikit-image, TrackPy, SciPy, NumPy.
+    \item[Web \& Backend] TypeScript, React.js, Three.js (R3F), Framer Motion, Flask, RESTful APIs, Tailwind CSS, Vite.
+    \item[ECE \& Embedded] Verilog, C++, digital logic, DSP, embedded systems foundations, microprocessors, hardware-oriented debugging.
+    \item[Data \& Tooling] SQLite, MongoDB, Git, Linux Bash, Docker, Vercel, Postman, performance profiling.
+\end{description}
+
+% Role Fit
+\section{Relevant Fit for AI Tooling \& Embedded AI}
+\begin{itemize}[noitemsep, topsep=2pt, itemsep=2pt]
+    \item Strong Python engineering foundation with experience converting noisy technical data into deterministic, testable analysis pipelines.
+    \item ECE background with coursework in embedded systems, microprocessors, digital logic, DSP, and technical documentation-heavy subjects.
+    \item Comfortable evaluating model/tool outputs critically using metrics, failure cases, rule checks, and human-readable reports.
+\end{itemize}
+
+% Technical Project Deployments
+\section{Technical Project Deployments}
+
+% Project 1 - WoundTrack AI
+\noindent \textbf{\href{https://xmananrastogi-woundtrackai.hf.space/}{WoundTrack AI: Applied Computer Vision Pipeline}} \hfill \textbf{2024 -- PRESENT} \\
+\textit{Python, OpenCV, Flask} \hfill \href{https://xmananrastogi-woundtrackai.hf.space/}{[Live Demo]}
+\begin{itemize}[noitemsep, topsep=2pt, itemsep=2pt]
+    \item Engineered a research-grade CV pipeline tracking \textbf{249+ cells} with \textbf{<10 min} processing on consumer hardware, achieving \textbf{28\% higher precision} than industry-standard manual tracking tools like ImageJ.
+    \item Implemented deterministic \textbf{Ensemble Segmentation} (Variance + Entropy filtering) and temporal smoothing via 1D Gaussian kernels to reduce microscopic sensor noise from kinetic velocity curves.
+    \item Designed custom evaluation metrics including MSD exponents ($\alpha$), wavefront roughness, and fractal-dimension analysis to validate output quality against biological movement patterns.
+    \item Built a Flask + SQLite dashboard for batch processing, kinetic visualization, and automated report generation across 800+ frame analysis workloads.
+\end{itemize}
+
+\vspace{6pt}
+
+% Project 2 - Modern Portfolio
+\noindent \textbf{\href{https://xmananrastogi.github.io/portfolio/}{Interactive 3D Engineering Portfolio}} \hfill \textbf{2024 -- PRESENT} \\
+\textit{TypeScript, React, Three.js (R3F), Framer Motion, Tailwind CSS} \hfill \href{https://xmananrastogi.github.io/portfolio/}{[Live Demo]}
+\begin{itemize}[noitemsep, topsep=2pt, itemsep=2pt]
+    \item Built a portfolio with \textbf{React Three Fiber} 3D background scene featuring floating wireframe geometries, distortion materials, and star fields rendered via WebGL.
+    \item Implemented \textbf{Framer Motion} animation system for scroll-triggered section reveals, layout transitions, and interactive micro-animations.
+    \item Added \textbf{WCAG accessibility}: skip navigation, focus-visible rings, ARIA labels, keyboard-dismissible intro, screen-reader live regions, and reduced-motion support.
+    \item Responsive design with sticky navigation, scroll progress indicator, and lazy-loaded 3D scene to optimize initial paint.
+\end{itemize}
+
+\vspace{6pt}
+
+% Project 3 - GSSoC
+\noindent \textbf{Editron — Open Source Contributor (GSSoC '26)} \hfill \textbf{2026} \\
+\textit{JavaScript, Git, Open Source Workflow}
+\begin{itemize}[noitemsep, topsep=2pt, itemsep=2pt]
+    \item Contributing to Editron, an open-source code editor, through GirlScript Summer of Code 2026.
+    \item Working on code-quality improvements including removing unused import warnings across the codebase.
+    \item Following standard open-source contribution workflow: issue triage, fork, feature branch, and pull request.
+\end{itemize}
+
+\end{document}

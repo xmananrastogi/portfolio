@@ -7,13 +7,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#050505",
+        background: "#08090A",
+        surface: "#101214",
+        "surface-raised": "#15181C",
+        "text-primary": "#F4F5F5",
+        "text-secondary": "#A7ADB2",
+        muted: "#6E7681",
+        "cv-green": "#2DD37F",
+        "signal-cyan": "#38BDF8",
+        "biomed-red": "#F87171",
+        "research-amber": "#F5B84B",
         accent: {
-          primary: "#00FF94",
-          secondary: "#00B8FF",
+          primary: "#2DD37F",
+          secondary: "#38BDF8",
         },
         glass: {
-          bg: "rgba(20, 20, 20, 0.65)",
+          bg: "rgba(16, 18, 20, 0.72)",
           border: "rgba(255, 255, 255, 0.08)",
         }
       },

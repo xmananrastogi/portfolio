@@ -1,75 +1,67 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import { BrainCircuit, Code2, Database, Gauge } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
-import { Code2, Terminal as TerminalIcon, BarChart3, Wrench } from 'lucide-react';
 
 const SkillsSection = () => {
-  const icons = [<Code2 size={20} />, <TerminalIcon size={20} />, <BarChart3 size={20} />, <Wrench size={20} />];
+  const icons = [BrainCircuit, Database, Code2, Gauge];
 
   return (
-    <section id="skills" className="py-24 px-4 bg-background relative overflow-hidden">
-      <div className="max-w-6xl mx-auto">
+    <section id="stack" className="relative overflow-hidden px-4 py-16 md:py-24" aria-label="Skills">
+      <div className="mx-auto max-w-7xl">
         <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           className="mb-16"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5 }}
+          className="mb-14 max-w-3xl"
         >
-          <div className="flex items-center gap-4 mb-4">
-            <h2 className="text-3xl font-bold tracking-tight">Technical stack</h2>
-            <div className="flex-1 h-px bg-white/10" />
-            <span className="text-[10px] font-mono text-white/30 uppercase tracking-[0.2em]">Full System Overview</span>
-          </div>
+          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-research-amber">
+            Technical toolkit
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text-primary md:text-5xl">
+            Skills
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-text-secondary">
+            Software, AI, computer vision, backend, and systems tools from current work and coursework.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {portfolioData.skillsCategories.map((category, i) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-panel p-8 rounded-2xl hover:border-accent-secondary/30 transition-colors group relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                {React.cloneElement(icons[i % icons.length] as React.ReactElement, { size: 60 })}
-              </div>
-
-              <div className="flex items-center gap-3 mb-6">
-                 <div className="text-accent-secondary">{icons[i % icons.length]}</div>
-                 <h3 className="text-sm font-mono font-bold uppercase tracking-widest text-white/80">{category.title}</h3>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {category.items.map(item => (
-                  <span key={item} className="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-xs text-white/60 group-hover:text-white/90 group-hover:bg-white/10 transition-all">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {portfolioData.skillsCategories.map((category, index) => {
+            const Icon = icons[index % icons.length];
+            return (
+              <motion.div
+                key={category.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ delay: index * 0.06, duration: 0.45 }}
+                className="rounded-2xl border border-white/10 bg-surface p-6"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-signal-cyan">
+                  <Icon size={20} aria-hidden="true" />
+                </div>
+                <h3 className="mt-5 text-lg font-semibold text-text-primary">
+                  {category.title}
+                </h3>
+                <p className="mt-3 min-h-[72px] text-sm leading-6 text-text-secondary">
+                  {category.proof}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2" role="list" aria-label={`${category.title} skills`}>
+                  {category.items.map((item) => (
+                    <span
+                      key={item}
+                      role="listitem"
+                      className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-text-secondary"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
-
-        <motion.div
-           initial={{ opacity: 0 }}
-           whileInView={{ opacity: 1 }}
-           viewport={{ once: true }}
-           className="mt-16 p-8 glass-panel rounded-2xl border-emerald-500/10 flex flex-col md:flex-row items-center justify-between gap-8"
-        >
-          <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-xl font-bold text-white/90">Interdisciplinary Expertise</h3>
-            <p className="text-sm text-white/40 max-w-lg">Certified skills across electronic circuit design, biomedical engineering pipelines, and modern full-stack web development.</p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-3">
-             {portfolioData.about.skills.slice(0, 8).map(skill => (
-               <div key={skill} className="px-4 py-2 bg-accent-primary/5 border border-accent-primary/10 rounded-lg text-[10px] font-mono text-accent-primary uppercase tracking-widest">
-                 {skill}
-               </div>
-             ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
