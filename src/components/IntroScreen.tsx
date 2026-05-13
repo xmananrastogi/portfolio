@@ -2,8 +2,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 
 const introLines = [
-  ['MANAN', 'RASTOGI'],
-  ['PORTFOLIO', '2026'],
+  ['AI', 'PRODUCT', 'ENGINEER'],
+  ['PREMIUM', 'WEB', 'SYSTEMS'],
+  ['INTERFACES', 'THAT', 'FEEL', 'HIRED'],
 ];
 
 const IntroScreen = () => {
@@ -12,7 +13,7 @@ const IntroScreen = () => {
   const dismiss = useCallback(() => setVisible(false), []);
 
   useEffect(() => {
-    const timer = window.setTimeout(dismiss, 1200); // Faster dismissal
+    const timer = window.setTimeout(dismiss, 1800);
     return () => window.clearTimeout(timer);
   }, [dismiss]);
 
@@ -58,7 +59,7 @@ const IntroScreen = () => {
                   <span
                     key={`${lineIndex}-${word}`}
                     className={`intro-pill ${
-                      lineIndex === 1 ? 'intro-pill-accent' : ''
+                      lineIndex === 2 && wordIndex === line.length - 1 ? 'intro-pill-accent' : ''
                     }`}
                   >
                     {word}
