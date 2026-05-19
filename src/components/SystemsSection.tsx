@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, ChevronLeft, ChevronRight, ExternalLink, Github, GitFork, Sparkles, Award, ExternalLink as LinkIcon } from 'lucide-react';
+import { ArrowUpRight, ChevronLeft, ChevronRight, ExternalLink, Github, Award } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const SystemsSection = () => {
-  const woundTrack = portfolioData.systems.find((s) => s.id === 'woundtrack-ai')!;
-  const portfolio = portfolioData.systems.find((s) => s.id === 'portfolio-research-os')!;
-  const gssoc = portfolioData.systems.find((s) => s.id === 'gssoc-editron')!;
+  const woundTrack = portfolioData.systems.find((s) => s.id === 'woundtrack-ai');
+  const portfolio = portfolioData.systems.find((s) => s.id === 'portfolio-research-os');
+  const gssoc = portfolioData.systems.find((s) => s.id === 'gssoc-editron');
+  const vitalize = portfolioData.systems.find((s) => s.id === 'vitalize');
+
+  if (!woundTrack || !portfolio || !gssoc || !vitalize) return null;
 
   return (
     <section id="systems" className="relative overflow-hidden px-4 py-16 md:py-24" aria-label="Projects">
@@ -26,17 +29,22 @@ const SystemsSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
-          {/* WoundTrack AI — Flagship */}
-          <WoundTrackCard data={woundTrack} />
+        <div className="grid gap-5">
+          <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+            {/* WoundTrack AI — Flagship CV */}
+            <WoundTrackCard data={woundTrack} />
 
-          <div className="grid gap-5">
-            {/* Portfolio card */}
-            <PortfolioCard data={portfolio} />
+            <div className="grid gap-5">
+              {/* Portfolio card */}
+              <PortfolioCard data={portfolio} />
 
-            {/* GSSoC card */}
-            <GSSoCCard data={gssoc} />
+              {/* GSSoC card */}
+              <GSSoCCard data={gssoc} />
+            </div>
           </div>
+
+          {/* VITalize — Flagship EdTech */}
+          <VitalizeCard data={vitalize} />
         </div>
       </div>
     </section>
@@ -49,10 +57,17 @@ const SystemsSection = () => {
 
 function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
   const [currentImage, setCurrentImage] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const images = data.images;
 
-  const nextImage = () => setCurrentImage((i) => (i + 1) % images.length);
-  const prevImage = () => setCurrentImage((i) => (i - 1 + images.length) % images.length);
+  const nextImage = () => {
+    setImageLoaded(false);
+    setCurrentImage((i) => (i + 1) % images.length);
+  };
+  const prevImage = () => {
+    setImageLoaded(false);
+    setCurrentImage((i) => (i - 1 + images.length) % images.length);
+  };
 
   return (
     <motion.article
@@ -64,16 +79,29 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
       aria-label={`Project: ${data.title}`}
     >
       {/* Image gallery */}
-      <div className="relative min-h-[320px] overflow-hidden bg-black">
+      <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '16/9' }}>
         {images.length > 0 && (
-          <>
+          <div
+            id="woundtrack-gallery"
+            role="group"
+            aria-roledescription="screenshot gallery"
+            aria-label={`${data.title} screenshots`}
+            className="h-full w-full"
+          >
+            {/* Skeleton placeholder — shows until image loads */}
+            {!imageLoaded && (
+              <div className="absolute inset-0 animate-pulse bg-white/[0.04]" aria-hidden="true" />
+            )}
             <motion.img
               key={currentImage}
               src={images[currentImage]}
               alt={`${data.title} — screenshot ${currentImage + 1} of ${images.length}`}
-              className="h-full w-full object-cover opacity-75"
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 0.75, scale: 1 }}
+              onLoad={() => setImageLoaded(true)}
+              className={`h-full w-full object-cover transition-opacity duration-500 ${
+                imageLoaded ? 'opacity-75' : 'opacity-0'
+              }`}
+              initial={{ scale: 1.05 }}
+              animate={{ scale: 1 }}
               transition={{ duration: 0.5 }}
               loading="lazy"
             />
@@ -83,6 +111,7 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
                   onClick={prevImage}
                   className="rounded-full bg-black/50 p-2 text-white/80 backdrop-blur transition hover:bg-black/70"
                   aria-label="Previous image"
+                  aria-controls="woundtrack-gallery"
                 >
                   <ChevronLeft size={18} />
                 </button>
@@ -93,12 +122,13 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
                   onClick={nextImage}
                   className="rounded-full bg-black/50 p-2 text-white/80 backdrop-blur transition hover:bg-black/70"
                   aria-label="Next image"
+                  aria-controls="woundtrack-gallery"
                 >
                   <ChevronRight size={18} />
                 </button>
               </div>
             )}
-          </>
+          </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" aria-hidden="true" />
         <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -135,13 +165,13 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
         </div>
 
         {/* Architecture tags */}
-        <div className="grid gap-3 md:grid-cols-2">
+        <ul className="grid gap-3 md:grid-cols-2" aria-label="Architecture components">
           {data.architecture.slice(0, 4).map((item) => (
-            <div key={item} className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm text-text-secondary">
+            <li key={item} className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm text-text-secondary">
               {item}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <div className="flex flex-col gap-3 sm:flex-row">
           <a
@@ -189,9 +219,9 @@ function PortfolioCard({ data }: { data: typeof portfolioData.systems[0] }) {
       </p>
       <h3 className="mt-3 text-3xl font-semibold text-text-primary">{data.title}</h3>
       <p className="mt-4 text-sm leading-7 text-text-secondary">{data.oneLine}</p>
-      <div className="mt-6 space-y-3">
+      <ul className="mt-6 space-y-3" aria-label="Architecture components">
         {data.architecture.map((item, index) => (
-          <motion.div
+          <motion.li
             key={item}
             initial={{ opacity: 0, x: 10 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -200,9 +230,9 @@ function PortfolioCard({ data }: { data: typeof portfolioData.systems[0] }) {
             className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-text-secondary"
           >
             {item}
-          </motion.div>
+          </motion.li>
         ))}
-      </div>
+      </ul>
       <div className="mt-6 flex gap-3">
         <a
           href={data.links.live}
@@ -287,6 +317,108 @@ function GSSoCCard({ data }: { data: typeof portfolioData.systems[0] }) {
           >
             <ExternalLink size={16} aria-hidden="true" />
             GSSoC
+          </a>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+// ============================
+// VITalize Card — Full-Stack EdTech Platform
+// ============================
+
+function VitalizeCard({ data }: { data: typeof portfolioData.systems[0] }) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="overflow-hidden rounded-[30px] border border-white/10 bg-surface"
+      aria-label={`Project: ${data.title}`}
+    >
+      {/* Header */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-signal-cyan/[0.05] via-transparent to-research-amber/[0.04] px-8 pb-8 pt-10">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(56,189,248,0.06),transparent_50%)]" aria-hidden="true" />
+        <p className="relative text-xs font-semibold uppercase tracking-[0.24em] text-signal-cyan">
+          {data.eyebrow}
+        </p>
+        <h3 className="relative mt-3 text-3xl font-semibold text-text-primary md:text-5xl">
+          {data.title}
+        </h3>
+        <p className="relative mt-4 max-w-3xl text-sm leading-7 text-text-secondary">
+          {data.oneLine}
+        </p>
+      </div>
+
+      <div className="space-y-7 p-8">
+        <p className="text-sm leading-7 text-text-secondary">{data.problem}</p>
+
+        {/* Feature pipeline */}
+        <div className="grid gap-4 md:grid-cols-2">
+          {data.pipeline.map(({ stage, title, summary }, index) => (
+            <motion.div
+              key={stage}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.08, duration: 0.4 }}
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-5"
+            >
+              <span className="font-mono text-xs tracking-wider text-signal-cyan">{stage}</span>
+              <h4 className="mt-2 text-lg font-semibold text-text-primary">{title}</h4>
+              <p className="mt-2 text-sm leading-6 text-text-secondary">{summary}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Metrics */}
+        <div className="grid gap-3 sm:grid-cols-4">
+          {data.metrics.slice(0, 4).map(({ value, label }, index) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.08, duration: 0.4 }}
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+            >
+              <div className="font-mono text-2xl font-semibold text-text-primary">{value}</div>
+              <div className="mt-2 text-xs uppercase tracking-[0.18em] text-muted">{label}</div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Architecture tags */}
+        <ul className="grid gap-3 md:grid-cols-3" aria-label="Architecture components">
+          {data.architecture.slice(0, 6).map((item) => (
+            <li key={item} className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm text-text-secondary">
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <a
+            href={data.links.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-text-primary px-4 py-3 text-sm font-semibold text-background transition hover:bg-white"
+            aria-label={`Live demo of ${data.title} (opens in new tab)`}
+          >
+            Live demo
+            <ExternalLink size={16} aria-hidden="true" />
+          </a>
+          <a
+            href={data.links.code}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-text-primary transition hover:bg-white/[0.07]"
+            aria-label={`Source code for ${data.title} (opens in new tab)`}
+          >
+            Source
+            <Github size={16} aria-hidden="true" />
           </a>
         </div>
       </div>

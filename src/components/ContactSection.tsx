@@ -1,30 +1,63 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Send } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT ?? 'https://formspree.io/f/xldonobr';
+const STATUS_TIMEOUT = 3000;
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const ContactSection = () => {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState<null | 'sending' | 'success' | 'error'>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
+  const statusTimer = useRef<ReturnType<typeof setTimeout>>();
+
+  const clearStatusTimer = () => {
+    if (statusTimer.current) clearTimeout(statusTimer.current);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    clearStatusTimer();
+
+    const trimmed = {
+      name: formState.name.trim(),
+      email: formState.email.trim(),
+      message: formState.message.trim(),
+    };
+
+    if (!trimmed.name || trimmed.name.length < 2) {
+      setValidationError('Name must be at least 2 characters');
+      return;
+    }
+    if (!trimmed.email || !EMAIL_RE.test(trimmed.email)) {
+      setValidationError('Please enter a valid email address');
+      return;
+    }
+    if (!trimmed.message || trimmed.message.length < 10) {
+      setValidationError('Message must be at least 10 characters');
+      return;
+    }
+
+    setValidationError(null);
     setStatus('sending');
 
     // Honeypot check — if bot filled the hidden field, silently succeed
     if (honeypot) {
       setStatus('success');
       setFormState({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus(null), 3000);
+      statusTimer.current = setTimeout(() => setStatus(null), STATUS_TIMEOUT);
       return;
     }
 
     try {
-      const response = await fetch('https://formspree.io/f/xldonobr', {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formState),
+        body: JSON.stringify(trimmed),
       });
 
       if (response.ok) {
@@ -37,7 +70,7 @@ const ContactSection = () => {
       setStatus('error');
     }
 
-    setTimeout(() => setStatus(null), 3000);
+    statusTimer.current = setTimeout(() => setStatus(null), STATUS_TIMEOUT);
   };
 
   const statusMessage =
@@ -136,8 +169,10 @@ const ContactSection = () => {
                 <input
                   type="text"
                   value={formState.name}
-                  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                  onChange={(e) => { setValidationError(null); setFormState({ ...formState, name: e.target.value }); }}
                   required
+                  minLength={2}
+                  maxLength={100}
                   placeholder="Your name"
                   autoComplete="name"
                   className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-text-primary outline-none transition placeholder:text-muted focus:border-signal-cyan/40"
@@ -149,7 +184,7 @@ const ContactSection = () => {
                 <input
                   type="email"
                   value={formState.email}
-                  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                  onChange={(e) => { setValidationError(null); setFormState({ ...formState, email: e.target.value }); }}
                   required
                   placeholder="you@example.com"
                   autoComplete="email"
@@ -162,12 +197,20 @@ const ContactSection = () => {
                 <textarea
                   rows={6}
                   value={formState.message}
-                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                  onChange={(e) => { setValidationError(null); setFormState({ ...formState, message: e.target.value }); }}
                   required
+                  minLength={10}
+                  maxLength={5000}
                   placeholder="Tell me the role, problem, dataset, or system you want to discuss."
                   className="resize-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-text-primary outline-none transition placeholder:text-muted focus:border-signal-cyan/40"
                 />
               </label>
+
+              {validationError && (
+                <div className="rounded-xl border border-biomed-red/20 bg-biomed-red/10 px-4 py-3 text-sm text-biomed-red" role="alert">
+                  {validationError}
+                </div>
+              )}
 
               <button
                 type="submit"

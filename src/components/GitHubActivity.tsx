@@ -144,6 +144,7 @@ export default function GitHubActivity() {
   const [events, setEvents] = useState<GitHubEvent[]>([]);
   const [userInfo, setUserInfo] = useState<GitHubUser | null>(null);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
 
   useEffect(() => {
     const fetchGitHub = async () => {
@@ -163,7 +164,7 @@ export default function GitHubActivity() {
           setUserInfo(data);
         }
       } catch {
-        // Silently fail — section just won't show data
+        setFetchError(true);
       } finally {
         setLoading(false);
       }
@@ -264,7 +265,7 @@ export default function GitHubActivity() {
 
             {events.length === 0 && (
               <p className="py-8 text-center text-sm text-muted">
-                No recent public activity found.
+                {fetchError ? 'Couldn\'t load GitHub data right now.' : 'No recent public activity found.'}
               </p>
             )}
           </motion.div>

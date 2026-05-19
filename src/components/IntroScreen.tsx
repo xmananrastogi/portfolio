@@ -1,5 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+const DISMISS_TIMEOUT = 1800;
 
 const introLines = [
   ['AI', 'PRODUCT', 'ENGINEER'],
@@ -9,11 +11,15 @@ const introLines = [
 
 const IntroScreen = () => {
   const [visible, setVisible] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const dismiss = useCallback(() => setVisible(false), []);
+  const dismiss = useCallback(() => {
+    setVisible(false);
+    document.getElementById('main-content')?.focus();
+  }, []);
 
   useEffect(() => {
-    const timer = window.setTimeout(dismiss, 1800);
+    const timer = window.setTimeout(dismiss, DISMISS_TIMEOUT);
     return () => window.clearTimeout(timer);
   }, [dismiss]);
 
@@ -21,6 +27,7 @@ const IntroScreen = () => {
   useEffect(() => {
     if (!visible) return;
     const handleKey = (e: KeyboardEvent) => {
+      if (e.key === ' ') e.preventDefault();
       if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') dismiss();
     };
     window.addEventListener('keydown', handleKey);
@@ -31,12 +38,14 @@ const IntroScreen = () => {
     <AnimatePresence>
       {visible && (
         <motion.div
+          ref={containerRef}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, filter: 'blur(10px)' }}
           transition={{ duration: 0.6, ease: 'easeInOut' }}
           className="fixed inset-0 z-[140] flex cursor-pointer items-center justify-center overflow-hidden bg-background"
           onClick={dismiss}
           role="dialog"
+          aria-modal={true}
           aria-label="Loading animation — click or press any key to skip"
         >
           {/* Subtle Ambient Glow */}
@@ -44,6 +53,7 @@ const IntroScreen = () => {
             className="absolute left-1/2 top-1/2 h-[40vh] w-[40vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-signal-cyan/5 blur-[100px]"
             animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            aria-hidden="true"
           />
 
           <div className="absolute inset-0 intro-grid" aria-hidden="true" />

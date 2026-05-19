@@ -23,12 +23,10 @@ const PortfolioBento = () => {
   // Use metrics from the single source of truth
   const woundTrack = portfolioData.systems.find((s) => s.id === 'woundtrack-ai');
   const displayMetrics = woundTrack
-    ? [
-        { value: woundTrack.metrics[0].value, label: woundTrack.metrics[0].label },
-        { value: woundTrack.metrics[2].value, label: woundTrack.metrics[2].label },
-        { value: woundTrack.metrics[3].value, label: woundTrack.metrics[3].label },
-        { value: woundTrack.metrics[4].value, label: woundTrack.metrics[4].label },
-      ]
+    ? [0, 2, 3, 4].map(i => ({
+        value: woundTrack.metrics[i]?.value ?? '',
+        label: woundTrack.metrics[i]?.label ?? '',
+      })).filter(m => m.value !== '')
     : [];
 
   return (

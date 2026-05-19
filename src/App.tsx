@@ -30,7 +30,7 @@ function App() {
           id="main-content"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], staggerChildren: 0.1 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 min-h-screen bg-transparent text-text-primary"
           role="main"
         >
