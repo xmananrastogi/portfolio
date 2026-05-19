@@ -341,7 +341,7 @@ export const portfolioData = {
       ],
       deployment: "Deployed on Vercel with auto-deploy from main branch. MongoDB Atlas for managed database. GitHub Actions for CI/CD.",
       links: {
-        live: "https://vitalize.vercel.app",
+        live: "https://vitalize-vit.vercel.app",
         code: "https://github.com/xmananrastogi/vitalize-fullstack",
       },
       images: [],
