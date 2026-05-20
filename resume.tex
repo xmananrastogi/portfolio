@@ -3,12 +3,12 @@
 % Required packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[margin=0.45in]{geometry} % Optimized for single-page density
+\usepackage[margin=0.45in]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{xcolor}
-\usepackage{charter} 
+\usepackage{charter}
 \usepackage{fontawesome5}
 
 % Custom colors
@@ -20,13 +20,13 @@
 \hypersetup{
     colorlinks=true,
     linkcolor=linkcolor,
-    filecolor=magenta,      
+    filecolor=magenta,
     urlcolor=linkcolor,
 }
 
 % Section formatting - Compact & Professional
 \titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{12pt}{4pt}
+\titlespacing{\section}{0pt}{10pt}{3pt}
 
 % Custom commands for entries
 \newcommand{\resumeEntryHeader}[4]{
@@ -43,75 +43,77 @@
     \small
     \faPhone\ +91 9548594935 \hspace{8pt}
     \faEnvelope\ \href{mailto:mananrastogi2k8.210@gmail.com}{mananrastogi2k8.210@gmail.com} \hspace{8pt}
-    \faLinkedin\ \href{https://www.linkedin.com/in/manan-rastogi-402697288/}{linkedin.com/in/manan-rastogi} \hspace{8pt}
+    \faLinkedin\ \href{https://www.linkedin.com/in/manan-rastogi-402697288/}{linkedin.com/in/manan-rastogi-402697288} \hspace{8pt}
     \faGithub\ \href{https://github.com/xmananrastogi}{github.com/xmananrastogi}
 \end{center}
 
 % Education Section
 \section{Education}
 \resumeEntryHeader{Vellore Institute of Technology (VIT)}{Vellore, India}{B.Tech in Electronics \& Communication Engineering (Biomedical Specialization)}{2024 -- PRESENT}
-\begin{itemize}[noitemsep, topsep=2pt]
-    \item \textbf{Core Academics:} Digital Signal Processing, Signals \& Systems, Neural Networks, Biomedical Imaging, Embedded Systems, Microprocessors \& Microcontrollers.
+\begin{itemize}[noitemsep, topsep=1pt]
+    \item \textbf{Core:} Digital Signal Processing, Biomedical Imaging, Neural Networks, Embedded Systems, Microprocessors \& Microcontrollers.
 \end{itemize}
 
-\vspace{4pt}
+\vspace{2pt}
 
 \resumeEntryHeader{IIT Madras}{Online, India}{BS in Data Science \& Applications}{2025 -- PRESENT}
-\begin{itemize}[noitemsep, topsep=2pt]
-    \item \textbf{Core Academics:} Machine Learning Foundations, Statistical Modeling, Algorithmic Design, Business Data Analytics, Programming in Python \& Java.
+\begin{itemize}[noitemsep, topsep=1pt]
+    \item \textbf{Core:} Machine Learning Foundations, Statistical Modeling, Algorithmic Design, Business Data Analytics.
 \end{itemize}
 
 % Technical Expertise
 \section{Technical Expertise}
-\begin{description}[font=\bfseries, labelsep=1.5em, leftmargin=1.7in, noitemsep, topsep=2pt, itemsep=2pt]
-    \item[Applied AI \& Evaluation] Python 3.12, LLM APIs, prompt evaluation, rule-based validation, OpenCV, scikit-image, TrackPy, SciPy, NumPy.
-    \item[Web \& Backend] TypeScript, React.js, Three.js (R3F), Framer Motion, Flask, RESTful APIs, Tailwind CSS, Vite.
-    \item[ECE \& Embedded] Verilog, C++, digital logic, DSP, embedded systems foundations, microprocessors, hardware-oriented debugging.
-    \item[Data \& Tooling] SQLite, MongoDB, Git, Linux Bash, Docker, Vercel, Postman, performance profiling.
+\begin{description}[font=\bfseries, labelsep=1.5em, leftmargin=1.7in, noitemsep, topsep=1pt, itemsep=1pt]
+    \item[Applied AI \& Evaluation] Python 3.12, LLM APIs (NVIDIA LLaMA 3.1), prompt engineering, RAG pipelines, rule-based validation, OpenCV, scikit-image, TrackPy, SciPy, NumPy.
+    \item[Web \& Full-Stack] TypeScript, React.js, Next.js, Node.js, Three.js (R3F), Framer Motion, Flask, RESTful APIs, Tailwind CSS, MongoDB, Vite.
+    \item[Systems \& Tooling] Git, Docker, Vercel, MongoDB Atlas, SQLite, Tesseract OCR, CI/CD, Linux Bash, performance profiling.
+    \item[ECE \& Embedded] Verilog, C++, digital logic, DSP fundamentals, embedded systems, microcontrollers.
 \end{description}
-
-% Role Fit
-\section{Relevant Fit for AI Tooling \& Embedded AI}
-\begin{itemize}[noitemsep, topsep=2pt, itemsep=2pt]
-    \item Strong Python engineering foundation with experience converting noisy technical data into deterministic, testable analysis pipelines.
-    \item ECE background with coursework in embedded systems, microprocessors, digital logic, DSP, and technical documentation-heavy subjects.
-    \item Comfortable evaluating model/tool outputs critically using metrics, failure cases, rule checks, and human-readable reports.
-\end{itemize}
 
 % Technical Project Deployments
 \section{Technical Project Deployments}
 
 % Project 1 - WoundTrack AI
 \noindent \textbf{\href{https://xmananrastogi-woundtrackai.hf.space/}{WoundTrack AI: Applied Computer Vision Pipeline}} \hfill \textbf{2024 -- PRESENT} \\
-\textit{Python, OpenCV, Flask} \hfill \href{https://xmananrastogi-woundtrackai.hf.space/}{[Live Demo]}
-\begin{itemize}[noitemsep, topsep=2pt, itemsep=2pt]
-    \item Engineered a research-grade CV pipeline tracking \textbf{249+ cells} with \textbf{<10 min} processing on consumer hardware, achieving \textbf{28\% higher precision} than industry-standard manual tracking tools like ImageJ.
-    \item Implemented deterministic \textbf{Ensemble Segmentation} (Variance + Entropy filtering) and temporal smoothing via 1D Gaussian kernels to reduce microscopic sensor noise from kinetic velocity curves.
-    \item Designed custom evaluation metrics including MSD exponents ($\alpha$), wavefront roughness, and fractal-dimension analysis to validate output quality against biological movement patterns.
-    \item Built a Flask + SQLite dashboard for batch processing, kinetic visualization, and automated report generation across 800+ frame analysis workloads.
+\textit{Python, OpenCV, Flask, SciPy, SQLite} \hfill \href{https://xmananrastogi-woundtrackai.hf.space/}{[Live Demo]} \href{https://github.com/xmananrastogi/WoundTrack-AI}{[Source]}
+\begin{itemize}[noitemsep, topsep=1pt, itemsep=1pt]
+    \item Engineered a research-grade CV pipeline tracking \textbf{441 cells} across \textbf{800+ frames} in \textbf{<10 min} on consumer hardware, achieving \textbf{28\% higher precision} than manual ImageJ workflows.
+    \item Implemented LoG blob detection + LAP gap-closing tracker with Kalman prediction for explainable cell localization and trajectory continuity through missed frames.
+    \item Designed custom evaluation metrics (MSD exponents, wavefront roughness, fractal-dimension analysis) to validate output against biological movement patterns.
+    \item Built Flask + SQLite dashboard for batch processing, kinetic visualization, and automated report generation.
 \end{itemize}
 
-\vspace{6pt}
+\vspace{4pt}
 
-% Project 2 - Modern Portfolio
+% Project 2 - VITalize
+\noindent \textbf{\href{https://vitalize-vit.vercel.app/}{VITalize AI: Full-Stack Academic Platform}} \hfill \textbf{2025 -- PRESENT} \\
+\textit{Next.js 15, TypeScript, MongoDB, NVIDIA LLaMA 3.1, Tesseract OCR} \hfill \href{https://vitalize-vit.vercel.app/}{[Live Demo]} \href{https://github.com/xmananrastogi/vitalize-fullstack}{[Source]}
+\begin{itemize}[noitemsep, topsep=1pt, itemsep=1pt]
+    \item Built a unified academic platform indexing \textbf{3,000+} past exam papers with full-text search, subject-level filters, and bulk download — replacing scattered Telegram groups and Google Drive folders for VIT's student body.
+    \item Integrated \textbf{NVIDIA LLaMA 3.1} API with Tesseract OCR fallback pipeline to extract text from scanned PDFs and generate unit-wise, mark-weighted AI solutions with KaTeX rendering.
+    \item Engineered constraint-based \textbf{FFCS timetable solver} with clash elimination, faculty prioritization, gap minimization, and ICS calendar export.
+    \item Deployed on \textbf{Vercel} with \textbf{MongoDB Atlas}; built a Chrome extension for VTOP data sync; open-source with community funding.
+\end{itemize}
+
+\vspace{4pt}
+
+% Project 3 - Modern Portfolio
 \noindent \textbf{\href{https://xmananrastogi.github.io/portfolio/}{Interactive 3D Engineering Portfolio}} \hfill \textbf{2024 -- PRESENT} \\
-\textit{TypeScript, React, Three.js (R3F), Framer Motion, Tailwind CSS} \hfill \href{https://xmananrastogi.github.io/portfolio/}{[Live Demo]}
-\begin{itemize}[noitemsep, topsep=2pt, itemsep=2pt]
-    \item Built a portfolio with \textbf{React Three Fiber} 3D background scene featuring floating wireframe geometries, distortion materials, and star fields rendered via WebGL.
-    \item Implemented \textbf{Framer Motion} animation system for scroll-triggered section reveals, layout transitions, and interactive micro-animations.
-    \item Added \textbf{WCAG accessibility}: skip navigation, focus-visible rings, ARIA labels, keyboard-dismissible intro, screen-reader live regions, and reduced-motion support.
-    \item Responsive design with sticky navigation, scroll progress indicator, and lazy-loaded 3D scene to optimize initial paint.
+\textit{TypeScript, React, Three.js (R3F), Framer Motion, Tailwind CSS} \hfill \href{https://xmananrastogi.github.io/portfolio/}{[Live Demo]} \href{https://github.com/xmananrastogi/portfolio}{[Source]}
+\begin{itemize}[noitemsep, topsep=1pt, itemsep=1pt]
+    \item Built a portfolio with \textbf{React Three Fiber} 3D background scene (floating wireframe geometries, WebGL star fields) and \textbf{Framer Motion} scroll-triggered section reveals.
+    \item Achieved \textbf{WCAG accessibility} with skip navigation, keyboard-dismissible intro, ARIA labels, live regions, and reduced-motion support.
+    \item Responsive design with lazy-loaded 3D scene, chunk-split bundling, and scroll progress indicator.
 \end{itemize}
 
-\vspace{6pt}
+\vspace{4pt}
 
-% Project 3 - GSSoC
+% Project 4 - GSSoC
 \noindent \textbf{Editron — Open Source Contributor (GSSoC '26)} \hfill \textbf{2026} \\
 \textit{JavaScript, Git, Open Source Workflow}
-\begin{itemize}[noitemsep, topsep=2pt, itemsep=2pt]
-    \item Contributing to Editron, an open-source code editor, through GirlScript Summer of Code 2026.
-    \item Working on code-quality improvements including removing unused import warnings across the codebase.
-    \item Following standard open-source contribution workflow: issue triage, fork, feature branch, and pull request.
+\begin{itemize}[noitemsep, topsep=1pt, itemsep=1pt]
+    \item Contributing code-quality improvements to Editron, an open-source code editor, through GirlScript Summer of Code 2026.
+    \item Following standard open-source workflow: issue triage, fork, feature branch, and pull request.
 \end{itemize}
 
 \end{document}
