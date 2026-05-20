@@ -78,6 +78,7 @@ export default function Navbar() {
               href={portfolioData.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
+              download
               className="ml-2 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-text-primary transition hover:border-white/20 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-cyan/50"
               aria-label="Download resume (opens in new tab)"
             >
@@ -125,6 +126,7 @@ export default function Navbar() {
                 href={portfolioData.resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                download
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-text-primary"
                 aria-label="Download resume (opens in new tab)"

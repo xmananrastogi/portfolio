@@ -78,8 +78,9 @@ const ResearchHero = () => {
               href={portfolioData.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
+              download
               className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-text-primary transition hover:border-white/20 hover:bg-white/[0.08]"
-              aria-label="View resume (opens in new tab)"
+              aria-label="Download resume (opens in new tab)"
             >
               <FileText size={17} aria-hidden="true" />
               Resume
