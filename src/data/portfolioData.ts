@@ -7,7 +7,7 @@ export const portfolioData = {
   shortPositioning:
     "Python, LLM evaluation, computer vision, React, and systems thinking across research and product work.",
   resumeLink:
-    "https://drive.google.com/file/d/12WWLMK3u079zUcsO0HwMXNmcZHQCiYC6/view?usp=sharing",
+    "https://drive.google.com/uc?export=download&id=12WWLMK3u079zUcsO0HwMXNmcZHQCiYC6",
   roles: [
     "Applied AI Engineer",
     "Full-Stack Interface Builder",
