@@ -6,8 +6,7 @@ export const portfolioData = {
     "Applied AI and full-stack engineer building computer vision systems, polished interfaces, and deployment-ready technical products.",
   shortPositioning:
     "Python, LLM evaluation, computer vision, React, and systems thinking across research and product work.",
-  resumeLink:
-    "https://drive.google.com/uc?export=download&id=12WWLMK3u079zUcsO0HwMXNmcZHQCiYC6",
+  resumeLink: `${BASE}resume.pdf`,
   roles: [
     "Applied AI Engineer",
     "Full-Stack Interface Builder",
