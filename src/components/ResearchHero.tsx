@@ -6,6 +6,7 @@ import {
   PanelsTopLeft,
   Sparkles,
   WandSparkles,
+  ExternalLink,
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
@@ -66,7 +67,22 @@ const ResearchHero = () => {
             ))}
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="https://vitalize-vit.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-signal-cyan/25 bg-signal-cyan/8 px-4 py-2 text-xs font-semibold tracking-wide text-signal-cyan transition hover:bg-signal-cyan/15"
+              aria-label="VITalize — currently building (opens in new tab)"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal-cyan/60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-signal-cyan" />
+              </span>
+              Building VITalize
+              <ExternalLink size={12} aria-hidden="true" />
+            </a>
+
             <a
               href="#systems"
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-text-primary px-5 py-3 text-sm font-semibold text-background transition hover:bg-white"
