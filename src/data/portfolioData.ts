@@ -285,7 +285,7 @@ export const portfolioData = {
       id: "vitalize",
       title: "VITalize",
       eyebrow: "Flagship EdTech Platform",
-      oneLine: "Full-stack academic platform for VIT — unified paper vault, AI solutions, timetable planner, and academic dashboard.",
+      oneLine: "Full-stack academic platform for VIT — 8,800+ papers indexed, AI solutions, FFCS planner, and academic dashboard.",
       problem: "VIT students relied on scattered Telegram groups, unorganized Google Drive folders, and the clunky VTOP portal to access past papers, plan courses, and track academics. There was no unified tool for finding past papers, getting AI-powered solutions, planning FFCS registrations without clashes, or tracking academic progress in one place.",
       whyItMatters: "Demonstrates full-stack capability with real-world impact — live in use by VIT's student body, open-source, community-funded, with AI integration, complex constraint solving, and production deployment on Vercel.",
       context: "Full-stack platform built for VIT University. Centrally indexes past papers, generates AI solutions via NVIDIA LLaMA 3.1, plans FFCS timetables with constraint solving, and tracks academic progress.",
@@ -297,7 +297,7 @@ export const portfolioData = {
         "Must integrate with VTOP via browser extension for data sync",
       ],
       metrics: [
-        { label: "Papers indexed", value: "3,000+" },
+        { label: "Papers indexed", value: "8,800+" },
         { label: "AI engine", value: "LLaMA 3.1" },
         { label: "Stack", value: "Next.js" },
         { label: "Deployment", value: "Vercel" },
