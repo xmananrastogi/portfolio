@@ -17,7 +17,7 @@ const AboutSection = () => {
         >
           <div className="space-y-6">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-signal-cyan">
+              <p className="text-xs font-semibold uppercase tracking-wider text-signal-cyan">
                 About
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text-primary md:text-5xl">
@@ -35,11 +35,11 @@ const AboutSection = () => {
                 </div>
                 <div className="grid gap-3 text-sm text-text-secondary">
                   <div className="flex gap-3">
-                    <MapPin size={17} className="mt-0.5 shrink-0 text-biomed-red" aria-hidden="true" />
+                    <MapPin size={17} className="mt-0.5 shrink-0 text-signal-cyan" aria-hidden="true" />
                     <span>{about.location}</span>
                   </div>
                   <div className="flex gap-3">
-                    <GraduationCap size={17} className="mt-0.5 shrink-0 text-research-amber" aria-hidden="true" />
+                    <GraduationCap size={17} className="mt-0.5 shrink-0 text-signal-cyan" aria-hidden="true" />
                     <span>{about.education}</span>
                   </div>
                 </div>
@@ -50,7 +50,7 @@ const AboutSection = () => {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-surface p-6 md:col-span-2">
               <div className="flex items-center gap-3 text-text-primary">
-                <Workflow size={20} className="text-cv-green" aria-hidden="true" />
+                <Workflow size={20} className="text-signal-cyan" aria-hidden="true" />
                 <h3 className="text-lg font-semibold">Operating principles</h3>
               </div>
               <div className="mt-5 grid gap-3 md:grid-cols-2">
@@ -85,7 +85,7 @@ const AboutSection = () => {
 
             <div className="rounded-2xl border border-white/10 bg-surface p-6">
               <div className="flex items-center gap-3 text-text-primary">
-                <ShieldCheck size={20} className="text-research-amber" aria-hidden="true" />
+                <ShieldCheck size={20} className="text-signal-cyan" aria-hidden="true" />
                 <h3 className="text-lg font-semibold">Currently extending</h3>
               </div>
               <div className="mt-5 space-y-3">

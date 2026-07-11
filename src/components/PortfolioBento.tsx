@@ -20,7 +20,6 @@ const snapshotCards = [
 ];
 
 const PortfolioBento = () => {
-  // Use metrics from the single source of truth
   const woundTrack = portfolioData.systems.find((s) => s.id === 'woundtrack-ai');
   const displayMetrics = woundTrack
     ? [0, 2, 3, 4].map(i => ({
@@ -35,14 +34,14 @@ const PortfolioBento = () => {
         <div className="rounded-3xl border border-white/10 bg-surface-raised p-5 lg:col-span-2 lg:row-span-2">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-research-amber">
+              <p className="text-xs font-semibold uppercase tracking-wider text-signal-cyan">
                 At a glance
               </p>
               <h2 className="mt-3 max-w-xl text-3xl font-semibold leading-tight text-text-primary md:text-5xl">
                 Applied AI, computer vision, and frontend engineering.
               </h2>
             </div>
-            <Sparkles className="hidden size-10 text-research-amber md:block" aria-hidden="true" />
+            <Sparkles className="hidden size-10 text-signal-cyan md:block" aria-hidden="true" />
           </div>
 
           <div className="mt-8 grid gap-3 md:grid-cols-3" role="list" aria-label="Credentials">
@@ -59,14 +58,14 @@ const PortfolioBento = () => {
 
           <div className="mt-8 rounded-2xl border border-white/10 bg-background/70 p-4">
             <div className="flex items-center gap-3 text-sm font-semibold text-text-primary">
-              <LineChart className="size-4 text-cv-green" aria-hidden="true" />
+              <LineChart className="size-4 text-signal-cyan" aria-hidden="true" />
               WoundTrack project evidence
             </div>
             <div className="mt-4 grid gap-3 sm:grid-cols-4">
               {displayMetrics.map(({ value, label }) => (
                 <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
                   <div className="font-mono text-2xl font-semibold text-text-primary">{value}</div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.18em] text-muted">{label}</div>
+                  <div className="mt-2 text-xs uppercase tracking-wider text-muted">{label}</div>
                 </div>
               ))}
             </div>
@@ -85,7 +84,7 @@ const PortfolioBento = () => {
 
         <div className="rounded-3xl border border-white/10 bg-surface p-5 lg:col-span-2">
           <div className="flex items-center gap-3">
-            <GraduationCap className="size-5 text-research-amber" aria-hidden="true" />
+            <GraduationCap className="size-5 text-signal-cyan" aria-hidden="true" />
             <h3 className="text-lg font-semibold text-text-primary">Education</h3>
           </div>
           <p className="mt-4 max-w-3xl text-sm leading-7 text-text-secondary">

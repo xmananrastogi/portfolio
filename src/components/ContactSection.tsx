@@ -45,7 +45,6 @@ const ContactSection = () => {
     setValidationError(null);
     setStatus('sending');
 
-    // Honeypot check — if bot filled the hidden field, silently succeed
     if (honeypot) {
       setStatus('success');
       setFormState({ name: '', email: '', message: '' });
@@ -93,7 +92,7 @@ const ContactSection = () => {
             className="space-y-8"
           >
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-biomed-red">
+              <p className="text-xs font-semibold uppercase tracking-wider text-signal-cyan">
                 Contact
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text-primary md:text-5xl">
@@ -149,7 +148,6 @@ const ContactSection = () => {
             aria-label="Contact form"
           >
             <div className="grid gap-5">
-              {/* Honeypot field — hidden from humans, catches bots */}
               <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
                 <label>
                   <span>Leave this empty</span>
@@ -207,7 +205,7 @@ const ContactSection = () => {
               </label>
 
               {validationError && (
-                <div className="rounded-xl border border-biomed-red/20 bg-biomed-red/10 px-4 py-3 text-sm text-biomed-red" role="alert">
+                <div className="rounded-xl border border-signal-cyan/20 bg-signal-cyan/10 px-4 py-3 text-sm text-signal-cyan" role="alert">
                   {validationError}
                 </div>
               )}
@@ -221,7 +219,6 @@ const ContactSection = () => {
                 <Send size={16} aria-hidden="true" />
               </button>
 
-              {/* ARIA live region for form status */}
               <div
                 role="status"
                 aria-live="polite"
@@ -229,9 +226,9 @@ const ContactSection = () => {
                   status ? 'opacity-100' : 'opacity-0'
                 } ${
                   status === 'success'
-                    ? 'text-cv-green'
+                    ? 'text-signal-cyan'
                     : status === 'error'
-                      ? 'text-biomed-red'
+                      ? 'text-signal-cyan'
                       : 'text-text-secondary'
                 }`}
               >

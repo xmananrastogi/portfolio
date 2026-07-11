@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X, FileText } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
@@ -11,21 +11,15 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(total > 0 ? window.scrollY / total : 0);
-      setScrolled(window.scrollY > 60);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on resize
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 768) setMobileOpen(false); };
     window.addEventListener('resize', onResize);
@@ -38,38 +32,28 @@ export default function Navbar() {
       role="navigation"
       aria-label="Main navigation"
     >
-      {/* Scroll progress */}
-      <div className="h-[2px] bg-transparent" aria-hidden="true">
-        <motion.div
-          className="h-full bg-gradient-to-r from-signal-cyan via-cv-green to-research-amber"
-          style={{ width: `${scrollProgress * 100}%` }}
-        />
-      </div>
-
-      {/* Nav bar */}
       <div
         className={`transition-all duration-300 ${
           scrolled
-            ? 'bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/10'
+            ? 'bg-background/80 backdrop-blur-xl border-b border-white/10'
             : 'bg-transparent'
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
           <a
             href="#hero"
-            className="font-mono text-sm font-semibold tracking-[0.2em] text-text-primary transition hover:text-signal-cyan"
+            className="text-sm font-semibold tracking-wider text-text-primary transition hover:text-signal-cyan"
             aria-label="Back to top"
           >
             MR
           </a>
 
-          {/* Desktop links */}
           <div className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="rounded-lg px-3 py-2 text-sm font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-cyan/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="rounded-lg px-3 py-2 text-sm font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary"
               >
                 {link.label}
               </a>
@@ -78,7 +62,7 @@ export default function Navbar() {
               href={portfolioData.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-text-primary transition hover:border-white/20 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-cyan/50"
+              className="ml-2 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-text-primary transition hover:border-white/20 hover:bg-white/[0.08]"
               aria-label="View resume (opens in new tab)"
             >
               <FileText size={15} />
@@ -86,9 +70,8 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile toggle */}
           <button
-            className="rounded-lg p-2 text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-cyan/50"
+            className="rounded-lg p-2 text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary md:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
@@ -99,7 +82,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -116,7 +98,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-lg px-3 py-3 text-base font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-cyan/50"
+                  className="rounded-lg px-3 py-3 text-base font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary"
                 >
                   {link.label}
                 </a>

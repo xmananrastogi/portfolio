@@ -21,7 +21,7 @@ const SystemsSection = () => {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="mb-8 max-w-4xl"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-cv-green">
+          <p className="text-xs font-semibold uppercase tracking-wider text-signal-cyan">
             Projects
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text-primary md:text-5xl">
@@ -31,29 +31,20 @@ const SystemsSection = () => {
 
         <div className="grid gap-5">
           <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
-            {/* WoundTrack AI — Flagship CV */}
             <WoundTrackCard data={woundTrack} />
 
             <div className="grid gap-5">
-              {/* Portfolio card */}
               <PortfolioCard data={portfolio} />
-
-              {/* GSSoC card */}
               <GSSoCCard data={gssoc} />
             </div>
           </div>
 
-          {/* VITalize — Flagship EdTech */}
           <VitalizeCard data={vitalize} />
         </div>
       </div>
     </section>
   );
 };
-
-// ============================
-// WoundTrack Card with image gallery
-// ============================
 
 function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
   const [currentImage, setCurrentImage] = useState(0);
@@ -78,7 +69,6 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
       className="overflow-hidden rounded-[30px] border border-white/10 bg-surface"
       aria-label={`Project: ${data.title}`}
     >
-      {/* Image gallery */}
       <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '16/9' }}>
         {images.length > 0 && (
           <div
@@ -88,7 +78,6 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
             aria-label={`${data.title} screenshots`}
             className="h-full w-full"
           >
-            {/* Skeleton placeholder — shows until image loads */}
             {!imageLoaded && (
               <div className="absolute inset-0 animate-pulse bg-white/[0.04]" aria-hidden="true" />
             )}
@@ -132,7 +121,7 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" aria-hidden="true" />
         <div className="absolute bottom-0 left-0 right-0 p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-research-amber">
+          <p className="text-xs font-semibold uppercase tracking-wider text-signal-cyan">
             {data.eyebrow}
           </p>
           <h3 className="mt-3 text-3xl font-semibold text-text-primary md:text-5xl">
@@ -147,24 +136,15 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
       <div className="space-y-6 p-6">
         <p className="text-sm leading-7 text-text-secondary">{data.problem}</p>
 
-        {/* Metrics from data — staggered entrance */}
         <div className="grid gap-3 sm:grid-cols-4">
-          {data.metrics.slice(0, 4).map(({ value, label }, index) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08, duration: 0.4 }}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-4"
-            >
+          {data.metrics.slice(0, 4).map(({ value, label }) => (
+            <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
               <div className="font-mono text-2xl font-semibold text-text-primary">{value}</div>
-              <div className="mt-2 text-xs uppercase tracking-[0.18em] text-muted">{label}</div>
-            </motion.div>
+              <div className="mt-2 text-xs uppercase tracking-wider text-muted">{label}</div>
+            </div>
           ))}
         </div>
 
-        {/* Architecture tags */}
         <ul className="grid gap-3 md:grid-cols-2" aria-label="Architecture components">
           {data.architecture.slice(0, 4).map((item) => (
             <li key={item} className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm text-text-secondary">
@@ -200,10 +180,6 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
   );
 }
 
-// ============================
-// Portfolio Card
-// ============================
-
 function PortfolioCard({ data }: { data: typeof portfolioData.systems[0] }) {
   return (
     <motion.article
@@ -214,23 +190,19 @@ function PortfolioCard({ data }: { data: typeof portfolioData.systems[0] }) {
       className="rounded-[30px] border border-white/10 bg-surface p-6"
       aria-label={`Project: ${data.title}`}
     >
-      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-signal-cyan">
+      <p className="text-xs font-semibold uppercase tracking-wider text-signal-cyan">
         {data.eyebrow}
       </p>
       <h3 className="mt-3 text-3xl font-semibold text-text-primary">{data.title}</h3>
       <p className="mt-4 text-sm leading-7 text-text-secondary">{data.oneLine}</p>
       <ul className="mt-6 space-y-3" aria-label="Architecture components">
-        {data.architecture.map((item, index) => (
-          <motion.li
+        {data.architecture.map((item) => (
+          <li
             key={item}
-            initial={{ opacity: 0, x: 10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.05, duration: 0.3 }}
             className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-text-secondary"
           >
             {item}
-          </motion.li>
+          </li>
         ))}
       </ul>
       <div className="mt-6 flex gap-3">
@@ -258,10 +230,6 @@ function PortfolioCard({ data }: { data: typeof portfolioData.systems[0] }) {
   );
 }
 
-// ============================
-// GSSoC Contributor Card
-// ============================
-
 function GSSoCCard({ data }: { data: typeof portfolioData.systems[0] }) {
   return (
     <motion.article
@@ -272,11 +240,11 @@ function GSSoCCard({ data }: { data: typeof portfolioData.systems[0] }) {
       className="relative overflow-hidden rounded-[30px] border border-white/10 bg-surface p-6"
       aria-label={`Project: ${data.title}`}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] via-transparent to-cv-green/[0.06]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] via-transparent to-signal-cyan/[0.06]" aria-hidden="true" />
 
       <div className="relative space-y-4">
         <div className="flex items-center gap-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-cv-green/20 bg-cv-green/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-cv-green">
+          <div className="inline-flex items-center gap-2 rounded-full border border-signal-cyan/20 bg-signal-cyan/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-signal-cyan">
             <Award size={13} aria-hidden="true" />
             GSSoC '26 Contributor
           </div>
@@ -312,7 +280,7 @@ function GSSoCCard({ data }: { data: typeof portfolioData.systems[0] }) {
             href="https://gssoc.girlscript.tech/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-cv-green/20 bg-cv-green/10 px-4 py-3 text-sm font-semibold text-cv-green transition hover:bg-cv-green/15"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-signal-cyan/20 bg-signal-cyan/10 px-4 py-3 text-sm font-semibold text-signal-cyan transition hover:bg-signal-cyan/15"
             aria-label="GSSoC official website (opens in new tab)"
           >
             <ExternalLink size={16} aria-hidden="true" />
@@ -324,10 +292,6 @@ function GSSoCCard({ data }: { data: typeof portfolioData.systems[0] }) {
   );
 }
 
-// ============================
-// VITalize Card — Full-Stack EdTech Platform
-// ============================
-
 function VitalizeCard({ data }: { data: typeof portfolioData.systems[0] }) {
   return (
     <motion.article
@@ -338,10 +302,9 @@ function VitalizeCard({ data }: { data: typeof portfolioData.systems[0] }) {
       className="overflow-hidden rounded-[30px] border border-white/10 bg-surface"
       aria-label={`Project: ${data.title}`}
     >
-      {/* Header */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-signal-cyan/[0.05] via-transparent to-research-amber/[0.04] px-8 pb-8 pt-10">
+      <div className="relative overflow-hidden bg-gradient-to-br from-signal-cyan/[0.05] via-transparent to-signal-cyan/[0.04] px-8 pb-8 pt-10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(56,189,248,0.06),transparent_50%)]" aria-hidden="true" />
-        <p className="relative text-xs font-semibold uppercase tracking-[0.24em] text-signal-cyan">
+        <p className="relative text-xs font-semibold uppercase tracking-wider text-signal-cyan">
           {data.eyebrow}
         </p>
         <h3 className="relative mt-3 text-3xl font-semibold text-text-primary md:text-5xl">
@@ -355,42 +318,31 @@ function VitalizeCard({ data }: { data: typeof portfolioData.systems[0] }) {
       <div className="space-y-7 p-8">
         <p className="text-sm leading-7 text-text-secondary">{data.problem}</p>
 
-        {/* Feature pipeline */}
         <div className="grid gap-4 md:grid-cols-2">
-          {data.pipeline.map(({ stage, title, summary }, index) => (
-            <motion.div
+          {data.pipeline.map(({ stage, title, summary }) => (
+            <div
               key={stage}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08, duration: 0.4 }}
               className="rounded-2xl border border-white/10 bg-white/[0.03] p-5"
             >
               <span className="font-mono text-xs tracking-wider text-signal-cyan">{stage}</span>
               <h4 className="mt-2 text-lg font-semibold text-text-primary">{title}</h4>
               <p className="mt-2 text-sm leading-6 text-text-secondary">{summary}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* Metrics */}
         <div className="grid gap-3 sm:grid-cols-4">
-          {data.metrics.slice(0, 4).map(({ value, label }, index) => (
-            <motion.div
+          {data.metrics.slice(0, 4).map(({ value, label }) => (
+            <div
               key={label}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08, duration: 0.4 }}
               className="rounded-2xl border border-white/10 bg-white/[0.03] p-4"
             >
               <div className="font-mono text-2xl font-semibold text-text-primary">{value}</div>
-              <div className="mt-2 text-xs uppercase tracking-[0.18em] text-muted">{label}</div>
-            </motion.div>
+              <div className="mt-2 text-xs uppercase tracking-wider text-muted">{label}</div>
+            </div>
           ))}
         </div>
 
-        {/* Architecture tags */}
         <ul className="grid gap-3 md:grid-cols-3" aria-label="Architecture components">
           {data.architecture.slice(0, 6).map((item) => (
             <li key={item} className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm text-text-secondary">

@@ -1,66 +1,47 @@
 import { motion } from 'framer-motion';
-import {
-  ArrowRight,
-  FileText,
-  Mail,
-  PanelsTopLeft,
-  Sparkles,
-  WandSparkles,
-  ExternalLink,
-} from 'lucide-react';
+import { ArrowRight, FileText, PanelsTopLeft, WandSparkles } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const BASE = import.meta.env.BASE_URL;
 
 const heroSignals = [
-  'LLM evaluation',
   'Computer vision',
-  'React + Flask systems',
+  'LLM evaluation',
+  'Full-stack systems',
 ];
 
 const ResearchHero = () => {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden px-4 pb-16 pt-32 md:pb-20 md:pt-40"
+      className="relative overflow-hidden px-4 pb-16 pt-32 md:pb-24 md:pt-40"
       aria-label="Hero section"
     >
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="hero-glow hero-glow-left" />
-        <div className="hero-glow hero-glow-right" />
-      </div>
-
-      <div className="relative z-10 mx-auto grid min-h-[70vh] max-w-7xl items-center gap-10 lg:grid-cols-[1.02fr_0.98fr]">
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: 'easeOut' }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           className="space-y-8"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.24em] text-text-secondary">
-            <Sparkles size={14} className="text-research-amber" aria-hidden="true" />
-            Applied AI + Full-Stack Engineer
-          </div>
-
           <div className="space-y-5">
-            <p className="font-mono text-sm font-semibold uppercase tracking-[0.32em] text-signal-cyan md:text-base">
+            <p className="text-sm font-semibold uppercase tracking-widest text-signal-cyan">
               Manan Rastogi
             </p>
-            <h1 className="max-w-[1000px] text-5xl font-semibold leading-[0.95] tracking-tight text-text-primary md:text-[4rem] lg:text-[5.25rem]">
-              I build technical products that look polished and work under scrutiny.
+            <h1 className="max-w-[900px] text-4xl font-semibold leading-[1.05] tracking-tight text-text-primary md:text-[3.5rem] lg:text-[4.5rem]">
+              Computer vision pipelines, full-stack academic platforms, and AI evaluation workflows.
             </h1>
-            <p className="max-w-3xl text-lg leading-8 text-text-secondary md:text-xl">
-              My work spans computer vision, LLM evaluation, full-stack interfaces, and systems-oriented engineering.
+            <p className="max-w-2xl text-lg leading-8 text-text-secondary">
+              Building deployable systems at the intersection of applied AI, software engineering, and interface design.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-3" role="list" aria-label="Focus areas">
+          <div className="flex flex-wrap gap-2" role="list" aria-label="Focus areas">
             {heroSignals.map((signal) => (
               <span
                 key={signal}
                 role="listitem"
-                className="rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 text-sm text-text-secondary"
+                className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-sm text-text-secondary"
               >
                 {signal}
               </span>
@@ -69,23 +50,8 @@ const ResearchHero = () => {
 
           <div className="flex flex-wrap items-center gap-3">
             <a
-              href="https://vitalize-vit.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-signal-cyan/25 bg-signal-cyan/8 px-4 py-2 text-xs font-semibold tracking-wide text-signal-cyan transition hover:bg-signal-cyan/15"
-              aria-label="VITalize — currently building (opens in new tab)"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal-cyan/60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-signal-cyan" />
-              </span>
-              Building VITalize
-              <ExternalLink size={12} aria-hidden="true" />
-            </a>
-
-            <a
               href="#systems"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-text-primary px-5 py-3 text-sm font-semibold text-background transition hover:bg-white"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-text-primary px-5 py-3 text-sm font-semibold text-background transition hover:bg-white"
             >
               View work
               <ArrowRight size={17} aria-hidden="true" />
@@ -94,75 +60,67 @@ const ResearchHero = () => {
               href={portfolioData.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-text-primary transition hover:border-white/20 hover:bg-white/[0.08]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-text-primary transition hover:border-white/20 hover:bg-white/[0.08]"
               aria-label="View resume (opens in new tab)"
             >
               <FileText size={17} aria-hidden="true" />
               Resume
             </a>
-            <a
-              href={`mailto:${portfolioData.socials.email}`}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-signal-cyan/20 bg-signal-cyan/10 px-5 py-3 text-sm font-semibold text-signal-cyan transition hover:bg-signal-cyan/15"
-              aria-label="Send email"
-            >
-              <Mail size={17} aria-hidden="true" />
-              Contact
-            </a>
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.08, duration: 0.6, ease: 'easeOut' }}
+          transition={{ delay: 0.06, duration: 0.5, ease: 'easeOut' }}
           className="grid gap-4"
         >
-          <div className="rounded-[28px] border border-white/10 bg-surface-raised/90 p-5 shadow-2xl shadow-black/25 backdrop-blur-xl">
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04]">
+          <div className="rounded-2xl border border-white/10 bg-surface-raised/80 p-5">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
                 <img
                   src={`${BASE}assets/images/profile.jpeg`}
-                  alt="Manan Rastogi — profile photo"
+                  alt="Manan Rastogi"
                   className="h-full w-full object-cover"
                   loading="eager"
                 />
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted">
                   Background
                 </p>
-                <h2 className="mt-2 text-2xl font-semibold text-text-primary">
+                <h2 className="mt-1 text-xl font-semibold text-text-primary">
                   VIT ECE + IIT Madras Data Science
                 </h2>
-                <p className="mt-3 text-sm leading-6 text-text-secondary">
-                  I build at the intersection of applied AI, software systems, and interface engineering.
+                <p className="mt-2 text-sm leading-6 text-text-secondary">
+                  B.Tech in ECE (Biomedical) at VIT, BS in Data Science at IIT Madras. Building across AI, software, and systems.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-[28px] border border-white/10 bg-surface p-5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-signal-cyan">
-                <PanelsTopLeft size={20} aria-hidden="true" />
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-2xl border border-white/10 bg-surface p-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-signal-cyan">
+                <PanelsTopLeft size={18} aria-hidden="true" />
               </div>
-              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.24em] text-muted">
-                Web strength
+              <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-muted">
+                Frontend
               </p>
-              <p className="mt-3 text-2xl font-semibold text-text-primary">
-                React, TypeScript, Tailwind, Framer Motion, Three.js.
+              <p className="mt-2 text-xl font-semibold text-text-primary">
+                React, TypeScript, Three.js, Tailwind.
               </p>
             </div>
 
-            <div className="rounded-[28px] border border-white/10 bg-surface p-5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-research-amber">
-                <WandSparkles size={20} aria-hidden="true" />
+            <div className="rounded-2xl border border-white/10 bg-surface p-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-signal-cyan">
+                <WandSparkles size={18} aria-hidden="true" />
               </div>
-              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.24em] text-muted">
-                AI depth
+              <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-muted">
+                AI / CV
               </p>
-              <p className="mt-3 text-2xl font-semibold text-text-primary">
-                LLM evaluation, computer vision, data-heavy technical systems.
+              <p className="mt-2 text-xl font-semibold text-text-primary">
+                OpenCV, LLM APIs, SciPy, evaluation pipelines.
               </p>
             </div>
           </div>

@@ -66,11 +66,6 @@ def build_pdf(path):
 
     story = []
 
-    def hr():
-        story.append(Spacer(1, 1))
-        story.append(Paragraph('<hr width="100%" size="0.5" color="#CCCCCC"/>', s['Normal']))
-        story.append(Spacer(1, 2))
-
     def section(title):
         story.append(Spacer(1, 6))
         story.append(Paragraph(f'<b>{title}</b>', s['SecTitle']))
@@ -114,7 +109,7 @@ def build_pdf(path):
     # ===== HEADER =====
     story.append(Paragraph('MANAN RASTOGI', s['Name']))
     story.append(Paragraph(
-        'AI Product Engineer | Applied CV, LLM Evaluation, Full-Stack Systems',
+        'Applied AI Engineer | Computer Vision, LLM Evaluation, Full-Stack Systems',
         s['Title']))
     story.append(Paragraph(
         '+91 9548594935 &nbsp;|&nbsp; mananrastogi2k8.210@gmail.com &nbsp;|&nbsp; '
@@ -127,34 +122,28 @@ def build_pdf(path):
     entry_header('Vellore Institute of Technology (VIT), Vellore, India',
                  '2024 -- PRESENT')
     entry_sub('B.Tech in Electronics &amp; Communication Engineering (Biomedical Specialization)')
-    bullet('<b>Core:</b> Digital Signal Processing, Biomedical Imaging, Neural Networks, Embedded Systems.')
 
     story.append(Spacer(1, 3))
 
     entry_header('IIT Madras, Online, India', '2025 -- PRESENT')
     entry_sub('BS in Data Science &amp; Applications')
-    bullet('<b>Core:</b> Machine Learning Foundations, Statistical Modeling, Algorithmic Design.')
 
     # ===== TECHNICAL EXPERTISE =====
     section('TECHNICAL EXPERTISE')
 
-    expertise_items = [
-        ('<b>Applied AI &amp; Evaluation</b>',
-         'Python 3.12, LLM APIs (NVIDIA LLaMA 3.1), prompt engineering, RAG pipelines, '
-         'rule-based validation, OpenCV, scikit-image, TrackPy, SciPy, NumPy.'),
-        ('<b>Web &amp; Full-Stack</b>',
-         'TypeScript, React.js, Next.js, Node.js, Three.js (R3F), Framer Motion, '
-         'Flask, RESTful APIs, Tailwind CSS, MongoDB, Vite.'),
-        ('<b>Systems &amp; Tooling</b>',
-         'Git, Docker, Vercel, MongoDB Atlas, SQLite, Tesseract OCR, CI/CD, Linux Bash.'),
-        ('<b>ECE &amp; Embedded</b>',
-         'Verilog, C++, digital logic, DSP fundamentals, embedded systems, microcontrollers.'),
-    ]
-    for label, detail in expertise_items:
-        story.append(Paragraph(f'<b>{label}:</b> {detail}', s['BulletLbl']))
+    story.append(Paragraph(
+        '<b>Languages &amp; Frameworks:</b> '
+        'Python 3.12, TypeScript, React, Next.js, Node.js, Flask, '
+        'OpenCV, SciPy, NumPy, TrackPy, Three.js.',
+        s['BulletLbl']))
+    story.append(Paragraph(
+        '<b>Infrastructure &amp; Tools:</b> '
+        'Git, Docker, Vercel, MongoDB Atlas, SQLite, CI/CD, '
+        'LLM APIs (NVIDIA LLaMA 3.1), Tesseract OCR.',
+        s['BulletLbl']))
 
-    # ===== TECHNICAL PROJECT DEPLOYMENTS =====
-    section('TECHNICAL PROJECT DEPLOYMENTS')
+    # ===== PROJECTS =====
+    section('PROJECTS')
 
     # Project 1 - WoundTrack
     entry_header(
@@ -165,15 +154,15 @@ def build_pdf(path):
         '<a href="https://xmananrastogi-woundtrackai.hf.space/" color="#0B51C1">[Live Demo]</a> '
         '<a href="https://github.com/xmananrastogi/WoundTrack-AI" color="#0B51C1">[Source]</a>')
     bullet(
-        'Engineered a research-grade CV pipeline tracking <b>441 cells</b> across '
+        'Built a CV pipeline tracking <b>441 cells</b> across '
         '<b>800+ frames</b> in <b>&lt;10 min</b> on consumer hardware, achieving '
         '<b>28% higher precision</b> than manual ImageJ workflows.')
     bullet(
         'Implemented LoG blob detection + LAP gap-closing tracker with Kalman prediction '
         'for explainable cell localization and trajectory continuity through missed frames.')
     bullet(
-        'Designed custom evaluation metrics (MSD exponents, wavefront roughness, '
-        'fractal-dimension analysis) to validate output against biological movement patterns.')
+        'Designed quantitative evaluation metrics (MSD exponents, velocity distributions, '
+        'fractal analysis) validated across 5 experimental conditions.')
     bullet(
         'Built Flask + SQLite dashboard for batch processing, kinetic visualization, '
         'and automated report generation.')
@@ -186,12 +175,10 @@ def build_pdf(path):
         '2025 -- PRESENT')
     entry_sub(
         'Next.js 15, TypeScript, MongoDB, NVIDIA LLaMA 3.1, Tesseract OCR',
-        '<a href="https://vitalize-vit.vercel.app/" color="#0B51C1">[Live Demo]</a> '
-        '<a href="https://github.com/xmananrastogi/vitalize-fullstack" color="#0B51C1">[Source]</a>')
+        '<a href="https://vitalize-vit.vercel.app/" color="#0B51C1">[Live Demo]</a>')
     bullet(
         'Built a unified academic platform indexing <b>3,000+</b> past exam papers with '
-        'full-text search, subject-level filters, and bulk download &mdash; replacing scattered '
-        'Telegram groups and Google Drive folders for VIT&rsquo;s student body.')
+        'full-text search, subject-level filters, and bulk download.')
     bullet(
         'Integrated <b>NVIDIA LLaMA 3.1</b> API with Tesseract OCR fallback pipeline to extract '
         'text from scanned PDFs and generate unit-wise, mark-weighted AI solutions with KaTeX rendering.')
@@ -199,8 +186,8 @@ def build_pdf(path):
         'Engineered constraint-based <b>FFCS timetable solver</b> with clash elimination, '
         'faculty prioritization, gap minimization, and ICS calendar export.')
     bullet(
-        'Deployed on <b>Vercel</b> with <b>MongoDB Atlas</b>; built a Chrome extension for '
-        'VTOP data sync; open-source with community funding.')
+        'Deployed on <b>Vercel</b> with <b>MongoDB Atlas</b>; built Chrome extension for '
+        'VTOP data sync.')
 
     story.append(Spacer(1, 4))
 
@@ -213,28 +200,14 @@ def build_pdf(path):
         '<a href="https://xmananrastogi.github.io/portfolio/" color="#0B51C1">[Live Demo]</a> '
         '<a href="https://github.com/xmananrastogi/portfolio" color="#0B51C1">[Source]</a>')
     bullet(
-        'Built a portfolio with <b>React Three Fiber</b> 3D background scene and '
-        '<b>Framer Motion</b> scroll-triggered section reveals.')
+        'Architected a React + TypeScript portfolio with lazy-loaded bundle splitting, '
+        'sub-1s initial load, and responsive accessibility-first layout.')
     bullet(
-        'Achieved <b>WCAG accessibility</b> with skip navigation, ARIA labels, '
-        'keyboard-dismissible intro, and reduced-motion support.')
+        'Implemented WCAG accessibility: keyboard navigation, ARIA labels, '
+        'skip-to-content, reduced-motion support, and focus management.')
     bullet(
-        'Responsive design with lazy-loaded 3D scene, chunk-split bundling, '
-        'and scroll progress indicator.')
-
-    story.append(Spacer(1, 4))
-
-    # Project 4 - GSSoC
-    entry_header(
-        'Editron &mdash; Open Source Contributor (GSSoC \'26)',
-        '2026')
-    entry_sub('JavaScript, Git, Open Source Workflow')
-    bullet(
-        'Contributing code-quality improvements to Editron, an open-source code editor, '
-        'through GirlScript Summer of Code 2026.')
-    bullet(
-        'Following standard open-source workflow: issue triage, fork, feature branch, '
-        'and pull request.')
+        'Responsive layout with Framer Motion scroll-driven reveals and '
+        'CSS-based reduced-motion fallback for accessibility.')
 
     doc.build(story)
 

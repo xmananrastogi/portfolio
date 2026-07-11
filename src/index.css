@@ -9,30 +9,23 @@
   --text-primary: #f4f5f5;
   --text-secondary: #a7adb2;
   --muted: #8b929a;
-  --cv-green: #2dd37f;
   --signal-cyan: #38bdf8;
-  --biomed-red: #f87171;
-  --research-amber: #f5b84b;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 72px; /* account for sticky navbar */
+  scroll-padding-top: 72px;
 }
 
 body {
   @apply overflow-x-hidden bg-background font-sans text-text-primary antialiased;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.09), transparent 32%),
-    radial-gradient(circle at 82% 8%, rgba(245, 184, 75, 0.08), transparent 28%);
-  background-size: 48px 48px, 48px 48px, auto, auto;
+    radial-gradient(circle at 82% 54%, rgba(56, 189, 248, 0.04), transparent 28%);
 }
 
 /* ======= Accessibility ======= */
 
-/* Screen reader only utility */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -45,54 +38,14 @@ body {
   border-width: 0;
 }
 
-/* Focus-visible ring for all interactive elements */
 *:focus-visible {
   outline: 2px solid rgba(56, 189, 248, 0.6);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* Remove default focus outline (focus-visible handles it) */
 *:focus:not(:focus-visible) {
   outline: none;
-}
-
-/* ======= Component Styles ======= */
-
-.intro-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(circle at center, black 48%, transparent 100%);
-}
-
-.intro-pill {
-  @apply inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 font-mono text-lg font-semibold tracking-[0.18em] text-text-primary backdrop-blur-xl md:px-8 md:py-5 md:text-4xl;
-}
-
-.intro-pill-accent {
-  @apply border-signal-cyan/20 bg-signal-cyan/10 text-signal-cyan;
-}
-
-.hero-glow {
-  @apply absolute rounded-full blur-[150px];
-}
-
-.hero-glow-left {
-  left: -8%;
-  top: 18%;
-  height: 34rem;
-  width: 34rem;
-  background: rgba(56, 189, 248, 0.12);
-}
-
-.hero-glow-right {
-  right: -8%;
-  top: 10%;
-  height: 40rem;
-  width: 40rem;
-  background: rgba(245, 184, 75, 0.1);
 }
 
 /* ======= Selection ======= */
@@ -131,11 +84,6 @@ body {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
-  }
-
-  /* Hide 3D canvas entirely for reduced motion */
-  canvas {
-    display: none !important;
   }
 }
 

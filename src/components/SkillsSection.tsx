@@ -15,7 +15,7 @@ const SkillsSection = () => {
           transition={{ duration: 0.5 }}
           className="mb-14 max-w-3xl"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-research-amber">
+          <p className="text-xs font-semibold uppercase tracking-wider text-signal-cyan">
             Technical toolkit
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text-primary md:text-5xl">
@@ -30,12 +30,8 @@ const SkillsSection = () => {
           {portfolioData.skillsCategories.map((category, index) => {
             const Icon = icons[index % icons.length];
             return (
-              <motion.div
+              <div
                 key={category.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ delay: index * 0.06, duration: 0.45 }}
                 className="rounded-2xl border border-white/10 bg-surface p-6"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-signal-cyan">
@@ -58,7 +54,7 @@ const SkillsSection = () => {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
