@@ -41,7 +41,7 @@ const ResearchHero = () => {
               <span
                 key={signal}
                 role="listitem"
-                className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-sm text-text-secondary"
+                className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-text-secondary transition hover:bg-white/[0.08]"
               >
                 {signal}
               </span>

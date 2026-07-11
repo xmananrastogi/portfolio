@@ -148,7 +148,7 @@ def build_pdf(path):
         s['BulletLbl']))
 
     # ===== PROJECTS =====
-    section('PROJECTS')
+    section('INDEPENDENT DEVELOPMENT')
 
     # Project 1 - WoundTrack
     entry_header(
@@ -163,11 +163,12 @@ def build_pdf(path):
         '<b>800+ frames</b> in <b>&lt;10 min</b> on consumer hardware, achieving '
         '<b>28% higher precision</b> than manual ImageJ workflows.')
     bullet(
-        'Implemented LoG blob detection + LAP gap-closing tracker with Kalman prediction '
-        'for explainable cell localization and trajectory continuity through missed frames.')
+        'Designed LoG blob detection + LAP gap-closing tracker with Kalman-filter prediction, '
+        'bridging detection gaps to reduce trajectory fragmentation during cell occlusions.')
     bullet(
-        'Designed automated quantitative evaluation pipeline computing MSD exponents, '
-        'velocity distributions and fractal metrics across five experimental datasets.')
+        'Built automated evaluation pipeline computing MSD exponents, velocity distributions, '
+        'and fractal metrics across <b>5</b> experimental conditions '
+        '(<b>249</b> control vs. <b>192</b> Hg-treated cells).')
     bullet(
         'Shipped Flask + SQLite dashboard auto-generating per-experiment reports with '
         'kinetic curves and one-click trajectory exports, replacing manual spreadsheet analysis.')
@@ -183,15 +184,15 @@ def build_pdf(path):
         '<a href="https://vitalize-vit.vercel.app/" color="#0B51C1">Live Demo</a>')
     bullet(
         'Developed a unified academic platform indexing <b>8,800+</b> past exam papers with '
-        'full-text search and subject-level filtering, serving <b>890+</b> page views across '
-        'FFCS planner, paper vault, and exam generator.')
+        'full-text search and subject-level filtering across FFCS planner, paper vault, '
+        'and exam generator modules.')
     bullet(
-        'Integrated <b>NVIDIA LLaMA 3.1</b> API with Tesseract OCR fallback pipeline to extract '
-        'text from scanned PDFs and generate unit-wise, mark-weighted AI solutions with KaTeX rendering.')
+        'Integrated <b>NVIDIA LLaMA 3.1</b> with Tesseract OCR fallback pipeline to auto-generate '
+        'mark-weighted AI solutions from scanned exam PDFs with KaTeX-rendered math.')
     bullet(
-        'Engineered constraint-based <b>FFCS timetable solver</b> using backtracking algorithm '
-        'with optimized pruning for clash elimination, faculty prioritization, gap minimization, '
-        'and ICS calendar export.')
+        'Engineered constraint-based <b>FFCS timetable solver</b> using pruned backtracking algorithm, '
+        'resolving clash/faculty/gap constraints across <b>2,400+</b> course combinations '
+        'with sub-second solve time.')
     bullet(
         'Deployed on <b>Vercel</b> with <b>MongoDB Atlas</b>; serverless architecture handling '
         'concurrent academic workloads.')

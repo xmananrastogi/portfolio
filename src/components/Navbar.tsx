@@ -42,7 +42,7 @@ export default function Navbar() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
           <a
             href="#hero"
-            className="text-sm font-semibold tracking-wider text-text-primary transition hover:text-signal-cyan"
+            className="text-sm font-semibold text-text-primary transition hover:text-signal-cyan"
             aria-label="Back to top"
           >
             MR

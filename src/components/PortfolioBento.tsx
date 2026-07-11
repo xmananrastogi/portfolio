@@ -73,8 +73,8 @@ const PortfolioBento = () => {
         </div>
 
         {snapshotCards.map(({ title, copy, icon: Icon }) => (
-          <div key={title} className="rounded-3xl border border-white/10 bg-surface p-5">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-signal-cyan">
+          <div key={title} className="rounded-3xl border border-white/10 bg-surface p-5 transition hover:border-white/20 hover:-translate-y-0.5">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-signal-cyan">
               <Icon className="size-5" aria-hidden="true" />
             </div>
             <h3 className="mt-5 text-xl font-semibold text-text-primary">{title}</h3>

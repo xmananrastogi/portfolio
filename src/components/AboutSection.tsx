@@ -21,7 +21,7 @@ const AboutSection = () => {
                 About
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text-primary md:text-5xl">
-                Background and working principles.
+                Background and working principles
               </h2>
             </div>
 

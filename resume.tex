@@ -57,14 +57,14 @@
     \item[Infrastructure \& Tools] Docker, CI/CD, Vercel, MongoDB Atlas, Git, GitHub, VS Code.
 \end{description}
 
-\section{Projects}
+\section{Independent Development}
 
 \noindent \textbf{\href{https://xmananrastogi-woundtrackai.hf.space/}{WoundTrack AI: Applied Computer Vision Pipeline}} \hfill \textbf{2024 – Present} \\
 \textit{Python, OpenCV, Flask, SciPy, SQLite} \hfill \href{https://xmananrastogi-woundtrackai.hf.space/}{Live Demo} | \href{https://github.com/xmananrastogi/WoundTrack-AI}{GitHub}
 \begin{itemize}[noitemsep, topsep=1pt, itemsep=1pt]
     \item Engineered a CV pipeline tracking \textbf{441 cells} across \textbf{800+ frames} in \textbf{<10 min} on consumer hardware, achieving \textbf{28\% higher precision} than manual ImageJ workflows.
-    \item Implemented LoG blob detection + LAP gap-closing tracker with Kalman prediction for explainable cell localization and trajectory continuity through missed frames.
-    \item Designed automated quantitative evaluation pipeline computing MSD exponents, velocity distributions and fractal metrics across five experimental datasets.
+    \item Designed LoG blob detection + LAP gap-closing tracker with Kalman-filter prediction, bridging detection gaps to reduce trajectory fragmentation during cell occlusions.
+    \item Built automated evaluation pipeline computing MSD exponents, velocity distributions, and fractal metrics across \textbf{5} experimental conditions (\textbf{249} control vs. \textbf{192} Hg-treated cells).
     \item Shipped Flask + SQLite dashboard auto-generating per-experiment reports with kinetic curves and one-click trajectory exports, replacing manual spreadsheet analysis.
 \end{itemize}
 
@@ -73,9 +73,9 @@
 \noindent \textbf{\href{https://vitalize-vit.vercel.app/}{VITalize AI: Full-Stack Academic Platform}} \hfill \textbf{2025 – Present} \\
 \textit{Next.js 15, TypeScript, MongoDB, REST APIs, JWT, NVIDIA LLaMA 3.1, Tesseract OCR} \hfill \href{https://vitalize-vit.vercel.app/}{Live Demo}
 \begin{itemize}[noitemsep, topsep=1pt, itemsep=1pt]
-    \item Developed a unified academic platform indexing \textbf{8,800+} past exam papers with full-text search and subject-level filtering, serving \textbf{890+} page views across FFCS planner, paper vault, and exam generator.
-    \item Integrated \textbf{NVIDIA LLaMA 3.1} API with Tesseract OCR fallback pipeline to extract text from scanned PDFs and generate unit-wise, mark-weighted AI solutions with KaTeX rendering.
-    \item Engineered constraint-based \textbf{FFCS timetable solver} using backtracking algorithm with optimized pruning for clash elimination, faculty prioritization, gap minimization, and ICS calendar export.
+    \item Developed a unified academic platform indexing \textbf{8,800+} past exam papers with full-text search and subject-level filtering across FFCS planner, paper vault, and exam generator modules.
+    \item Integrated \textbf{NVIDIA LLaMA 3.1} with Tesseract OCR fallback pipeline to auto-generate mark-weighted AI solutions from scanned exam PDFs with KaTeX-rendered math.
+    \item Engineered constraint-based \textbf{FFCS timetable solver} using pruned backtracking algorithm, resolving clash/faculty/gap constraints across \textbf{2,400+} course combinations with sub-second solve time.
     \item Deployed on \textbf{Vercel} with \textbf{MongoDB Atlas}; serverless architecture handling concurrent academic workloads.
     \item Built Chrome extension (Manifest V3) auto-syncing academic data from VIT's VTOP portal.
 \end{itemize}

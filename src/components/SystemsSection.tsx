@@ -66,7 +66,7 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="overflow-hidden rounded-[30px] border border-white/10 bg-surface"
+      className="overflow-hidden rounded-3xl border border-white/10 bg-surface"
       aria-label={`Project: ${data.title}`}
     >
       <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '16/9' }}>
@@ -147,7 +147,7 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
 
         <ul className="grid gap-3 md:grid-cols-2" aria-label="Architecture components">
           {data.architecture.slice(0, 4).map((item) => (
-            <li key={item} className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm text-text-secondary">
+            <li key={item} className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm text-text-secondary transition hover:border-white/20">
               {item}
             </li>
           ))}
@@ -187,7 +187,7 @@ function PortfolioCard({ data }: { data: typeof portfolioData.systems[0] }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="rounded-[30px] border border-white/10 bg-surface p-6"
+      className="rounded-3xl border border-white/10 bg-surface p-6"
       aria-label={`Project: ${data.title}`}
     >
       <p className="text-xs font-semibold uppercase tracking-wider text-signal-cyan">
@@ -237,7 +237,7 @@ function GSSoCCard({ data }: { data: typeof portfolioData.systems[0] }) {
       whileInView={{ opacity: 1, x: 0, rotate: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-      className="relative overflow-hidden rounded-[30px] border border-white/10 bg-surface p-6"
+      className="relative overflow-hidden rounded-3xl border border-white/10 bg-surface p-6"
       aria-label={`Project: ${data.title}`}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] via-transparent to-signal-cyan/[0.06]" aria-hidden="true" />
@@ -249,7 +249,7 @@ function GSSoCCard({ data }: { data: typeof portfolioData.systems[0] }) {
             GSSoC '26 Contributor
           </div>
         </div>
-        <h3 className="text-2xl font-semibold text-text-primary">
+        <h3 className="text-3xl font-semibold text-text-primary">
           GirlScript Summer of Code 2026
         </h3>
         <p className="text-sm leading-7 text-text-secondary">
@@ -259,7 +259,7 @@ function GSSoCCard({ data }: { data: typeof portfolioData.systems[0] }) {
 
         <div className="flex flex-wrap gap-2">
           {['Open Source', 'GSSoC \'26', 'Contributor', 'Code Quality'].map((tag) => (
-            <span key={tag} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-text-secondary">
+            <span key={tag} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-text-secondary transition hover:bg-white/[0.06]">
               {tag}
             </span>
           ))}
@@ -299,10 +299,10 @@ function VitalizeCard({ data }: { data: typeof portfolioData.systems[0] }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="overflow-hidden rounded-[30px] border border-white/10 bg-surface"
+      className="overflow-hidden rounded-3xl border border-white/10 bg-surface"
       aria-label={`Project: ${data.title}`}
     >
-      <div className="relative overflow-hidden bg-gradient-to-br from-signal-cyan/[0.05] via-transparent to-signal-cyan/[0.04] px-8 pb-8 pt-10">
+      <div       className="relative overflow-hidden bg-gradient-to-br from-signal-cyan/[0.05] via-transparent to-signal-cyan/[0.04] p-6">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(56,189,248,0.06),transparent_50%)]" aria-hidden="true" />
         <p className="relative text-xs font-semibold uppercase tracking-wider text-signal-cyan">
           {data.eyebrow}
@@ -315,7 +315,7 @@ function VitalizeCard({ data }: { data: typeof portfolioData.systems[0] }) {
         </p>
       </div>
 
-      <div className="space-y-7 p-8">
+      <div className="space-y-6 p-6">
         <p className="text-sm leading-7 text-text-secondary">{data.problem}</p>
 
         <div className="grid gap-4 md:grid-cols-2">
@@ -345,7 +345,7 @@ function VitalizeCard({ data }: { data: typeof portfolioData.systems[0] }) {
 
         <ul className="grid gap-3 md:grid-cols-3" aria-label="Architecture components">
           {data.architecture.slice(0, 6).map((item) => (
-            <li key={item} className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm text-text-secondary">
+            <li key={item} className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm text-text-secondary transition hover:border-white/20">
               {item}
             </li>
           ))}
