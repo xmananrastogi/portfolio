@@ -57,7 +57,7 @@ const AboutSection = () => {
                 {about.operatingPrinciples.map((principle) => (
                   <div
                     key={principle}
-                    className="rounded-xl border border-white/10 bg-white/[0.03] p-4 text-sm leading-6 text-text-secondary"
+                    className="rounded-xl bg-white/[0.03] p-4 text-sm leading-6 text-text-secondary"
                   >
                     {principle}
                   </div>
@@ -75,7 +75,7 @@ const AboutSection = () => {
                   <span
                     key={area}
                     role="listitem"
-                    className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-text-secondary"
+                    className="rounded-full bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-text-secondary"
                   >
                     {area}
                   </span>
@@ -92,7 +92,7 @@ const AboutSection = () => {
                 {about.currentlyExploring.map((item) => (
                   <div
                     key={item}
-                    className="border-l border-white/10 pl-4 text-sm leading-6 text-text-secondary"
+                    className="pl-4 text-sm leading-6 text-text-secondary"
                   >
                     {item}
                   </div>

@@ -138,7 +138,7 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
 
         <div className="grid gap-3 sm:grid-cols-4">
           {data.metrics.slice(0, 4).map(({ value, label }) => (
-            <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+            <div key={label} className="rounded-2xl bg-white/[0.03] p-4">
               <div className="font-mono text-2xl font-semibold text-text-primary">{value}</div>
               <div className="mt-2 text-xs uppercase tracking-wider text-muted">{label}</div>
             </div>
@@ -147,7 +147,7 @@ function WoundTrackCard({ data }: { data: typeof portfolioData.systems[0] }) {
 
         <ul className="grid gap-3 md:grid-cols-2" aria-label="Architecture components">
           {data.architecture.slice(0, 4).map((item) => (
-            <li key={item} className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm text-text-secondary transition hover:border-white/20">
+            <li key={item} className="rounded-2xl bg-white/[0.03] px-4 py-3 text-sm text-text-secondary transition hover:bg-white/[0.06]">
               {item}
             </li>
           ))}
@@ -199,7 +199,7 @@ function PortfolioCard({ data }: { data: typeof portfolioData.systems[0] }) {
         {data.architecture.map((item) => (
           <li
             key={item}
-            className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-text-secondary"
+            className="rounded-2xl bg-white/[0.03] px-4 py-3 text-sm text-text-secondary"
           >
             {item}
           </li>
@@ -237,12 +237,10 @@ function GSSoCCard({ data }: { data: typeof portfolioData.systems[0] }) {
       whileInView={{ opacity: 1, x: 0, rotate: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-      className="relative overflow-hidden rounded-3xl border border-white/10 bg-surface p-6"
+      className="rounded-3xl border border-white/10 bg-surface p-6"
       aria-label={`Project: ${data.title}`}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] via-transparent to-signal-cyan/[0.06]" aria-hidden="true" />
-
-      <div className="relative space-y-4">
+      <div className="space-y-4">
         <div className="flex items-center gap-3">
           <div className="inline-flex items-center gap-2 rounded-full border border-signal-cyan/20 bg-signal-cyan/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-signal-cyan">
             <Award size={13} aria-hidden="true" />
@@ -259,7 +257,7 @@ function GSSoCCard({ data }: { data: typeof portfolioData.systems[0] }) {
 
         <div className="flex flex-wrap gap-2">
           {['Open Source', 'GSSoC \'26', 'Contributor', 'Code Quality'].map((tag) => (
-            <span key={tag} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-text-secondary transition hover:bg-white/[0.06]">
+            <span key={tag} className="rounded-full bg-white/[0.04] px-3 py-1.5 text-xs text-text-secondary transition hover:bg-white/[0.07]">
               {tag}
             </span>
           ))}
@@ -302,27 +300,26 @@ function VitalizeCard({ data }: { data: typeof portfolioData.systems[0] }) {
       className="overflow-hidden rounded-3xl border border-white/10 bg-surface"
       aria-label={`Project: ${data.title}`}
     >
-      <div       className="relative overflow-hidden bg-gradient-to-br from-signal-cyan/[0.05] via-transparent to-signal-cyan/[0.04] p-6">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(56,189,248,0.06),transparent_50%)]" aria-hidden="true" />
-        <p className="relative text-xs font-semibold uppercase tracking-wider text-signal-cyan">
+      <div className="p-6">
+        <p className="text-xs font-semibold uppercase tracking-wider text-signal-cyan">
           {data.eyebrow}
         </p>
-        <h3 className="relative mt-3 text-3xl font-semibold text-text-primary md:text-5xl">
+        <h3 className="mt-3 text-3xl font-semibold text-text-primary md:text-5xl">
           {data.title}
         </h3>
-        <p className="relative mt-4 max-w-3xl text-sm leading-7 text-text-secondary">
+        <p className="mt-4 max-w-3xl text-sm leading-7 text-text-secondary">
           {data.oneLine}
         </p>
       </div>
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-6 p-6 pt-0">
         <p className="text-sm leading-7 text-text-secondary">{data.problem}</p>
 
         <div className="grid gap-4 md:grid-cols-2">
           {data.pipeline.map(({ stage, title, summary }) => (
             <div
               key={stage}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-5"
+              className="rounded-2xl bg-white/[0.03] p-5"
             >
               <span className="font-mono text-xs tracking-wider text-signal-cyan">{stage}</span>
               <h4 className="mt-2 text-lg font-semibold text-text-primary">{title}</h4>
@@ -335,7 +332,7 @@ function VitalizeCard({ data }: { data: typeof portfolioData.systems[0] }) {
           {data.metrics.slice(0, 4).map(({ value, label }) => (
             <div
               key={label}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+              className="rounded-2xl bg-white/[0.03] p-4"
             >
               <div className="font-mono text-2xl font-semibold text-text-primary">{value}</div>
               <div className="mt-2 text-xs uppercase tracking-wider text-muted">{label}</div>
@@ -345,7 +342,7 @@ function VitalizeCard({ data }: { data: typeof portfolioData.systems[0] }) {
 
         <ul className="grid gap-3 md:grid-cols-3" aria-label="Architecture components">
           {data.architecture.slice(0, 6).map((item) => (
-            <li key={item} className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm text-text-secondary transition hover:border-white/20">
+            <li key={item} className="rounded-2xl bg-white/[0.03] px-4 py-3 text-sm text-text-secondary transition hover:bg-white/[0.06]">
               {item}
             </li>
           ))}

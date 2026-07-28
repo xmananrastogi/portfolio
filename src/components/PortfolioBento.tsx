@@ -1,4 +1,4 @@
-import { BrainCircuit, Code2, Cpu, GraduationCap, LineChart, Sparkles } from 'lucide-react';
+import { BrainCircuit, Code2, Cpu, GraduationCap, LineChart } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const snapshotCards = [
@@ -41,7 +41,6 @@ const PortfolioBento = () => {
                 Applied AI, computer vision, and frontend engineering.
               </h2>
             </div>
-            <Sparkles className="hidden size-10 text-signal-cyan md:block" aria-hidden="true" />
           </div>
 
           <div className="mt-8 grid gap-3 md:grid-cols-3" role="list" aria-label="Credentials">
@@ -49,21 +48,21 @@ const PortfolioBento = () => {
               <div
                 key={item}
                 role="listitem"
-                className="rounded-2xl border border-white/10 bg-background/70 p-4 text-sm font-medium text-text-secondary"
+                className="rounded-2xl bg-white/[0.03] p-4 text-sm font-medium text-text-secondary"
               >
                 {item}
               </div>
             ))}
           </div>
 
-          <div className="mt-8 rounded-2xl border border-white/10 bg-background/70 p-4">
+          <div className="mt-8 rounded-2xl bg-white/[0.03] p-4">
             <div className="flex items-center gap-3 text-sm font-semibold text-text-primary">
               <LineChart className="size-4 text-signal-cyan" aria-hidden="true" />
               WoundTrack project evidence
             </div>
             <div className="mt-4 grid gap-3 sm:grid-cols-4">
               {displayMetrics.map(({ value, label }) => (
-                <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <div key={label} className="rounded-2xl bg-white/[0.03] p-4">
                   <div className="font-mono text-2xl font-semibold text-text-primary">{value}</div>
                   <div className="mt-2 text-xs uppercase tracking-wider text-muted">{label}</div>
                 </div>
@@ -74,7 +73,7 @@ const PortfolioBento = () => {
 
         {snapshotCards.map(({ title, copy, icon: Icon }) => (
           <div key={title} className="rounded-3xl border border-white/10 bg-surface p-5 transition hover:border-white/20 hover:-translate-y-0.5">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-signal-cyan">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.05] text-signal-cyan">
               <Icon className="size-5" aria-hidden="true" />
             </div>
             <h3 className="mt-5 text-xl font-semibold text-text-primary">{title}</h3>

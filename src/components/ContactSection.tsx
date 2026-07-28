@@ -129,7 +129,7 @@ const ContactSection = () => {
                   href={item.href}
                   target={item.href.startsWith('mailto:') ? undefined : '_blank'}
                   rel={item.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-                  className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4 text-sm text-text-secondary transition hover:border-white/20 hover:bg-white/[0.06] hover:text-text-primary"
+                  className="flex items-center gap-4 rounded-xl bg-white/[0.03] p-4 text-sm text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary"
                   aria-label={item.ariaLabel}
                 >
                   <span className="text-signal-cyan">{item.icon}</span>
@@ -144,7 +144,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             onSubmit={handleSubmit}
-            className="rounded-2xl border border-white/10 bg-background/60 p-5 md:p-6"
+            className="rounded-2xl bg-white/[0.03] p-5 md:p-6"
             aria-label="Contact form"
           >
             <div className="grid gap-5">
@@ -173,7 +173,7 @@ const ContactSection = () => {
                   maxLength={100}
                   placeholder="Your name"
                   autoComplete="name"
-                  className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-text-primary outline-none transition placeholder:text-muted focus:border-signal-cyan/40"
+                  className="rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-text-primary outline-none transition placeholder:text-muted focus:bg-white/[0.06]"
                 />
               </label>
 
@@ -186,7 +186,7 @@ const ContactSection = () => {
                   required
                   placeholder="you@example.com"
                   autoComplete="email"
-                  className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-text-primary outline-none transition placeholder:text-muted focus:border-signal-cyan/40"
+                  className="rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-text-primary outline-none transition placeholder:text-muted focus:bg-white/[0.06]"
                 />
               </label>
 
@@ -200,7 +200,7 @@ const ContactSection = () => {
                   minLength={10}
                   maxLength={5000}
                   placeholder="Tell me the role, problem, dataset, or system you want to discuss."
-                  className="resize-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-text-primary outline-none transition placeholder:text-muted focus:border-signal-cyan/40"
+                  className="resize-none rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-text-primary outline-none transition placeholder:text-muted focus:bg-white/[0.06]"
                 />
               </label>
 

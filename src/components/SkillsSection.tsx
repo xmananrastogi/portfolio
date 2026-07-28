@@ -32,9 +32,9 @@ const SkillsSection = () => {
             return (
               <div
                 key={category.title}
-                className="rounded-2xl border border-white/10 bg-surface p-6"
+                className="rounded-xl border border-white/10 bg-surface p-6"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-signal-cyan">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.05] text-signal-cyan">
                   <Icon size={20} aria-hidden="true" />
                 </div>
                 <h3 className="mt-5 text-lg font-semibold text-text-primary">
@@ -48,7 +48,7 @@ const SkillsSection = () => {
                     <span
                       key={item}
                       role="listitem"
-                      className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-text-secondary"
+                      className="rounded-full bg-white/[0.04] px-3 py-1.5 text-xs text-text-secondary"
                     >
                       {item}
                     </span>
