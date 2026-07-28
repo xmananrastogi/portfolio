@@ -1,9 +1,7 @@
 import { Suspense } from 'react';
 import ResearchHero from './components/ResearchHero';
-import PortfolioBento from './components/PortfolioBento';
-import AboutSection from './components/AboutSection';
-import SystemsSection from './components/SystemsSection';
-import SkillsSection from './components/SkillsSection';
+import ProjectsSection from './components/ProjectsSection';
+import StackSection from './components/StackSection';
 import ContactSection from './components/ContactSection';
 import SmoothScroll from './components/SmoothScroll';
 import Navbar from './components/Navbar';
@@ -25,10 +23,8 @@ function App() {
           role="main"
         >
           <ResearchHero />
-          <PortfolioBento />
-          <SystemsSection />
-          <AboutSection />
-          <SkillsSection />
+          <ProjectsSection />
+          <StackSection />
           <ContactSection />
 
           <footer className="border-t border-white/10 px-6 py-10 text-center text-xs text-muted">

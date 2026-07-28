@@ -4,9 +4,8 @@ import { Menu, X, FileText } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const navLinks = [
-  { href: '#systems', label: 'Projects' },
-  { href: '#stack', label: 'Skills' },
-  { href: '#about', label: 'About' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#stack', label: 'Stack' },
   { href: '#contact', label: 'Contact' },
 ];
 

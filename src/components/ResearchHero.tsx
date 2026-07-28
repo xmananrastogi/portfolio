@@ -1,8 +1,26 @@
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, FileText } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
+const stats = [
+  { label: 'Papers indexed', value: '8,800+' },
+  { label: 'Cells tracked', value: '441' },
+  { label: 'Courses solved', value: '2,400+' },
+  { label: 'Systems shipped', value: '3' },
+];
+
 const ResearchHero = () => {
+  const [statIndex, setStatIndex] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval>>();
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setStatIndex((i) => (i + 1) % stats.length);
+    }, 2200);
+    return () => clearInterval(timerRef.current);
+  }, []);
+
   return (
     <section
       id="hero"
@@ -14,7 +32,7 @@ const ResearchHero = () => {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="space-y-8"
+          className="space-y-10"
         >
           <div className="space-y-6">
             <p className="text-sm font-semibold uppercase tracking-widest text-signal-cyan">
@@ -30,7 +48,7 @@ const ResearchHero = () => {
 
           <div className="flex flex-wrap items-center gap-3">
             <a
-              href="#systems"
+              href="#projects"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-text-primary px-5 py-3 text-sm font-semibold text-background transition hover:bg-white"
             >
               View work
@@ -46,6 +64,13 @@ const ResearchHero = () => {
               <FileText size={17} aria-hidden="true" />
               Resume
             </a>
+          </div>
+
+          <div className="flex items-center gap-3 pt-4 text-sm text-text-secondary">
+            <span className="font-mono text-xs text-signal-cyan">{stats[statIndex].value}</span>
+            <span className="transition-opacity duration-500" key={statIndex}>
+              {stats[statIndex].label}
+            </span>
           </div>
         </motion.div>
       </div>
