@@ -22,7 +22,7 @@ const projects = [
   {
     id: 'gssoc-editron',
     icon: '(*)',
-    title: 'Editron — GSSoC \'26',
+    title: 'GSSoC \'26',
     desc: 'Open source contributions on GitHub — code quality improvements, pull requests, and collaborative engineering workflows through GSSoC 2026.',
     tags: ['GitHub', 'GSSoC', 'Open Source'],
     links: { live: 'https://github.com/AmanYadav31/Editron', code: 'https://github.com/xmananrastogi' },
