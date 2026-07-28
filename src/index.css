@@ -8,8 +8,8 @@
   --surface-raised: #15181c;
   --text-primary: #f4f5f5;
   --text-secondary: #a7adb2;
-  --muted: #8b929a;
-  --signal-cyan: #38bdf8;
+  --muted: #6e7681;
+  --accent: #f97316;
 }
 
 html {
@@ -19,11 +19,8 @@ html {
 
 body {
   @apply overflow-x-hidden bg-background font-sans text-text-primary antialiased;
-  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0);
-  background-size: 32px 32px;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(249, 115, 22, 0.04) 0%, transparent 60%);
 }
-
-/* ======= Accessibility ======= */
 
 .sr-only {
   position: absolute;
@@ -38,7 +35,7 @@ body {
 }
 
 *:focus-visible {
-  outline: 2px solid rgba(56, 189, 248, 0.6);
+  outline: 2px solid rgba(249, 115, 22, 0.5);
   outline-offset: 2px;
 }
 
@@ -46,33 +43,24 @@ body {
   outline: none;
 }
 
-/* ======= Selection ======= */
-
 ::selection {
-  background: rgba(56, 189, 248, 0.28);
+  background: rgba(249, 115, 22, 0.28);
   color: #fff;
 }
-
-/* ======= Scrollbar ======= */
 
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: #08090a;
 }
-
 ::-webkit-scrollbar-thumb {
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.12);
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.22);
 }
-
-/* ======= Reduced Motion ======= */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -84,8 +72,6 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
-
-/* ======= ARIA live region ======= */
 
 [role="status"] {
   position: relative;

@@ -35,7 +35,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="rounded-xl bg-signal-cyan/20 px-6 py-3 text-sm font-semibold text-signal-cyan transition hover:bg-signal-cyan/30"
+              className="rounded-xl bg-accent/20 px-6 py-3 text-sm font-semibold text-accent transition hover:bg-accent/30"
             >
               Refresh page
             </button>

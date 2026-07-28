@@ -1,36 +1,39 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Github } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
 
-const projectCards = [
+const projects = [
   {
     id: 'woundtrack-ai',
+    icon: '🔬',
     title: 'WoundTrack AI',
-    eyebrow: 'Biomedical CV',
-    desc: 'Traditional computer vision pipeline for cell migration tracking from microscopy videos. OpenCV + scikit-image + TrackPy, no GPU needed.',
+    label: 'Biomedical CV',
+    desc: 'Traditional computer vision pipeline for cell migration tracking from microscopy videos. OpenCV + scikit-image + TrackPy — no GPU needed.',
     tags: ['OpenCV', 'TrackPy', 'Flask', 'Hugging Face'],
     links: { live: 'https://xmananrastogi-woundtrackai.hf.space/', code: 'https://github.com/xmananrastogi/WoundTrack-AI' },
   },
   {
     id: 'vitalize',
+    icon: '🎓',
     title: 'VITalize',
-    eyebrow: 'EdTech Platform',
-    desc: 'Full-stack academic platform indexing 8,800+ VIT past papers with AI solutions, FFCS planner, and academic dashboard.',
-    tags: ['Next.js', 'MongoDB', 'NVIDIA LLaMA 3.1', 'Vercel'],
+    label: 'EdTech Platform',
+    desc: 'Full-stack academic platform indexing 8,800+ VIT past papers with AI solutions, FFCS planner, and academic dashboard. Next.js + MongoDB + NVIDIA LLaMA.',
+    tags: ['Next.js', 'MongoDB', 'NVIDIA LLaMA', 'Vercel'],
     links: { live: 'https://vitalize-vit.vercel.app', code: 'https://github.com/xmananrastogi/vitalize-fullstack' },
   },
   {
     id: 'gssoc-editron',
+    icon: '🤝',
     title: 'Editron — GSSoC \'26',
-    eyebrow: 'Open Source',
+    label: 'Open Source',
     desc: 'Contributing code quality improvements to Editron through GirlScript Summer of Code, one of India\'s largest open-source programs.',
     tags: ['Open Source', 'GSSoC', 'Code Quality'],
     links: { live: 'https://github.com/AmanYadav31/Editron', code: 'https://github.com/xmananrastogi' },
   },
   {
     id: 'portfolio-research-os',
+    icon: '⚡',
     title: 'Interactive Portfolio',
-    eyebrow: 'Frontend',
+    label: 'Frontend',
     desc: 'This site — React, TypeScript, Framer Motion, Tailwind. Clean project presentation with responsive design and motion-driven UI.',
     tags: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
     links: { live: 'https://xmananrastogi.github.io/portfolio/', code: 'https://github.com/xmananrastogi/portfolio' },
@@ -39,73 +42,78 @@ const projectCards = [
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="relative overflow-hidden px-4 py-16 md:py-24" aria-label="Projects">
+    <section id="projects" className="px-6 py-24 md:py-32" aria-label="Projects">
       <div className="mx-auto max-w-7xl">
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 max-w-3xl"
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-14"
         >
-          <p className="text-xs font-semibold uppercase tracking-wider text-signal-cyan">
+          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-accent">
             Projects
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text-primary md:text-5xl">
+          <h2 className="mt-5 text-4xl font-semibold tracking-tight text-text-primary md:text-5xl">
             What I've built
           </h2>
-          <p className="mt-5 text-lg leading-8 text-text-secondary">
-            Biomedical computer vision, full-stack academic tools, open-source contributions, and frontend engineering.
-          </p>
         </motion.div>
 
         <div className="grid gap-5 md:grid-cols-2">
-          {projectCards.map((project, i) => (
+          {projects.map((project, i) => (
             <motion.article
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="rounded-2xl border border-white/10 bg-surface p-6 transition hover:border-white/20"
+              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="group rounded-2xl border border-white/[0.07] bg-surface p-6 transition-all duration-300 hover:border-white/[0.14] hover:bg-surface-raised hover:-translate-y-0.5"
               aria-label={`Project: ${project.title}`}
             >
-              <p className="text-xs font-semibold uppercase tracking-wider text-signal-cyan">
-                {project.eyebrow}
-              </p>
-              <h3 className="mt-3 text-2xl font-semibold text-text-primary md:text-3xl">
-                {project.title}
-              </h3>
-              <p className="mt-4 text-sm leading-7 text-text-secondary">
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
+                    {project.label}
+                  </p>
+                  <h3 className="mt-3 text-2xl font-semibold text-text-primary md:text-3xl">
+                    {project.title}
+                  </h3>
+                </div>
+                <span className="text-2xl" aria-hidden="true">{project.icon}</span>
+              </div>
+
+              <p className="mt-5 text-sm leading-7 text-text-secondary">
                 {project.desc}
               </p>
-              <div className="mt-5 flex flex-wrap gap-2" role="list" aria-label="Technologies">
+
+              <div className="mt-6 flex flex-wrap gap-2" role="list" aria-label="Technologies">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
                     role="listitem"
-                    className="rounded-full bg-white/[0.04] px-3 py-1.5 text-xs text-text-secondary"
+                    className="rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1.5 text-xs text-text-secondary"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-              <div className="mt-6 flex gap-3">
+
+              <div className="mt-7 flex gap-3">
                 <a
                   href={project.links.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-text-primary px-4 py-3 text-sm font-semibold text-background transition hover:bg-white"
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-orange-500"
                   aria-label={`Live demo of ${project.title} (opens in new tab)`}
                 >
                   Live
-                  <ArrowUpRight size={16} aria-hidden="true" />
+                  <ArrowUpRight size={16} strokeWidth={2.5} aria-hidden="true" />
                 </a>
                 <a
                   href={project.links.code}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-text-primary transition hover:bg-white/[0.07]"
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3 text-sm font-semibold text-text-primary transition-all hover:border-white/[0.14] hover:bg-white/[0.05]"
                   aria-label={`Source code for ${project.title} (opens in new tab)`}
                 >
                   <Github size={16} aria-hidden="true" />

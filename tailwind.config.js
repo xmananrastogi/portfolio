@@ -13,7 +13,7 @@ export default {
         "text-primary": "#F4F5F5",
         "text-secondary": "#A7ADB2",
         muted: "#6E7681",
-        "signal-cyan": "#38BDF8",
+        accent: "#F97316",
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

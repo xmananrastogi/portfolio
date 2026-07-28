@@ -31,7 +31,7 @@ function App() {
             <p>© {new Date().getFullYear()} Manan Rastogi</p>
             <a
               href="#hero"
-              className="mt-3 inline-block text-text-secondary transition hover:text-signal-cyan"
+              className="mt-3 inline-block text-text-secondary transition hover:text-accent"
               aria-label="Back to top"
             >
               ↑ Back to top
