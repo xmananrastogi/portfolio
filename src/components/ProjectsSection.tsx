@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight, Github } from 'lucide-react';
 
@@ -7,8 +7,7 @@ const projects = [
     id: 'woundtrack-ai',
     icon: '(o)',
     title: 'WoundTrack AI',
-    label: 'Biomedical CV',
-    desc: 'Traditional computer vision pipeline for cell migration tracking from microscopy videos. OpenCV + scikit-image + TrackPy — no GPU needed.',
+    desc: 'Biomedical computer vision pipeline for tracking cell migration from microscopy videos. OpenCV + scikit-image + TrackPy — no GPU needed. Ships as a Flask dashboard on Hugging Face.',
     tags: ['OpenCV', 'TrackPy', 'Flask', 'Hugging Face'],
     links: { live: 'https://xmananrastogi-woundtrackai.hf.space/', code: 'https://github.com/xmananrastogi/WoundTrack-AI' },
   },
@@ -16,8 +15,7 @@ const projects = [
     id: 'vitalize',
     icon: '</>',
     title: 'VITalize',
-    label: 'EdTech Platform',
-    desc: 'Full-stack academic platform indexing 8,800+ VIT past papers with AI solutions, FFCS planner, and academic dashboard. Next.js + MongoDB + NVIDIA LLaMA.',
+    desc: 'Full-stack academic platform for VIT — indexes 8,800+ past papers with AI solutions, a clash-free FFCS planner, and academic dashboard. Next.js, MongoDB, NVIDIA LLaMA.',
     tags: ['Next.js', 'MongoDB', 'NVIDIA LLaMA', 'Vercel'],
     links: { live: 'https://vitalize-vit.vercel.app', code: 'https://github.com/xmananrastogi/vitalize-fullstack' },
   },
@@ -25,8 +23,7 @@ const projects = [
     id: 'gssoc-editron',
     icon: '(*)',
     title: 'Editron — GSSoC \'26',
-    label: 'Open Source',
-    desc: 'Contributing code quality improvements to Editron through GirlScript Summer of Code, one of India\'s largest open-source programs.',
+    desc: 'Contributing code quality improvements to Editron through GirlScript Summer of Code, one of India\'s largest open-source programs. GitHub workflow, PRs, and collaborative engineering.',
     tags: ['GitHub', 'GSSoC', 'Open Source'],
     links: { live: 'https://github.com/AmanYadav31/Editron', code: 'https://github.com/xmananrastogi' },
   },
@@ -34,8 +31,7 @@ const projects = [
     id: 'portfolio-research-os',
     icon: '>>',
     title: 'Interactive Portfolio',
-    label: 'Frontend',
-    desc: 'This site — React, TypeScript, Framer Motion, Tailwind. Clean project presentation with responsive design and motion-driven UI.',
+    desc: 'This site — React, TypeScript, Framer Motion, Tailwind. Clean project presentation with responsive design and motion-driven UI. You\'re looking at it.',
     tags: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
     links: { live: 'https://xmananrastogi.github.io/portfolio/', code: 'https://github.com/xmananrastogi/portfolio' },
   },
@@ -55,14 +51,9 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       aria-label={`Project: ${project.title}`}
     >
       <div className="flex items-start justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
-            {project.label}
-          </p>
-          <h3 className="mt-3 text-2xl font-semibold text-text-primary md:text-3xl">
-            {project.title}
-          </h3>
-        </div>
+        <h3 className="text-2xl font-semibold text-text-primary md:text-3xl">
+          {project.title}
+        </h3>
         <span className="font-mono text-lg text-muted" aria-hidden="true">{project.icon}</span>
       </div>
 
@@ -112,14 +103,9 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="px-6 py-24 md:py-32" aria-label="Projects">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-14">
-          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-accent">
-            Projects
-          </p>
-          <h2 className="mt-5 text-4xl font-semibold tracking-tight text-text-primary md:text-5xl">
-            What I've built
-          </h2>
-        </div>
+        <h2 className="mb-14 text-4xl font-semibold tracking-tight text-text-primary md:text-5xl">
+          What I've built
+        </h2>
 
         <div className="grid gap-5 md:grid-cols-2">
           {projects.map((project, i) => (

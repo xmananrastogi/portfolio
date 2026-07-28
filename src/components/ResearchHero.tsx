@@ -17,17 +17,12 @@ const ResearchHero = () => {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-8"
           >
-            <div className="flex items-center gap-2 rounded-full border border-accent/20 bg-accent/8 px-4 py-1.5 text-xs font-medium text-accent">
-              <span className="size-1.5 rounded-full bg-accent" />
-              Manan Rastogi
-            </div>
-
             <h1 className="max-w-4xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-text-primary md:text-6xl lg:text-7xl">
               Computer vision pipelines, full-stack academic platforms, and AI evaluation.
             </h1>
 
             <p className="max-w-2xl text-lg leading-relaxed text-text-secondary">
-              Building deployable systems at the intersection of applied AI, software engineering, and interface design.
+              Building deployable systems at the intersection of applied AI, software engineering, and interface design. — Manan Rastogi
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -55,7 +50,7 @@ const ResearchHero = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden font-mono text-xs leading-5 text-muted lg:block"
+            className="hidden font-mono text-xs leading-5 text-muted lg:block self-start mt-4"
             aria-hidden="true"
           >
 {`  /\_/\\ 
