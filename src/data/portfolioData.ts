@@ -21,13 +21,7 @@ export const portfolioData = {
     ],
   },
 
-  // Real stats from live systems
-  metrics: [
-    { value: "9,103", label: "Papers indexed", sub: "VITalize AI" },
-    { value: "2,439", label: "Courses tracked", sub: "VITalize AI" },
-    { value: "441", label: "Cells tracked", sub: "WoundTrack AI" },
-    { value: "2,587", label: "Calendar events", sub: "VITalize AI" },
-  ],
+
 
   experience: [
     {

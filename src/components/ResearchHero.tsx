@@ -3,79 +3,73 @@ import { ArrowDownRight, FileText, Github, Linkedin, Mail } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const item = {
-  hidden: { opacity: 0, y: 22 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 15 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.6, type: "spring", bounce: 0.2 } },
 };
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.09 } },
+  show: { transition: { staggerChildren: 0.1 } },
 };
 
 const ResearchHero = () => (
   <section
     id="hero"
-    className="relative flex min-h-screen flex-col justify-center px-5 pb-16 pt-28 md:px-10"
+    className="relative flex min-h-[90vh] flex-col justify-center px-5 pb-16 pt-28 md:px-10"
     aria-label="Hero section"
   >
-    {/* Blue radial glow behind name */}
-    <div
-      className="pointer-events-none absolute left-0 top-0 h-[55vh] w-full"
-      style={{ background: 'radial-gradient(ellipse 70% 50% at 30% 0%, rgba(59,130,246,0.09) 0%, transparent 65%)' }}
-      aria-hidden="true"
-    />
-
     <div className="relative z-10 mx-auto w-full max-w-5xl">
-      <motion.div variants={container} initial="hidden" animate="show" className="space-y-7">
+      <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
 
         {/* Status */}
         <motion.div variants={item}>
-          <span className="status-badge">
-            <span className="status-dot" aria-hidden="true" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs font-medium text-zinc-300 backdrop-blur-md">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            </span>
             Available for opportunities · 2026
-          </span>
+          </div>
         </motion.div>
 
-        {/* Name — very large */}
+        {/* Name — Magic UI / Aceternity style */}
         <motion.div variants={item}>
-          <h1 className="text-[clamp(3rem,10vw,7rem)] font-black leading-[0.95] tracking-tight">
-            <span className="name-aurora">Manan</span>
+          <h1 className="text-[clamp(3.5rem,10vw,7rem)] font-bold leading-[0.9] tracking-tighter">
+            <span className="text-zinc-50">Manan</span>
             <br />
-            <span className="text-white/10">Rastogi</span>
+            <span className="text-zinc-500">Rastogi</span>
           </h1>
         </motion.div>
 
         {/* Descriptor */}
-        <motion.p variants={item} className="max-w-xl text-[0.9375rem] leading-[1.7] text-white/50">
-          ECE undergrad at VIT · BS Data Science at IIT Madras.
-          Building computer vision pipelines, full-stack platforms,
-          and automation tools that actually ship.
+        <motion.p variants={item} className="max-w-xl text-[1rem] leading-[1.6] text-zinc-400">
+          {portfolioData.positioning}
         </motion.p>
 
         {/* CTAs */}
-        <motion.div variants={item} className="flex flex-wrap items-center gap-3 pt-1">
-          <a id="cta-work" href="#projects" className="btn-blue">
+        <motion.div variants={item} className="flex flex-wrap items-center gap-3 pt-4">
+          <a id="cta-work" href="#projects" className="btn-primary">
             See my work
-            <ArrowDownRight size={15} aria-hidden="true" />
+            <ArrowDownRight size={16} aria-hidden="true" />
           </a>
           <a
             id="cta-resume"
             href={portfolioData.resumeLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-ghost"
+            className="btn-secondary"
             aria-label="View resume (opens in new tab)"
           >
-            <FileText size={14} aria-hidden="true" />
+            <FileText size={16} aria-hidden="true" />
             Resume
           </a>
         </motion.div>
 
         {/* Socials */}
-        <motion.div variants={item} className="flex items-center gap-5 pt-1">
+        <motion.div variants={item} className="flex items-center gap-5 pt-8">
           {[
-            { href: portfolioData.socials.github, icon: <Github size={17} />, label: 'GitHub' },
-            { href: portfolioData.socials.linkedin, icon: <Linkedin size={17} />, label: 'LinkedIn' },
-            { href: `mailto:${portfolioData.socials.email}`, icon: <Mail size={17} />, label: 'Email' },
+            { href: portfolioData.socials.github, icon: <Github size={18} />, label: 'GitHub' },
+            { href: portfolioData.socials.linkedin, icon: <Linkedin size={18} />, label: 'LinkedIn' },
+            { href: `mailto:${portfolioData.socials.email}`, icon: <Mail size={18} />, label: 'Email' },
           ].map(({ href, icon, label }) => (
             <a
               key={href}
@@ -83,33 +77,12 @@ const ResearchHero = () => (
               target={href.startsWith('mailto') ? undefined : '_blank'}
               rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
               aria-label={label}
-              className="text-white/25 transition-colors hover:text-white/70"
+              className="text-zinc-500 transition-colors hover:text-zinc-50"
             >
               {icon}
             </a>
           ))}
-          <span className="h-px w-8 bg-white/10" />
-          <span className="font-mono text-[0.65rem] tracking-wider text-white/20">
-            VIT · IIT Madras · IOCL
-          </span>
         </motion.div>
-      </motion.div>
-
-      {/* Stats row */}
-      <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.55, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        id="about"
-        className="mt-20 grid grid-cols-2 gap-3 sm:grid-cols-4"
-      >
-        {portfolioData.metrics.map((m) => (
-          <div key={m.label} className="card card-blue rounded-xl p-5">
-            <div className="font-mono text-[1.5rem] font-bold text-[#3b82f6]">{m.value}</div>
-            <div className="mt-1 text-[0.75rem] font-medium text-white/60">{m.label}</div>
-            <div className="mt-0.5 text-[0.625rem] text-white/25 tracking-wide">{m.sub}</div>
-          </div>
-        ))}
       </motion.div>
     </div>
   </section>

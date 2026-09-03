@@ -50,10 +50,10 @@ export default function Navbar() {
               href={portfolioData.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-white/[0.1] bg-white/[0.03] px-4 py-2 text-[0.75rem] font-semibold text-white/60 transition hover:border-white/20 hover:text-white"
+              className="btn-secondary"
               aria-label="View resume (opens in new tab)"
             >
-              <FileText size={12} />
+              <FileText size={14} />
               Resume
             </a>
           </div>
@@ -104,9 +104,9 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.07 }}
-                className="btn-ghost mt-4"
+                className="btn-secondary mt-4"
               >
-                <FileText size={14} />
+                <FileText size={16} />
                 Resume
               </motion.a>
             </nav>
