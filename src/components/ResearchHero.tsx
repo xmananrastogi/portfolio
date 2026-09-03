@@ -20,16 +20,7 @@ const ResearchHero = () => (
     <div className="relative z-10 mx-auto w-full max-w-5xl">
       <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
 
-        {/* Status */}
-        <motion.div variants={item}>
-          <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs font-medium text-zinc-300 backdrop-blur-md">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-            </span>
-            Available for opportunities · 2026
-          </div>
-        </motion.div>
+
 
         {/* Name — Magic UI / Aceternity style */}
         <motion.div variants={item}>
