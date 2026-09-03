@@ -4,9 +4,10 @@ import { Menu, X, FileText } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const navLinks = [
-  { href: '#projects', label: 'Projects' },
-  { href: '#stack', label: 'Stack' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#about',      label: 'About' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#projects',   label: 'Projects' },
+  { href: '#contact',    label: 'Contact' },
 ];
 
 export default function Navbar() {
@@ -25,6 +26,12 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-[100]"
@@ -34,26 +41,24 @@ export default function Navbar() {
       <div
         className={`transition-all duration-300 ${
           scrolled
-            ? 'bg-background/80 backdrop-blur-xl border-b border-white/10'
+            ? 'bg-black/85 backdrop-blur-xl border-b border-white/[0.06]'
             : 'bg-transparent'
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-8">
+          {/* Logo */}
           <a
             href="#hero"
-            className="text-sm font-semibold text-text-primary transition hover:text-accent"
+            className="text-sm font-semibold tracking-widest text-text-primary uppercase hover:text-accent transition-colors duration-300"
             aria-label="Back to top"
           >
             MR
           </a>
 
-          <div className="hidden items-center gap-1 md:flex">
+          {/* Desktop nav */}
+          <div className="hidden items-center gap-7 md:flex">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="rounded-lg px-3 py-2 text-sm font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary"
-              >
+              <a key={link.href} href={link.href} className="nav-link text-sm font-medium">
                 {link.label}
               </a>
             ))}
@@ -61,59 +66,75 @@ export default function Navbar() {
               href={portfolioData.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-text-primary transition hover:border-white/20 hover:bg-white/[0.08]"
+              className="ml-3 inline-flex items-center gap-2 rounded-md border border-white/[0.1] bg-white/[0.03] px-4 py-2 text-xs font-semibold tracking-wide text-text-primary transition hover:border-accent/40 hover:bg-accent/5 hover:text-accent"
               aria-label="View resume (opens in new tab)"
             >
-              <FileText size={15} />
+              <FileText size={13} />
               Resume
             </a>
           </div>
 
+          {/* Mobile toggle */}
           <button
-            className="rounded-lg p-2 text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary md:hidden"
+            className="rounded p-2 text-text-secondary transition hover:text-text-primary md:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileOpen ? <X size={21} /> : <Menu size={21} />}
           </button>
         </div>
       </div>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="border-b border-white/10 bg-background/95 backdrop-blur-xl md:hidden"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/98 md:hidden"
           >
-            <div className="flex flex-col gap-1 px-4 py-4">
-              {navLinks.map((link) => (
-                <a
+            {/* Close button */}
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="absolute top-5 right-5 p-2 text-text-secondary hover:text-text-primary"
+              aria-label="Close menu"
+            >
+              <X size={22} />
+            </button>
+
+            <nav className="flex flex-col items-center gap-8">
+              {navLinks.map((link, i) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-lg px-3 py-3 text-base font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-text-primary"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.07 }}
+                  className="text-2xl font-semibold text-text-secondary hover:text-text-primary transition-colors"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
-              <a
+              <motion.a
                 href={portfolioData.resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-text-primary"
-                aria-label="View resume (opens in new tab)"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.07 }}
+                className="mt-4 inline-flex items-center gap-2 rounded-md border border-white/10 px-6 py-3 text-sm font-semibold text-text-primary"
               >
                 <FileText size={15} />
                 Resume
-              </a>
-            </div>
+              </motion.a>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

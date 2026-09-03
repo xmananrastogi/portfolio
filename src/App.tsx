@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import ResearchHero from './components/ResearchHero';
+import ExperienceSection from './components/ExperienceSection';
 import ProjectsSection from './components/ProjectsSection';
 import StackSection from './components/StackSection';
 import ContactSection from './components/ContactSection';
@@ -23,15 +24,16 @@ function App() {
           role="main"
         >
           <ResearchHero />
+          <ExperienceSection />
           <ProjectsSection />
           <StackSection />
           <ContactSection />
 
-          <footer className="border-t border-white/10 px-6 py-10 text-center text-xs text-muted">
-            <p>© {new Date().getFullYear()} Manan Rastogi</p>
+          <footer className="border-t border-white/[0.05] px-6 py-10 text-center">
+            <p className="text-xs text-muted">© {new Date().getFullYear()} Manan Rastogi</p>
             <a
               href="#hero"
-              className="mt-3 inline-block text-text-secondary transition hover:text-accent"
+              className="mt-3 inline-block text-xs text-muted transition hover:text-text-secondary"
               aria-label="Back to top"
             >
               ↑ Back to top

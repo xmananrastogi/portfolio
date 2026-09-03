@@ -1,93 +1,171 @@
-\documentclass[10pt, letterpaper]{article}
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez (adapted)
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[margin=0.45in]{geometry}
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
 \usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
 \usepackage{enumitem}
-\usepackage{hyperref}
-\usepackage{xcolor}
-\usepackage{charter}
-\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
 
-\definecolor{primary}{HTML}{000000}
-\definecolor{secondary}{HTML}{444444}
-\definecolor{linkcolor}{HTML}{0B51C1}
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
-\hypersetup{
-    colorlinks=true,
-    linkcolor=linkcolor,
-    filecolor=magenta,
-    urlcolor=linkcolor,
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
 }
 
-\titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{10pt}{3pt}
-
-\newcommand{\resumeEntryHeader}[4]{
-    \noindent \textbf{#1} \hfill #2 \\
-    \noindent \textit{#3} \hfill \textbf{#4} \\
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
 }
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
+%----------HEADING----------
 \begin{center}
-     {\Huge \textbf{MANAN RASTOGI}} \\ [2pt]
-     \small \textbf{Applied AI Engineer | Computer Vision, Full-Stack Systems, LLM Integration} \\ [4pt]
-    \small
-    \faPhone\ +91 9548594935 \hspace{8pt}
-    \faEnvelope\ \href{mailto:mananrastogi2k8.210@gmail.com}{mananrastogi2k8.210@gmail.com} \hspace{8pt}
-    \faLinkedin\ \href{https://www.linkedin.com/in/manan-rastogi-402697288/}{linkedin.com/in/manan-rastogi-402697288} \hspace{8pt}
-    \faGithub\ \href{https://github.com/xmananrastogi}{github.com/xmananrastogi}
+    \textbf{\Huge \scshape Manan Rastogi} \\ \vspace{2pt}
+    \small +91 9548594935 $|$ \href{mailto:mananrastogi2k8.210@gmail.com}{\underline{mananrastogi2k8.210@gmail.com}} $|$
+    \href{https://linkedin.com/in/manan-rastogi-402697288}{\underline{linkedin.com/in/manan-rastogi}} $|$
+    \href{https://github.com/xmananrastogi}{\underline{github.com/xmananrastogi}} \\ \vspace{1pt}
+    \small ECE undergrad (VIT) $\cdot$ IIT Madras DS\&A $\cdot$ Applied AI $\cdot$ Full-Stack $\cdot$ Computer Vision
 \end{center}
 
+%-----------EDUCATION-----------
 \section{Education}
-\resumeEntryHeader{Vellore Institute of Technology (VIT)}{Vellore, India}{B.Tech in Electronics \& Communication Engineering (Biomedical Specialization)}{2024 – Present}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Vellore Institute of Technology (VIT)}{Vellore, India}
+      {B.Tech in ECE (Biomedical) $|$ CGPA: 7.53}{2024 -- Present}
+    \resumeSubheading
+      {IIT Madras}{Online, India}
+      {BS in Data Science \& Applications}{2025 -- Present}
+    \resumeSubheading
+      {Delhi Public School}{Bareilly, India}
+      {Class XII — 80\% $|$ Class X — 80\%}{Graduated 2022}
+  \resumeSubHeadingListEnd
 
-\vspace{2pt}
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Summer Intern — Retail Automation}{May 2026 -- Jun 2026}
+      {Indian Oil Corporation}{Bareilly, India}
+      \resumeItemListStart
+        \resumeItem{Built \textbf{ComplaintGuard} — a Streamlit + Python dashboard replacing manual Excel SLA tracking across IOCL retail exports; cut processing time from hours to \textbf{$\sim$30 seconds} per batch.}
+        \resumeItem{Computed per-complaint delays against 24h/48h SLA windows, auto-flagged Early/Delayed status and \textbf{\rupee1,000/day} vendor penalties; exported CSV/Excel — replaced a broken VBA macro.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
 
-\resumeEntryHeader{IIT Madras}{Online, India}{BS in Data Science \& Applications}{2025 – Present}
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{WoundTrack AI} $|$ \emph{Python, OpenCV, Flask, SciPy, SQLite}}{\href{https://xmananrastogi-woundtrackai.hf.space/}{\underline{Live Demo}} $|$ \href{https://github.com/xmananrastogi/WoundTrack-AI}{\underline{GitHub}}}
+          \resumeItemListStart
+            \resumeItem{CV pipeline tracking \textbf{441 cells} across \textbf{800+ frames} in \textbf{$<$10 min} on consumer hardware — \textbf{28\% higher precision} than manual ImageJ; LoG blob detection + LAP tracker with Kalman-filter gap bridging.}
+            \resumeItem{Flask + SQLite dashboard auto-generating per-experiment kinetic reports across \textbf{5 conditions} (249 control vs. 192 Hg-treated cells), replacing manual spreadsheet analysis.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{VITalize AI} $|$ \emph{Next.js 15, TypeScript, MongoDB, LLM APIs, Tesseract OCR}}{\href{https://vitalize-vit.vercel.app/}{\underline{Live Demo}}}
+          \resumeItemListStart
+            \resumeItem{Full-stack academic platform indexing \textbf{9,103 exam papers} and \textbf{2,439 courses}; LLaMA 3.1 + OCR pipeline auto-generates mark-weighted solutions from scanned PDFs with KaTeX math rendering.}
+            \resumeItem{Constraint-based FFCS timetable solver (pruned backtracking) across \textbf{2,400+} course combos; Chrome extension (Manifest V3) syncs live VTOP data; \textbf{2,587} calendar events tracked.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{3D Engineering Portfolio} $|$ \emph{React, TypeScript, Three.js, Tailwind CSS}}{\href{https://xmananrastogi.github.io/portfolio/}{\underline{Live Demo}} $|$ \href{https://github.com/xmananrastogi/portfolio}{\underline{GitHub}}}
+          \resumeItemListStart
+            \resumeItem{React + TypeScript SPA with Three.js (R3F) 3D scenes, lazy-loaded bundles, sub-1s load, WCAG accessibility — Lighthouse: \textbf{100 SEO, 97 accessibility, 100 best practices}.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
 
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Designing Cisco Security Infrastructure (SDSI)}{ $|$ \emph{Credly Badge}} \hfill Jul 2026
+    }}
+ \end{itemize}
+
+%-----------PROGRAMMING SKILLS-----------
 \section{Technical Skills}
-\begin{description}[font=\bfseries, labelsep=1em, leftmargin=1.5in, noitemsep, topsep=1pt, itemsep=1pt]
-    \item[Languages] Python, TypeScript, JavaScript.
-    \item[AI/ML \& CV] OpenCV, SciPy, NumPy, TrackPy, OCR, LLM APIs (NVIDIA LLaMA 3.1).
-    \item[Frontend] React, Next.js, Three.js, Tailwind CSS, Framer Motion.
-    \item[Backend \& Databases] Flask, Node.js, REST APIs, JWT, MongoDB, SQLite, SQL.
-    \item[Infrastructure \& Tools] Docker, CI/CD, Vercel, MongoDB Atlas, Git, GitHub, VS Code.
-\end{description}
-
-\section{Independent Development}
-
-\noindent \textbf{\href{https://xmananrastogi-woundtrackai.hf.space/}{WoundTrack AI: Applied Computer Vision Pipeline}} \hfill \textbf{2024 – Present} \\
-\textit{Python, OpenCV, Flask, SciPy, SQLite} \hfill \href{https://xmananrastogi-woundtrackai.hf.space/}{Live Demo} | \href{https://github.com/xmananrastogi/WoundTrack-AI}{GitHub}
-\begin{itemize}[noitemsep, topsep=1pt, itemsep=1pt]
-    \item Engineered a CV pipeline tracking \textbf{441 cells} across \textbf{800+ frames} in \textbf{<10 min} on consumer hardware, achieving \textbf{28\% higher precision} than manual ImageJ workflows.
-    \item Designed LoG blob detection + LAP gap-closing tracker with Kalman-filter prediction, bridging detection gaps to reduce trajectory fragmentation during cell occlusions.
-    \item Built automated evaluation pipeline computing MSD exponents, velocity distributions, and fractal metrics across \textbf{5} experimental conditions (\textbf{249} control vs. \textbf{192} Hg-treated cells).
-    \item Shipped Flask + SQLite dashboard auto-generating per-experiment reports with kinetic curves and one-click trajectory exports, replacing manual spreadsheet analysis.
-\end{itemize}
-
-\vspace{4pt}
-
-\noindent \textbf{\href{https://vitalize-vit.vercel.app/}{VITalize AI: Full-Stack Academic Platform}} \hfill \textbf{2025 – Present} \\
-\textit{Next.js 15, TypeScript, MongoDB, REST APIs, JWT, NVIDIA LLaMA 3.1, Tesseract OCR} \hfill \href{https://vitalize-vit.vercel.app/}{Live Demo}
-\begin{itemize}[noitemsep, topsep=1pt, itemsep=1pt]
-    \item Developed a unified academic platform indexing \textbf{8,800+} past exam papers with full-text search and subject-level filtering across FFCS planner, paper vault, and exam generator modules.
-    \item Integrated \textbf{NVIDIA LLaMA 3.1} with Tesseract OCR fallback pipeline to auto-generate mark-weighted AI solutions from scanned exam PDFs with KaTeX-rendered math.
-    \item Engineered constraint-based \textbf{FFCS timetable solver} using pruned backtracking algorithm, resolving clash/faculty/gap constraints across \textbf{2,400+} course combinations with sub-second solve time.
-    \item Deployed on \textbf{Vercel} with \textbf{MongoDB Atlas}; serverless architecture handling concurrent academic workloads.
-    \item Built Chrome extension (Manifest V3) auto-syncing academic data from VIT's VTOP portal.
-\end{itemize}
-
-\vspace{4pt}
-
-\noindent \textbf{\href{https://xmananrastogi.github.io/portfolio/}{Interactive 3D Engineering Portfolio}} \hfill \textbf{2024 – Present} \\
-\textit{TypeScript, React, Three.js (R3F), Framer Motion, Tailwind CSS} \hfill \href{https://xmananrastogi.github.io/portfolio/}{Live Demo} | \href{https://github.com/xmananrastogi/portfolio}{GitHub}
-\begin{itemize}[noitemsep, topsep=1pt, itemsep=1pt]
-    \item Architected a React + TypeScript portfolio with lazy-loaded bundle splitting, sub-1s initial load, and responsive accessibility-first layout.
-    \item Implemented WCAG accessibility: keyboard navigation, ARIA labels, skip-to-content, reduced-motion support, and focus management (Lighthouse: 100 SEO, 97 accessibility, 100 best practices).
-    \item Reduced layout shift and animation overhead by implementing Framer Motion with CSS-based reduced-motion fallbacks while maintaining 60 FPS on mobile devices.
-\end{itemize}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, TypeScript, JavaScript} \\
+     \textbf{AI/ML \& CV}{: OpenCV, NumPy, SciPy, LLM APIs, Tesseract OCR} \\
+     \textbf{Web}{: React, Next.js, Three.js, Flask, Streamlit, Tailwind CSS, REST APIs, JWT} \\
+     \textbf{Databases}{: MongoDB, SQLite, SQL} \\
+     \textbf{Tools}{: Git, GitHub, Vercel, VS Code}
+    }}
+ \end{itemize}
 
 \end{document}

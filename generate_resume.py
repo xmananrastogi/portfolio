@@ -1,229 +1,226 @@
-"""Generate resume.pdf from resume.tex content using reportlab."""
+"""
+Generate resume PDF mirroring the LaTeX Jake's Resume template.
+Matches resume.tex exactly: scshape section headers with rule, tabular alignment,
+proper indentation, ATS-clean output.
+"""
+
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.platypus import (
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable
+)
 from reportlab.lib import colors
 import os
 
 W, H = letter
 
-def build_pdf(path):
+BLACK   = colors.HexColor('#000000')
+DARKGRY = colors.HexColor('#222222')
+MIDGRY  = colors.HexColor('#444444')
+BLUE    = colors.HexColor('#0B51C1')
+
+def build_pdf(path: str):
     doc = SimpleDocTemplate(
-        path, pagesize=letter,
-        topMargin=0.4*inch, bottomMargin=0.4*inch,
-        leftMargin=0.45*inch, rightMargin=0.45*inch,
+        path,
+        pagesize=letter,
+        topMargin=0.4 * inch,
+        bottomMargin=0.4 * inch,
+        leftMargin=0.5 * inch,
+        rightMargin=0.5 * inch,
     )
 
-    s = getSampleStyleSheet()
+    styles = getSampleStyleSheet()
 
-    s.add(ParagraphStyle('Name', parent=s['Normal'],
-        fontName='Helvetica-Bold', fontSize=22, leading=26,
-        alignment=TA_CENTER, spaceAfter=2))
+    def add(name, **kw):
+        styles.add(ParagraphStyle(name=name, **kw))
 
-    s.add(ParagraphStyle('RoleTitle', parent=s['Normal'],
-        fontName='Helvetica-Bold', fontSize=10, leading=13,
-        alignment=TA_CENTER, textColor=colors.HexColor('#333333'),
-        spaceAfter=4))
+    # ── Header ───────────────────────────────────────────────────────────────
+    add('Name',
+        fontName='Helvetica-Bold', fontSize=18, leading=22,
+        alignment=TA_CENTER, spaceAfter=2)
 
-    s.add(ParagraphStyle('Contact', parent=s['Normal'],
-        fontName='Helvetica', fontSize=9, leading=12,
-        alignment=TA_CENTER, spaceAfter=6))
+    add('Contact',
+        fontName='Helvetica', fontSize=9, leading=11,
+        alignment=TA_CENTER, spaceAfter=2, textColor=DARKGRY)
 
-    s.add(ParagraphStyle('SecTitle', parent=s['Normal'],
-        fontName='Helvetica-Bold', fontSize=11, leading=14,
-        spaceBefore=8, spaceAfter=3,
-        borderPadding=(0, 0, 2, 0)))
+    add('RoleTag',
+        fontName='Helvetica', fontSize=9, leading=11,
+        alignment=TA_CENTER, spaceAfter=4, textColor=MIDGRY)
 
-    s.add(ParagraphStyle('EntryHead', parent=s['Normal'],
-        fontName='Helvetica-Bold', fontSize=10, leading=13))
+    # ── Section titles ──────────────────────────────────────────────────────
+    add('SecHead',
+        fontName='Helvetica-Bold', fontSize=11, leading=13,
+        spaceBefore=9, spaceAfter=0,
+        textColor=BLACK)
 
-    s.add(ParagraphStyle('EntrySubt', parent=s['Normal'],
-        fontName='Helvetica-Oblique', fontSize=9.5, leading=12))
+    # ── Entry rows ─────────────────────────────────────────────────────────────
+    add('EntryOrg',
+        fontName='Helvetica-Bold', fontSize=10, leading=12, textColor=BLACK)
 
-    s.add(ParagraphStyle('DateRight', parent=s['Normal'],
-        fontName='Helvetica-Bold', fontSize=9.5, leading=12,
-        alignment=TA_RIGHT))
+    add('EntryOrgR',
+        fontName='Helvetica-Bold', fontSize=10, leading=12,
+        alignment=TA_RIGHT, textColor=BLACK)
 
-    s.add(ParagraphStyle('BulletItem', parent=s['Normal'],
-        fontName='Helvetica', fontSize=8.5, leading=10.5,
-        leftIndent=15, bulletIndent=0, spaceAfter=0.5))
+    add('EntrySub',
+        fontName='Helvetica-Oblique', fontSize=9, leading=11, textColor=DARKGRY)
 
-    s.add(ParagraphStyle('BulletLbl', parent=s['Normal'],
-        fontName='Helvetica', fontSize=8.5, leading=10.5,
-        leftIndent=15, bulletIndent=0, spaceAfter=0.5))
+    add('EntrySubR',
+        fontName='Helvetica-Oblique', fontSize=9, leading=11,
+        alignment=TA_RIGHT, textColor=DARKGRY)
 
-    s.add(ParagraphStyle('ProjHead', parent=s['Normal'],
-        fontName='Helvetica-Bold', fontSize=9.5, leading=12.5))
+    # ── Bullets ───────────────────────────────────────────────────────────────
+    add('BulletItem',
+        fontName='Helvetica', fontSize=9, leading=11,
+        leftIndent=12, firstLineIndent=0,
+        spaceAfter=2, textColor=DARKGRY)
 
-    s.add(ParagraphStyle('ProjTech', parent=s['Normal'],
-        fontName='Helvetica-Oblique', fontSize=9, leading=11.5))
+    # ── Skills / plain ─────────────────────────────────────────────────────────
+    add('Plain',
+        fontName='Helvetica', fontSize=9, leading=11,
+        leftIndent=0, textColor=DARKGRY)
 
-    s.add(ParagraphStyle('ProjLink', parent=s['Normal'],
-        fontName='Helvetica', fontSize=8.5, leading=11,
-        alignment=TA_RIGHT, textColor=colors.HexColor('#0B51C1')))
+    # ── Layout ───────────────────────────────────────────────────────────────
+    usable = W - 1.0 * inch
+    col_l  = usable * 0.68   # wider left for project names + tech
+    col_r  = usable * 0.32   # right: links / dates
 
     story = []
 
-    def section(title):
+    def section(title: str):
         story.append(Spacer(1, 4))
-        story.append(Paragraph(f'<b>{title}</b>', s['SecTitle']))
-        story.append(Paragraph('<hr width="100%" size="0.5" color="#333333"/>', s['Normal']))
-        story.append(Spacer(1, 2))
+        story.append(Paragraph(title.upper(), styles['SecHead']))
+        story.append(HRFlowable(
+            width='100%', thickness=0.5,
+            color=BLACK, spaceAfter=5))
 
-    def entry_header(left, right):
-        data = [[
-            Paragraph(f'<b>{left}</b>', s['EntryHead']),
-            Paragraph(f'<b>{right}</b>', s['DateRight']),
-        ]]
-        t = Table(data, colWidths=[4.2*inch, 2.8*inch])
+    def two_col(left_para, right_para, l_style='EntryOrg', r_style='EntryOrgR'):
+        t = Table(
+            [[Paragraph(left_para, styles[l_style]),
+              Paragraph(right_para, styles[r_style])]],
+            colWidths=[col_l, col_r]
+        )
         t.setStyle(TableStyle([
-            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-            ('LEFTPADDING', (0, 0), (-1, -1), 0),
+            ('ALIGN',        (0, 0), (0, 0), 'LEFT'),
+            ('ALIGN',        (1, 0), (1, 0), 'RIGHT'),
+            ('VALIGN',       (0, 0), (-1, -1), 'TOP'),
+            ('LEFTPADDING',  (0, 0), (-1, -1), 0),
             ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+            ('TOPPADDING',   (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING',(0, 0), (-1, -1), 0),
         ]))
         story.append(t)
 
-    def entry_sub(left, right=''):
+    def sub_row(left, right=''):
         if right:
-            data = [[
-                Paragraph(f'<i>{left}</i>', s['EntrySubt']),
-                Paragraph(f'<b>{right}</b>', s['ProjLink']),
-            ]]
-            t = Table(data, colWidths=[4.2*inch, 2.8*inch])
-            t.setStyle(TableStyle([
-                ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-                ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-                ('LEFTPADDING', (0, 0), (-1, -1), 0),
-                ('RIGHTPADDING', (0, 0), (-1, -1), 0),
-            ]))
-            story.append(t)
+            two_col(left, right, 'EntrySub', 'EntrySubR')
         else:
-            story.append(Paragraph(f'<i>{left}</i>', s['EntrySubt']))
+            story.append(Paragraph(left, styles['EntrySub']))
 
     def bullet(text):
-        story.append(Paragraph(f'<bullet>&bull;</bullet> {text}', s['BulletItem']))
+        story.append(Paragraph(f'- {text}', styles['BulletItem']))
 
-    # ===== HEADER =====
-    story.append(Paragraph('MANAN RASTOGI', s['Name']))
+    def gap(n=4):
+        story.append(Spacer(1, n))
+
+    # HEADER
+    story.append(Paragraph('MANAN RASTOGI', styles['Name']))
     story.append(Paragraph(
-        'Applied AI Engineer | Computer Vision, Full-Stack Systems, LLM Integration',
-        s['Title']))
+        '+91 9548594935  |  '
+        '<a href="mailto:mananrastogi2k8.210@gmail.com">'
+        '<u><font color="#0B51C1">mananrastogi2k8.210@gmail.com</font></u></a>  |  '
+        '<a href="https://linkedin.com/in/manan-rastogi-402697288">'
+        '<u><font color="#0B51C1">linkedin.com/in/manan-rastogi</font></u></a>  |  '
+        '<a href="https://github.com/xmananrastogi">'
+        '<u><font color="#0B51C1">github.com/xmananrastogi</font></u></a>',
+        styles['Contact']
+    ))
     story.append(Paragraph(
-        '+91 9548594935 &nbsp;|&nbsp; mananrastogi2k8.210@gmail.com &nbsp;|&nbsp; '
-        'linkedin.com/in/manan-rastogi-402697288 &nbsp;|&nbsp; github.com/xmananrastogi',
-        s['Contact']))
+        'ECE undergrad (VIT)  ·  IIT Madras DS&amp;A  ·  Applied AI  ·  Full-Stack  ·  Computer Vision',
+        styles['RoleTag']
+    ))
 
-    # ===== EDUCATION =====
-    section('EDUCATION')
+    # EDUCATION
+    section('Education')
 
-    entry_header('Vellore Institute of Technology (VIT), Vellore, India',
-                 '2024 – Present')
-    entry_sub('B.Tech in Electronics &amp; Communication Engineering (Biomedical Specialization)')
+    two_col('Vellore Institute of Technology (VIT)  —  Vellore, India', '2024 – Present')
+    sub_row('B.Tech in ECE (Biomedical Specialization)  |  CGPA: 7.53')
+    gap(6)
 
-    story.append(Spacer(1, 3))
+    two_col('IIT Madras  —  Online, India', '2025 – Present')
+    sub_row('BS in Data Science &amp; Applications')
+    gap(6)
 
-    entry_header('IIT Madras, Online, India', '2025 – Present')
-    entry_sub('BS in Data Science &amp; Applications')
+    two_col('Delhi Public School  —  Bareilly, India', 'Graduated 2022')
+    sub_row('Class XII — 80%  |  Class X — 80%')
 
-    # ===== TECHNICAL EXPERTISE =====
-    section('TECHNICAL SKILLS')
+    # EXPERIENCE
+    section('Experience')
 
-    story.append(Paragraph(
-        '<b>Languages:</b> Python, TypeScript, JavaScript.',
-        s['BulletLbl']))
-    story.append(Paragraph(
-        '<b>AI/ML &amp; CV:</b> OpenCV, SciPy, NumPy, TrackPy, OCR, LLM APIs (NVIDIA LLaMA 3.1).',
-        s['BulletLbl']))
-    story.append(Paragraph(
-        '<b>Frontend:</b> React, Next.js, Three.js, Tailwind CSS, Framer Motion.',
-        s['BulletLbl']))
-    story.append(Paragraph(
-        '<b>Backend &amp; Databases:</b> Flask, Node.js, REST APIs, JWT, MongoDB, SQLite, SQL.',
-        s['BulletLbl']))
-    story.append(Paragraph(
-        '<b>Infrastructure &amp; Tools:</b> Docker, CI/CD, Vercel, MongoDB Atlas, Git, GitHub, VS Code.',
-        s['BulletLbl']))
+    two_col('<b>Summer Intern — Retail Automation</b>', 'May 2026 – Jun 2026')
+    sub_row('Indian Oil Corporation', 'Bareilly, India')
+    gap(4)
+    bullet('Built <b>ComplaintGuard</b> \u2014 a Streamlit + Python app that replaced the team\'s manual Excel SLA review. A batch that used to take hours now runs in about <b>30 seconds</b>.')
+    bullet('Reads IOCL\'s vendor complaint exports, works out whether each ticket was Early, On Time, or late against its SLA (24h or 48h), and totals up <b>INR 1,000/day</b> penalties — results go out as a formatted Excel sheet.')
+    bullet('Also catches auto-closed tickets and flags equipment visited twice within 30 days \u2014 things the old VBA macro couldn\'t handle (and which broke entirely on Mac).')
 
-    # ===== PROJECTS =====
-    section('INDEPENDENT DEVELOPMENT')
+    # PROJECTS
+    section('Projects')
 
-    # Project 1 - WoundTrack
-    entry_header(
-        'WoundTrack AI: Applied Computer Vision Pipeline',
-        '2024 – Present')
-    entry_sub(
-        'Python, OpenCV, Flask, SciPy, SQLite',
-        '<a href="https://xmananrastogi-woundtrackai.hf.space/" color="#0B51C1">Live Demo</a> | '
-        '<a href="https://github.com/xmananrastogi/WoundTrack-AI" color="#0B51C1">GitHub</a>')
-    bullet(
-        'Engineered a CV pipeline tracking <b>441 cells</b> across '
-        '<b>800+ frames</b> in <b>&lt;10 min</b> on consumer hardware, achieving '
-        '<b>28% higher precision</b> than manual ImageJ workflows.')
-    bullet(
-        'Designed LoG blob detection + LAP gap-closing tracker with Kalman-filter prediction, '
-        'bridging detection gaps to reduce trajectory fragmentation during cell occlusions.')
-    bullet(
-        'Built automated evaluation pipeline computing MSD exponents, velocity distributions, '
-        'and fractal metrics across <b>5</b> experimental conditions '
-        '(<b>249</b> control vs. <b>192</b> Hg-treated cells).')
-    bullet(
-        'Shipped Flask + SQLite dashboard auto-generating per-experiment reports with '
-        'kinetic curves and one-click trajectory exports, replacing manual spreadsheet analysis.')
+    # WoundTrack
+    two_col(
+        '<b>WoundTrack AI</b>  |  <i>Python, OpenCV, Flask, SciPy, SQLite</i>',
+        '<a href="https://xmananrastogi-woundtrackai.hf.space/"><u><font color="#0B51C1">Live Demo</font></u></a>  |  '
+        '<a href="https://github.com/xmananrastogi/WoundTrack-AI"><u><font color="#0B51C1">GitHub</font></u></a>')
+    gap(4)
+    bullet('Tracks <b>441 cells</b> across <b>800+ frames</b> in under 10 minutes on a regular laptop — <b>28% more accurate</b> than the lab\'s ImageJ workflow, which needed manual annotation per frame.')
+    bullet('Detection uses LoG blob-finding then a LAP gap-closing tracker with Kalman-filter predictions, so trajectories survive occlusions without fragmenting mid-sequence.')
+    bullet('Researchers upload an experiment on the Flask dashboard and get kinetic curves, MSD breakdowns, and one-click exports — no more copy-pasting between spreadsheets.')
+    gap(7)
 
-    story.append(Spacer(1, 2))
+    # VITalize
+    two_col(
+        '<b>VITalize AI</b>  |  <i>Next.js 15, TypeScript, MongoDB, LLM APIs, Tesseract OCR</i>',
+        '<a href="https://vitalize-vit.vercel.app/"><u><font color="#0B51C1">Live Demo</font></u></a>')
+    gap(4)
+    bullet('Academic platform for VIT students — <b>9,103 past papers</b> searchable by subject, AI-generated solutions (LLaMA 3.1 + OCR) with KaTeX math rendering, <b>2,439 courses</b> and <b>2,587 calendar events</b> tracked.')
+    bullet('The FFCS solver finds clash-free schedules across <b>2,400+ combinations</b> in under a second using backtracking with constraint pruning for faculty, time gaps, and slot clashes.')
+    bullet('Chrome extension (Manifest V3) pulls live data from VIT\'s VTOP portal directly into the platform. Deployed serverless on Vercel with MongoDB Atlas.')
+    gap(7)
 
-    # Project 2 - VITalize
-    entry_header(
-        'VITalize AI: Full-Stack Academic Platform',
-        '2025 – Present')
-    entry_sub(
-        'Next.js 15, TypeScript, MongoDB, REST APIs, JWT, NVIDIA LLaMA 3.1, Tesseract OCR',
-        '<a href="https://vitalize-vit.vercel.app/" color="#0B51C1">Live Demo</a>')
-    bullet(
-        'Developed a unified academic platform indexing <b>8,800+</b> past exam papers with '
-        'full-text search and subject-level filtering across FFCS planner, paper vault, '
-        'and exam generator modules.')
-    bullet(
-        'Integrated <b>NVIDIA LLaMA 3.1</b> with Tesseract OCR fallback pipeline to auto-generate '
-        'mark-weighted AI solutions from scanned exam PDFs with KaTeX-rendered math.')
-    bullet(
-        'Engineered constraint-based <b>FFCS timetable solver</b> using pruned backtracking algorithm, '
-        'resolving clash/faculty/gap constraints across <b>2,400+</b> course combinations '
-        'with sub-second solve time.')
-    bullet(
-        'Deployed on <b>Vercel</b> with <b>MongoDB Atlas</b>; serverless architecture handling '
-        'concurrent academic workloads.')
-    bullet(
-        'Built Chrome extension (Manifest V3) auto-syncing academic data from VIT\'s VTOP portal.')
+    # Portfolio
+    two_col(
+        '<b>3D Engineering Portfolio</b>  |  <i>React, TypeScript, Three.js (R3F), Tailwind CSS</i>',
+        '<a href="https://xmananrastogi.github.io/portfolio/"><u><font color="#0B51C1">Live Demo</font></u></a>  |  '
+        '<a href="https://github.com/xmananrastogi/portfolio"><u><font color="#0B51C1">GitHub</font></u></a>')
+    gap(4)
+    bullet('Personal site with interactive Three.js 3D scenes, lazy-loaded bundle splitting, and sub-1s initial load on mobile — built as a real engineering project, not just a design exercise.')
+    bullet('Full WCAG pass: keyboard navigation, ARIA labels, skip-to-content, reduced-motion fallbacks. Lighthouse: <b>100 SEO, 97 accessibility, 100 best practices</b>.')
 
-    story.append(Spacer(1, 2))
+    # CERTIFICATIONS
+    section('Certifications')
+    two_col(
+        '<b>Designing Cisco Security Infrastructure (SDSI)</b>  |  <i>Credly Badge</i>',
+        'Jul 2026')
 
-    # Project 3 - Portfolio
-    entry_header(
-        'Interactive 3D Engineering Portfolio',
-        '2024 – Present')
-    entry_sub(
-        'TypeScript, React, Three.js (R3F), Framer Motion, Tailwind CSS',
-        '<a href="https://xmananrastogi.github.io/portfolio/" color="#0B51C1">Live Demo</a> | '
-        '<a href="https://github.com/xmananrastogi/portfolio" color="#0B51C1">GitHub</a>')
-    bullet(
-        'Architected a React + TypeScript portfolio with lazy-loaded bundle splitting, '
-        'sub-1s initial load, and responsive accessibility-first layout.')
-    bullet(
-        'Implemented WCAG accessibility: keyboard navigation, ARIA labels, '
-        'skip-to-content, reduced-motion support, and focus management '
-        '(Lighthouse: 100 SEO, 97 accessibility, 100 best practices).')
-    bullet(
-        'Reduced layout shift and animation overhead by implementing Framer Motion with '
-        'CSS-based reduced-motion fallbacks while maintaining 60 FPS on mobile devices.')
+    # TECHNICAL SKILLS
+    section('Technical Skills')
+    skills = [
+        ('<b>Languages</b>', 'Python, TypeScript, JavaScript'),
+        ('<b>AI/ML &amp; CV</b>', 'OpenCV, NumPy, SciPy, LLM APIs, Tesseract OCR'),
+        ('<b>Web</b>', 'React, Next.js, Three.js, Flask, Streamlit, Tailwind CSS, REST APIs, JWT'),
+        ('<b>Databases</b>', 'MongoDB, SQLite, SQL'),
+        ('<b>Tools</b>', 'Git, GitHub, Vercel, VS Code'),
+    ]
+    for label, value in skills:
+        story.append(Paragraph(f'{label}: {value}', styles['Plain']))
 
     doc.build(story)
+
 
 if __name__ == '__main__':
     out = '/Users/mananrastogi/helloworld/portfolio/public/resume.pdf'
     build_pdf(out)
     size = os.path.getsize(out)
-    print(f'Generated {out} ({size/1024:.0f} KB)')
+    print(f'Generated {out} ({size / 1024:.0f} KB)')

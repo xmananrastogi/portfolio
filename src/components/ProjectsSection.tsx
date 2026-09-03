@@ -1,97 +1,79 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight, Github } from 'lucide-react';
+import { portfolioData } from '../data/portfolioData';
 
-const projects = [
-  {
-    id: 'woundtrack-ai',
-    icon: '(o)',
-    title: 'WoundTrack AI',
-    desc: 'Biomedical computer vision pipeline for tracking cell migration from microscopy videos. OpenCV + scikit-image + TrackPy — no GPU needed. Ships as a Flask dashboard on Hugging Face.',
-    tags: ['OpenCV', 'TrackPy', 'Flask', 'Hugging Face'],
-    links: { live: 'https://xmananrastogi-woundtrackai.hf.space/', code: 'https://github.com/xmananrastogi/WoundTrack-AI' },
-  },
-  {
-    id: 'vitalize',
-    icon: '</>',
-    title: 'VITalize',
-    desc: 'Full-stack academic platform for VIT — indexes 8,800+ past papers with AI solutions, a clash-free FFCS planner, and academic dashboard. Next.js, MongoDB, NVIDIA LLaMA.',
-    tags: ['Next.js', 'MongoDB', 'NVIDIA LLaMA', 'Vercel'],
-    links: { live: 'https://vitalize-vit.vercel.app', code: 'https://github.com/xmananrastogi/vitalize-fullstack' },
-  },
-  {
-    id: 'gssoc-editron',
-    icon: '(*)',
-    title: 'GSSoC \'26',
-    desc: 'Open source contributions on GitHub — code quality improvements, pull requests, and collaborative engineering workflows through GSSoC 2026.',
-    tags: ['GitHub', 'GSSoC', 'Open Source'],
-    links: { live: 'https://github.com/AmanYadav31/Editron', code: 'https://github.com/xmananrastogi' },
-  },
-  {
-    id: 'portfolio-research-os',
-    icon: '>>',
-    title: 'Interactive Portfolio',
-    desc: 'This site — React, TypeScript, Framer Motion, Tailwind. Clean project presentation with responsive design and motion-driven UI. You\'re looking at it.',
-    tags: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
-    links: { live: 'https://xmananrastogi.github.io/portfolio/', code: 'https://github.com/xmananrastogi/portfolio' },
-  },
-];
+type Project = typeof portfolioData.projects[0];
 
-function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
 
   return (
     <motion.article
       ref={ref}
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : {}}
-      transition={{ duration: 0.5 }}
-      className="group rounded-2xl border border-white/[0.07] bg-surface p-6 transition-all duration-300 hover:border-white/[0.14] hover:bg-surface-raised hover:-translate-y-0.5"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className="card card-glow group relative flex flex-col overflow-hidden rounded-xl p-6"
       aria-label={`Project: ${project.title}`}
     >
-      <div className="flex items-start justify-between">
-        <h3 className="text-2xl font-semibold text-text-primary md:text-3xl">
-          {project.title}
-        </h3>
-        <span className="font-mono text-lg text-muted" aria-hidden="true">{project.icon}</span>
+      {/* Top row */}
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <span className="mb-2 block text-[10px] font-semibold tracking-widest text-accent uppercase">
+            {project.eyebrow}
+          </span>
+          <h3 className="text-xl font-bold text-text-primary leading-snug md:text-2xl">
+            {project.title}
+          </h3>
+        </div>
       </div>
 
-      <p className="mt-5 text-sm leading-7 text-text-secondary">
+      {/* Stats row */}
+      {project.stats && (
+        <div className="mt-4 flex gap-4">
+          {project.stats.map((s) => (
+            <div key={s.label}>
+              <div className="font-mono text-base font-bold text-accent">{s.value}</div>
+              <div className="text-[10px] text-muted uppercase tracking-wide">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Description */}
+      <p className="mt-4 flex-1 text-sm leading-6 text-text-secondary">
         {project.desc}
       </p>
 
-      <div className="mt-6 flex flex-wrap gap-2" role="list" aria-label="Technologies">
+      {/* Tags */}
+      <div className="mt-5 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
-          <span
-            key={tag}
-            role="listitem"
-            className="rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1.5 text-xs text-text-secondary"
-          >
-            {tag}
-          </span>
+          <span key={tag} className="tag">{tag}</span>
         ))}
       </div>
 
-      <div className="mt-7 flex gap-3">
+      {/* Actions */}
+      <div className="mt-6 flex gap-3">
         <a
           href={project.links.live}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-orange-500"
+          className="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-accent px-4 py-2.5 text-xs font-semibold text-white transition-all hover:bg-accent-hover hover:shadow-[0_0_16px_rgba(59,130,246,0.3)]"
           aria-label={`Live demo of ${project.title} (opens in new tab)`}
         >
           Live
-          <ArrowUpRight size={16} strokeWidth={2.5} aria-hidden="true" />
+          <ArrowUpRight size={13} strokeWidth={2.5} aria-hidden="true" />
         </a>
         <a
           href={project.links.code}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3 text-sm font-semibold text-text-primary transition-all hover:border-white/[0.14] hover:bg-white/[0.05]"
+          className="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-xs font-semibold text-text-secondary transition-all hover:border-white/[0.16] hover:bg-white/[0.05] hover:text-text-primary"
           aria-label={`Source code for ${project.title} (opens in new tab)`}
         >
-          <Github size={16} aria-hidden="true" />
+          <Github size={13} aria-hidden="true" />
           Source
         </a>
       </div>
@@ -100,18 +82,29 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 }
 
 const ProjectsSection = () => {
-  return (
-    <section id="projects" className="px-6 py-24 md:py-32" aria-label="Projects">
-      <div className="mx-auto max-w-7xl">
-        <h2 className="mb-14 text-4xl font-semibold tracking-tight text-text-primary md:text-5xl">
-          What I've built
-        </h2>
+  const featuredProjects = portfolioData.projects.filter((p) => p.featured);
+  const otherProjects = portfolioData.projects.filter((p) => !p.featured);
 
+  return (
+    <section id="projects" className="px-5 py-24 md:px-8 md:py-32" aria-label="Projects">
+      <div className="mx-auto max-w-6xl">
+        <div className="section-label">Projects</div>
+
+        {/* Featured 2-col grid */}
         <div className="grid gap-5 md:grid-cols-2">
-          {projects.map((project, i) => (
+          {featuredProjects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
+
+        {/* Other projects row */}
+        {otherProjects.length > 0 && (
+          <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {otherProjects.map((project, i) => (
+              <ProjectCard key={project.id} project={project} index={featuredProjects.length + i} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

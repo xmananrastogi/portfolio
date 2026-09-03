@@ -3,377 +3,129 @@ const BASE = import.meta.env.BASE_URL;
 export const portfolioData = {
   name: "MANAN RASTOGI",
   positioning:
-    "Applied AI and full-stack engineer building computer vision systems, polished interfaces, and deployment-ready technical products.",
+    "Building deployable AI systems at the intersection of computer vision, full-stack engineering, and real-world automation.",
   shortPositioning:
-    "Python, LLM evaluation, computer vision, React, and systems thinking across research and product work.",
+    "Python · OpenCV · Next.js · LLM APIs · Streamlit · React — from biomedical CV pipelines to production academic platforms.",
   resumeLink: `${BASE}resume.pdf`,
-  roles: [
-    "Applied AI Engineer",
-    "Full-Stack Interface Builder",
-    "Computer Vision Systems Developer",
-  ],
-  proofMetrics: [
-    { label: "Cells tracked", value: "441", detail: "249 control + 192 Hg-treated" },
-    { label: "Frames processed", value: "800+", detail: "batch microscopy workload" },
-    { label: "CPU runtime", value: "<10m", detail: "consumer hardware, no GPU" },
-    { label: "Agreement gain", value: "+28%", detail: "vs ImageJ manual workflow" },
-  ],
+
   about: {
-    role: "Applied AI + Full-Stack Engineer @ VIT & IIT Madras",
-    location: "Vellore & Chennai, India",
+    role: "ECE Undergrad @ VIT · BS Data Science @ IIT Madras",
+    location: "Bareilly / Vellore, India",
     education:
-      "B.Tech in Electronics & Communication Engineering with Biomedical specialization at VIT | BS in Data Science and Applications at IIT Madras",
+      "B.Tech ECE (Biomedical) at VIT Vellore (CGPA 7.53) · BS in Data Science & Applications at IIT Madras",
     operatingPrinciples: [
-      "Prefer systems that can be inspected, measured, and explained.",
-      "Use interface design to make complex work easier to understand.",
-      "Document real constraints instead of hiding them behind vague claims.",
-      "Build with enough polish that technical work is easy to evaluate.",
-    ],
-    focusAreas: [
-      "Applied AI",
-      "Computer vision",
-      "LLM evaluation",
-      "Full-stack interfaces",
-      "Research dashboards",
-      "Embedded systems foundations",
-    ],
-    currentlyExploring: [
-      "LLM-assisted technical workflows",
-      "AI project development",
-      "Edge AI acceleration",
-      "FPGA and DSP foundations",
-    ],
-    skills: [
-      "Python 3.12",
-      "OpenCV",
-      "SciPy",
-      "TrackPy",
-      "Flask",
-      "SQLite",
-      "React",
-      "TypeScript",
-      "Three.js",
-      "Tailwind CSS",
-      "Verilog",
-      "C++",
+      "Build things that can be inspected, measured, and explained.",
+      "Prefer working code over polished pitches.",
+      "Document real constraints — not vague capabilities.",
+      "Design interfaces that make complex work easy to evaluate.",
     ],
   },
-  systems: [
+
+  // Real stats from live systems
+  metrics: [
+    { value: "9,103", label: "Papers indexed", sub: "VITalize AI" },
+    { value: "2,439", label: "Courses tracked", sub: "VITalize AI" },
+    { value: "441", label: "Cells tracked", sub: "WoundTrack AI" },
+    { value: "2,587", label: "Calendar events", sub: "VITalize AI" },
+  ],
+
+  experience: [
     {
-      id: "woundtrack-ai",
-      title: "WoundTrack AI",
-      eyebrow: "Flagship research system",
-      oneLine:
-        "Biomedical computer vision workflow for tracking cell migration from microscopy videos.",
-      problem:
-        "Manual wound-healing analysis is slow, inconsistent, and difficult to reproduce across experimental conditions.",
-      whyItMatters:
-        "Cell migration data can reveal treatment effects, but the workflow needs traceable detection, tracking, and motion metrics before it can support research decisions.",
-      context:
-        "Microscopy video analysis across control and mercury-treated samples, focused on velocity, trajectory continuity, and anomalous diffusion behavior.",
-      constraints: [
-        "Must run without GPU dependency.",
-        "Must preserve explainability over black-box predictions.",
-        "Must process large frame batches without blocking the interface.",
-        "Must expose outputs through a usable research dashboard.",
+      id: "iocl",
+      role: "Summer Intern — Retail Automation",
+      company: "Indian Oil Corporation (IOCL)",
+      location: "Bareilly, India",
+      period: "May 2026 – Jun 2026",
+      bullets: [
+        "Built ComplaintGuard — a Streamlit + Python app replacing IOCL's manual Excel SLA review. A batch that used to take hours now runs in ~30 seconds.",
+        "Reads vendor complaint exports, works out whether each ticket was Early, On Time, or late against its SLA (24h/48h), and totals up INR 1,000/day vendor penalties — output as formatted Excel.",
+        "Catches auto-closed tickets and flags equipment visited twice within 30 days — things the old VBA macro couldn't handle (and broke entirely on Mac).",
       ],
-      metrics: [
-        { label: "Control cells", value: "249" },
-        { label: "Hg-treated cells", value: "192" },
-        { label: "Frames", value: "800+" },
-        { label: "Runtime", value: "<10 min" },
-        { label: "Agreement", value: "+28%" },
-        { label: "Conditions", value: "5" },
-      ],
-      pipeline: [
-        {
-          stage: "01",
-          title: "Normalize",
-          summary: "Flatfield correction reduces illumination variance before detection.",
-          evidence: "Improves stability on low-contrast microscopy frames.",
-        },
-        {
-          stage: "02",
-          title: "Detect",
-          summary: "LoG blob detection and sub-pixel centroid refinement localize cells.",
-          evidence: "Designed for explainable cell localization instead of opaque masks.",
-        },
-        {
-          stage: "03",
-          title: "Track",
-          summary: "Gap-closing LAP tracker links detections into trajectories.",
-          evidence: "Kalman prediction helps preserve trajectories through missed frames.",
-        },
-        {
-          stage: "04",
-          title: "Smooth",
-          summary: "Savitzky-Golay smoothing reduces noisy velocity spikes.",
-          evidence: "Keeps kinetic curves readable without hiding trend behavior.",
-        },
-        {
-          stage: "05",
-          title: "Analyze",
-          summary: "Velocity, MSD exponents, and condition-level comparisons are generated.",
-          evidence: "Observed MSD alpha values: 0.135 control, 0.462 Hg-treated.",
-        },
-        {
-          stage: "06",
-          title: "Report",
-          summary: "Flask dashboard exposes batch results, plots, and downloadable analysis.",
-          evidence: "Asynchronous processing keeps 800+ frame workloads usable.",
-        },
-      ],
-      benchmarks: [
-        { metric: "Tracking workflow", baseline: "Manual / semi-manual", system: "Automated batch pipeline" },
-        { metric: "Runtime", baseline: "Human-paced review", system: "<10 min on consumer CPU" },
-        { metric: "Tracked cells", baseline: "Variable by operator", system: "441 total cells" },
-        { metric: "Agreement", baseline: "ImageJ reference", system: "+28% higher agreement" },
-        { metric: "Explainability", baseline: "Manual judgement", system: "Inspectable CV stages" },
-      ],
-      failureModes: [
-        {
-          title: "Low-contrast frames",
-          risk: "Cells become difficult to separate from background texture.",
-          mitigation: "Flatfield normalization and threshold tuning before blob detection.",
-        },
-        {
-          title: "Cell overlap",
-          risk: "Close cells can merge into a single detection.",
-          mitigation: "Centroid refinement plus trajectory continuity checks.",
-        },
-        {
-          title: "Temporary detection loss",
-          risk: "A missing frame can break trajectory identity.",
-          mitigation: "Gap closing with Kalman prediction in the LAP tracker.",
-        },
-        {
-          title: "Noisy velocity curves",
-          risk: "Microscopic jitter can exaggerate motion metrics.",
-          mitigation: "Savitzky-Golay smoothing and condition-level aggregation.",
-        },
-      ],
-      architecture: [
-        "Python 3.12 analysis core",
-        "OpenCV + SciPy + TrackPy pipeline",
-        "Flask research dashboard",
-        "SQLite job/result persistence",
-        "Plotly visualization layer",
-        "Hugging Face Space deployment",
-      ],
-      deployment:
-        "Hosted as a Hugging Face Space with a Flask dashboard and reproducible GitHub source.",
-      links: {
-        live: "https://xmananrastogi-woundtrackai.hf.space/",
-        code: "https://github.com/xmananrastogi/WoundTrack-AI",
-      },
-      images: [
-        `${BASE}assets/images/dashboard-screenshot.jpeg`,
-        `${BASE}assets/images/image-analysis.jpeg`,
-        `${BASE}assets/images/results.jpeg`,
-        `${BASE}assets/images/batch-processing-interface.jpeg`,
-      ],
-      futureWork: [
-        "Interactive correction UI for ambiguous tracks.",
-        "Benchmark harness with saved experiment versions.",
-        "Segmentation-assisted detection for dense overlap cases.",
-        "Role-specific explanations for researchers, recruiters, and engineers.",
-      ],
+      tags: ["Python", "Streamlit", "Pandas", "SLA Automation", "Excel"],
     },
-    {
-      id: "portfolio-research-os",
-      title: "Interactive 3D Portfolio",
-      eyebrow: "Interactive engineering portfolio",
-      oneLine:
-        "Interactive React portfolio built with TypeScript, real-time 3D, motion, and responsive project presentation.",
-      problem:
-        "I wanted a portfolio that could present engineering work with stronger interaction and cleaner project navigation.",
-      whyItMatters:
-        "It shows frontend range beyond static pages and demonstrates how I structure technical information for real viewers.",
-      context:
-        "Personal frontend project built with React, TypeScript, Three.js, Framer Motion, Tailwind CSS, and Vite.",
-      constraints: [
-        "Keep the design rich without making content harder to scan.",
-        "Balance personality with recruiter readability.",
-        "Support future projects without rebuilding the site structure.",
-      ],
-      metrics: [
-        { label: "Stack", value: "React" },
-        { label: "Language", value: "TS" },
-        { label: "3D", value: "R3F" },
-        { label: "Format", value: "Case study" },
-      ],
-      pipeline: [
-        {
-          stage: "01",
-          title: "Structure",
-          summary: "Separate profile, projects, skills, and contact into clear scanning zones.",
-          evidence: "The page is organized around dedicated sections and anchored navigation.",
-        },
-        {
-          stage: "02",
-          title: "Refine",
-          summary: "Use animation, layout, and typography to improve presentation without hiding the work.",
-          evidence: "The interface is driven by React, motion primitives, and responsive component composition.",
-        },
-      ],
-      benchmarks: [],
-      failureModes: [],
-      architecture: ["React", "TypeScript", "Three.js (R3F)", "Framer Motion", "Tailwind CSS", "Vite"],
-      deployment: "Static deployment on GitHub Pages.",
-      links: {
-        live: "https://xmananrastogi.github.io/portfolio/",
-        code: "https://github.com/xmananrastogi/portfolio",
-      },
-      images: [],
-      futureWork: [
-        "Additional project case studies.",
-        "Improved project media treatment.",
-        "Further motion and accessibility passes.",
-      ],
-    },
-    {
-      id: "gssoc-editron",
-      title: "Editron — GSSoC '26",
-      eyebrow: "Open source contribution",
-      oneLine:
-        "Contributing to Editron, an open-source code editor, through GirlScript Summer of Code 2026.",
-      problem:
-        "Open-source codebases accumulate lint warnings and unused imports that degrade code quality and maintainability over time.",
-      whyItMatters:
-        "Participating in structured open-source programs builds collaboration skills and demonstrates the ability to work within established codebases and contribution workflows.",
-      context:
-        "GSSoC (GirlScript Summer of Code) is one of India's largest open-source contribution programs. I am contributing to the Editron project.",
-      constraints: [
-        "Follow the project's existing code style and contribution guidelines.",
-        "Scope changes tightly to avoid unintended regressions.",
-        "Communicate clearly through issues and pull requests.",
-      ],
-      metrics: [
-        { label: "Program", value: "GSSoC" },
-        { label: "Year", value: "2026" },
-        { label: "Role", value: "Contributor" },
-      ],
-      pipeline: [
-        {
-          stage: "01",
-          title: "Identify",
-          summary: "Reviewed open issues and selected actionable code-quality improvements.",
-          evidence: "Claimed Issue #60: removing unused import warnings across the codebase.",
-        },
-        {
-          stage: "02",
-          title: "Contribute",
-          summary: "Fork, branch, fix, test, and submit pull request following project guidelines.",
-          evidence: "Standard open-source Git workflow: fork → feature branch → PR.",
-        },
-      ],
-      benchmarks: [],
-      failureModes: [],
-      architecture: ["Open-source workflow", "Git", "GitHub Issues & PRs"],
-      deployment: "Contributions merged into the upstream Editron repository.",
-      links: {
-        live: "https://github.com/AmanYadav31/Editron",
-        code: "https://github.com/xmananrastogi",
-      },
-      images: [],
-      futureWork: [
-        "Contribute to more complex features beyond lint fixes.",
-        "Explore other GSSoC projects in the AI/ML space.",
-      ],
-    },
+  ],
+
+  projects: [
     {
       id: "vitalize",
-      title: "VITalize",
-      eyebrow: "Flagship EdTech Platform",
-      oneLine: "Full-stack academic platform for VIT — 8,800+ papers indexed, AI solutions, FFCS planner, and academic dashboard.",
-      problem: "VIT students relied on scattered Telegram groups, unorganized Google Drive folders, and the clunky VTOP portal to access past papers, plan courses, and track academics. There was no unified tool for finding past papers, getting AI-powered solutions, planning FFCS registrations without clashes, or tracking academic progress in one place.",
-      whyItMatters: "Demonstrates full-stack capability with real-world impact — live in use by VIT's student body, open-source, community-funded, with AI integration, complex constraint solving, and production deployment on Vercel.",
-      context: "Full-stack platform built for VIT University. Centrally indexes past papers, generates AI solutions via NVIDIA LLaMA 3.1, plans FFCS timetables with constraint solving, and tracks academic progress.",
-      constraints: [
-        "Must handle scanned PDF papers (95% of archives) with OCR fallback via Tesseract CLI",
-        "Must provide AI solutions within reliable response times using NVIDIA free-tier API",
-        "Must eliminate timetable clashes for complex FFCS slot combinations",
-        "Must be free, open-source, and zero-paywall",
-        "Must integrate with VTOP via browser extension for data sync",
+      eyebrow: "Full-Stack Platform",
+      title: "VITalize AI",
+      desc: "Academic platform for VIT students — 9,103 past papers searchable by subject, AI-generated solutions (LLaMA 3.1 + OCR) with KaTeX math, FFCS timetable solver, Chrome extension, and calendar tracking.",
+      stats: [
+        { label: "Papers", value: "9,103" },
+        { label: "Courses", value: "2,439" },
+        { label: "Events", value: "2,587" },
       ],
-      metrics: [
-        { label: "Papers indexed", value: "8,800+" },
-        { label: "AI engine", value: "LLaMA 3.1" },
-        { label: "Stack", value: "Next.js" },
-        { label: "Deployment", value: "Vercel" },
-      ],
-      pipeline: [
-        {
-          stage: "01",
-          title: "Paper Vault",
-          summary: "Searchable archive of past CAT and FAT papers with subject-level course grid, filters, and bulk download.",
-          evidence: "Thousands of papers indexed in MongoDB, filterable by subject, exam type, year, and slot.",
-        },
-        {
-          stage: "02",
-          title: "AI Solutions",
-          summary: "Extracts text from PDFs via pdfjs + Tesseract OCR, sends to NVIDIA LLaMA 3.1 with VIT-tuned prompts.",
-          evidence: "Custom system prompts for unit-wise, mark-weighted answers with KaTeX equations and diagram descriptions.",
-        },
-        {
-          stage: "03",
-          title: "FFCS Planner",
-          summary: "Constraint-solved timetable builder with faculty prioritization, clash elimination, and ICS export.",
-          evidence: "Client-side backtracking solver with real-time conflict detection for VIT's complex slot system.",
-        },
-        {
-          stage: "04",
-          title: "Dashboard",
-          summary: "Next exam countdown, FAT pass predictor, pending assignments tracker, and today's classes.",
-          evidence: "FAT predictor calculates required marks based on internal weightage thresholds (theory 34/75, lab 50/100).",
-        },
-      ],
-      benchmarks: [],
-      failureModes: [],
-      architecture: [
-        "Next.js 15 App Router",
-        "TypeScript (strict mode)",
-        "MongoDB + Mongoose",
-        "NVIDIA LLaMA 3.1 API",
-        "Tesseract CLI OCR",
-        "NextAuth + Google OAuth",
-      ],
-      deployment: "Deployed on Vercel with auto-deploy from main branch. MongoDB Atlas for managed database. GitHub Actions for CI/CD.",
+      tags: ["Next.js 15", "TypeScript", "MongoDB", "LLM APIs", "Tesseract OCR"],
       links: {
         live: "https://vitalize-vit.vercel.app",
         code: "https://github.com/xmananrastogi/vitalize-fullstack",
       },
-      images: [],
-      futureWork: [
-        "Queue-based AI solving with Redis/Bull for background processing",
-        "Serverless OCR with AWS Textract for better handwritten paper accuracy",
-        "WebSocket for real-time solver progress updates",
-        "Pagination and infinite scroll for paper listings at scale",
+      featured: true,
+    },
+    {
+      id: "woundtrack-ai",
+      eyebrow: "Computer Vision Pipeline",
+      title: "WoundTrack AI",
+      desc: "CV pipeline tracking 441 cells across 800+ frames in under 10 minutes on a regular laptop — 28% more accurate than manual ImageJ. LoG blob detection + LAP tracker + Kalman-filter gap bridging. Flask dashboard for researchers.",
+      stats: [
+        { label: "Cells", value: "441" },
+        { label: "Accuracy", value: "+28%" },
+        { label: "Runtime", value: "<10 min" },
       ],
+      tags: ["Python", "OpenCV", "Flask", "SciPy", "SQLite"],
+      links: {
+        live: "https://xmananrastogi-woundtrackai.hf.space/",
+        code: "https://github.com/xmananrastogi/WoundTrack-AI",
+      },
+      featured: true,
+    },
+    {
+      id: "portfolio",
+      eyebrow: "Frontend Engineering",
+      title: "3D Engineering Portfolio",
+      desc: "Personal site with interactive Three.js 3D scenes, lazy-loaded bundle splitting, sub-1s initial load on mobile. Full WCAG pass. Lighthouse: 100 SEO, 97 accessibility, 100 best practices.",
+      stats: [
+        { label: "SEO", value: "100" },
+        { label: "A11y", value: "97" },
+        { label: "Load", value: "<1s" },
+      ],
+      tags: ["React", "TypeScript", "Three.js", "Tailwind CSS"],
+      links: {
+        live: "https://xmananrastogi.github.io/portfolio/",
+        code: "https://github.com/xmananrastogi/portfolio",
+      },
+      featured: false,
     },
   ],
+
   skillsCategories: [
     {
-      title: "Applied AI & Evaluation",
-      proof: "LLM APIs, evaluation rules, deterministic checks, and technical outputs that can be inspected.",
-      items: ["Python 3.12", "LLM APIs", "Prompt evaluation", "Rule-based validation", "NumPy"],
+      title: "Languages",
+      items: ["Python", "TypeScript", "JavaScript"],
     },
     {
-      title: "Computer Vision",
-      proof: "Detection, tracking, image processing, and analysis pipelines from the WoundTrack project.",
-      items: ["OpenCV", "scikit-image", "TrackPy", "SciPy", "Plotly"],
+      title: "AI / ML & CV",
+      items: ["OpenCV", "NumPy", "SciPy", "LLM APIs", "Tesseract OCR"],
     },
     {
       title: "Web & Backend",
-      proof: "Interfaces and deployments that turn technical work into something inspectable and usable.",
-      items: ["React", "TypeScript", "Flask", "REST APIs", "Tailwind CSS"],
+      items: ["React", "Next.js", "Three.js", "Flask", "Streamlit", "Tailwind CSS", "REST APIs", "JWT"],
     },
     {
-      title: "Systems & Tooling",
-      proof: "Data persistence, implementation discipline, and ECE-oriented engineering foundations.",
-      items: ["SQLite", "MongoDB", "Docker", "Verilog", "C++"],
+      title: "Databases & Tools",
+      items: ["MongoDB", "SQLite", "SQL", "Git", "GitHub", "Vercel", "VS Code"],
     },
   ],
+
+  certifications: [
+    {
+      title: "Designing Cisco Security Infrastructure (SDSI)",
+      issuer: "Cisco / Credly",
+      date: "Jul 2026",
+    },
+  ],
+
   socials: {
     email: "mananrastogi2k8.210@gmail.com",
     github: "https://github.com/xmananrastogi",
