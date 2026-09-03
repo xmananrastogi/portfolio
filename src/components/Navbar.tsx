@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X, FileText } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
@@ -11,14 +11,18 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', fn, { passive: true });
-    return () => window.removeEventListener('scroll', fn);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (latest > 150 && latest > previous!) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   useEffect(() => {
     const fn = () => { if (window.innerWidth >= 768) setOpen(false); };
@@ -32,43 +36,53 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-[100]" role="navigation" aria-label="Main navigation">
-      <div className={`transition-all duration-300 ${scrolled ? 'border-b border-white/[0.05] bg-black/80 backdrop-blur-2xl' : 'bg-transparent'}`}>
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 md:px-10">
+    <>
+      <motion.nav
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: "-150%" },
+        }}
+        initial="visible"
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className="fixed left-1/2 top-6 z-[100] flex w-11/12 max-w-fit -translate-x-1/2 items-center justify-between gap-6 rounded-full border border-white/10 bg-black/60 px-6 py-3 shadow-2xl backdrop-blur-xl md:w-auto"
+        role="navigation" 
+        aria-label="Main navigation"
+      >
+        {/* Logo */}
+        <a href="#hero" className="text-xs font-bold tracking-[0.2em] text-white uppercase hover:text-white/60 transition-colors" aria-label="Back to top">
+          MR
+        </a>
 
-          {/* Logo */}
-          <a href="#hero" className="text-xs font-bold tracking-[0.2em] text-white uppercase hover:text-white/60 transition-colors" aria-label="Back to top">
-            MR
-          </a>
-
-          {/* Desktop links */}
-          <div className="hidden items-center gap-8 md:flex">
-            {navLinks.map((l) => (
-              <a key={l.href} href={l.href} className="nav-link">{l.label}</a>
-            ))}
-            <a
-              href={portfolioData.resumeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
-              aria-label="View resume (opens in new tab)"
-            >
-              <FileText size={14} />
-              Resume
+        {/* Desktop links */}
+        <div className="hidden items-center gap-6 md:flex">
+          {navLinks.map((l) => (
+            <a key={l.href} href={l.href} className="text-sm font-medium text-white/60 transition-colors hover:text-white">
+              {l.label}
             </a>
-          </div>
-
-          {/* Mobile toggle */}
-          <button
-            className="p-2 text-white/40 transition hover:text-white md:hidden"
-            onClick={() => setOpen(!open)}
-            aria-expanded={open}
-            aria-label={open ? 'Close menu' : 'Open menu'}
+          ))}
+          <a
+            href={portfolioData.resumeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white/20"
+            aria-label="View resume (opens in new tab)"
           >
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
+            <FileText size={14} />
+            Resume
+          </a>
         </div>
-      </div>
+
+        {/* Mobile toggle */}
+        <button
+          className="p-1 text-white/60 transition hover:text-white md:hidden"
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+        >
+          {open ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </motion.nav>
 
       {/* Mobile full-screen overlay */}
       <AnimatePresence>
@@ -80,9 +94,6 @@ export default function Navbar() {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/97 backdrop-blur-xl md:hidden"
           >
-            <button onClick={() => setOpen(false)} className="absolute right-5 top-5 p-2 text-white/30 hover:text-white" aria-label="Close menu">
-              <X size={20} />
-            </button>
             <nav className="flex flex-col items-center gap-9">
               {navLinks.map((l, i) => (
                 <motion.a
@@ -113,6 +124,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }

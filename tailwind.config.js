@@ -31,6 +31,7 @@ export default {
         grid: "grid 15s linear infinite",
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
         "shimmer-slide": "shimmer-slide var(--speed) ease-in-out infinite alternate",
+        meteor: "meteor 5s linear infinite",
       },
       keyframes: {
         marquee: {
@@ -53,6 +54,14 @@ export default {
         },
         "shimmer-slide": {
           to: { transform: "translate(calc(100cqw - 100%), 0)" },
+        },
+        meteor: {
+          "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+          "70%": { opacity: "1" },
+          "100%": {
+            transform: "rotate(215deg) translateX(-500px)",
+            opacity: "0",
+          },
         },
       },
     },

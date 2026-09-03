@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight, Github } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { SpotlightCard } from './ui/SpotlightCard';
+import { Meteors } from './ui/Meteors';
 
 type Project = typeof portfolioData.projects[0];
 
@@ -18,25 +19,26 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       transition={{ duration: 0.5, delay: index * 0.1, type: "spring", bounce: 0 }}
       className="h-full"
     >
-      <SpotlightCard className="flex h-full flex-col p-6 md:p-8">
+      <SpotlightCard className="flex h-full flex-col p-6 md:p-8 overflow-hidden relative">
+        <Meteors number={20} />
         {/* Eyebrow */}
-        <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+        <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-400 relative z-10">
           {project.eyebrow}
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-semibold leading-tight text-zinc-50 md:text-2xl">
+        <h3 className="text-xl font-semibold leading-tight text-zinc-50 md:text-2xl relative z-10">
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className="mt-4 flex-1 text-sm leading-relaxed text-zinc-400">
+        <p className="mt-4 flex-1 text-sm leading-relaxed text-zinc-400 relative z-10">
           {project.desc}
         </p>
 
         {/* Stats */}
         {project.stats && (
-          <div className="mt-6 flex flex-wrap gap-x-8 gap-y-4 border-t border-zinc-800/50 pt-5">
+          <div className="mt-6 flex flex-wrap gap-x-8 gap-y-4 border-t border-zinc-800/50 pt-5 relative z-10">
             {project.stats.map((s) => (
               <div key={s.label}>
                 <div className="font-mono text-base font-bold text-zinc-200">{s.value}</div>
@@ -47,14 +49,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         )}
 
         {/* Tags */}
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-6 flex flex-wrap gap-2 relative z-10">
           {project.tags.map((tag) => (
             <span key={tag} className="badge">{tag}</span>
           ))}
         </div>
 
         {/* Buttons */}
-        <div className="mt-8 flex gap-3">
+        <div className="mt-8 flex gap-3 relative z-10">
           <a
             href={project.links.live}
             target="_blank"
