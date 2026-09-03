@@ -10,7 +10,7 @@ const ExperienceSection = () => {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="experience" className="px-5 py-24 md:px-10" aria-label="Experience">
+    <section ref={ref} id="experience" className="px-5 py-24 md:px-10" aria-label="Experience">
       <div className="mx-auto max-w-5xl">
         <h2 className="mb-8 text-2xl font-bold tracking-tight text-zinc-50">Experience</h2>
 
