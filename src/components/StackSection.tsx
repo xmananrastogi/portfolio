@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { MapPin, GraduationCap, Award } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { SpotlightCard } from './ui/SpotlightCard';
+import { Marquee } from './ui/Marquee';
 
 const StackSection = () => {
   const ref = useRef(null);
@@ -39,28 +40,31 @@ const StackSection = () => {
             </SpotlightCard>
           </motion.div>
 
-          {/* Skills Grid (Takes 2 columns) */}
-          <div className="grid gap-4 md:grid-cols-2 lg:col-span-2">
-            {portfolioData.skillsCategories.map((cat, i) => (
-              <motion.div
-                key={cat.title}
-                initial={{ opacity: 0, y: 16 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.1, type: "spring", bounce: 0 }}
-              >
-                <SpotlightCard className="p-6 h-full">
-                  <div className="mb-4 text-xs font-semibold uppercase tracking-wider text-zinc-400">
-                    {cat.title}
-                  </div>
-                  <div className="flex flex-wrap gap-2" role="list" aria-label={`${cat.title} skills`}>
+          {/* Skills Marquee (Takes 2 columns) */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1, type: "spring", bounce: 0 }}
+            className="lg:col-span-2 h-full"
+          >
+            <SpotlightCard className="p-6 h-full flex flex-col justify-center overflow-hidden relative">
+              <div className="mb-4 text-xs font-semibold uppercase tracking-wider text-zinc-400 z-10 relative">
+                Skills
+              </div>
+              <div className="relative flex w-full flex-col items-center justify-center overflow-hidden h-full flex-1 gap-2 pt-2">
+                {portfolioData.skillsCategories.map((cat, i) => (
+                  <Marquee key={cat.title} pauseOnHover className="[--duration:30s] w-full" reverse={i % 2 === 1}>
                     {cat.items.map((item) => (
-                      <span key={item} role="listitem" className="badge">{item}</span>
+                       <span key={item} className="badge bg-zinc-900/50 backdrop-blur-sm border-zinc-800 text-zinc-300 font-medium whitespace-nowrap">{item}</span>
                     ))}
-                  </div>
-                </SpotlightCard>
-              </motion.div>
-            ))}
-          </div>
+                  </Marquee>
+                ))}
+                {/* Left/Right Fades */}
+                <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent z-10"></div>
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background to-transparent z-10"></div>
+              </div>
+            </SpotlightCard>
+          </motion.div>
 
           {/* Principles (Takes 2 columns) */}
           <motion.div

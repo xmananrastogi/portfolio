@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { ArrowDownRight, FileText, Github, Linkedin, Mail } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import { RetroGrid } from './ui/RetroGrid';
+import { ShimmerButton } from './ui/ShimmerButton';
 
 const item = {
   hidden: { opacity: 0, y: 15 },
@@ -14,11 +16,12 @@ const container = {
 const ResearchHero = () => (
   <section
     id="hero"
-    className="relative flex min-h-[90vh] flex-col justify-center px-5 pb-16 pt-28 md:px-10"
+    className="relative flex min-h-[90vh] flex-col justify-center px-5 pb-16 pt-28 md:px-10 overflow-hidden"
     aria-label="Hero section"
   >
+    <RetroGrid />
     <div className="relative z-10 mx-auto w-full max-w-5xl">
-      <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
+      <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 relative z-20">
 
 
 
@@ -38,9 +41,13 @@ const ResearchHero = () => (
 
         {/* CTAs */}
         <motion.div variants={item} className="flex flex-wrap items-center gap-3 pt-4">
-          <a id="cta-work" href="#projects" className="btn-primary">
-            See my work
-            <ArrowDownRight size={16} aria-hidden="true" />
+          <a id="cta-work" href="#projects">
+            <ShimmerButton className="shadow-2xl">
+              <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-base flex items-center gap-2">
+                See my work
+                <ArrowDownRight size={16} aria-hidden="true" />
+              </span>
+            </ShimmerButton>
           </a>
           <a
             id="cta-resume"
