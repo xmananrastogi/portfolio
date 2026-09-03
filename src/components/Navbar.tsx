@@ -26,9 +26,12 @@ export default function Navbar() {
             <a
               href={item.href}
               aria-label={item.label}
-              className="flex h-full w-full items-center justify-center rounded-full bg-white/5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
+              className="group relative flex h-full w-full items-center justify-center rounded-full bg-white/5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
             >
               <item.icon className="size-[45%]" />
+              <span className="absolute -top-10 left-1/2 -translate-x-1/2 scale-0 whitespace-nowrap rounded-md border border-white/10 bg-black/90 px-2 py-1 text-[10px] text-white opacity-0 backdrop-blur-md transition-all group-hover:scale-100 group-hover:opacity-100 pointer-events-none">
+                {item.label}
+              </span>
             </a>
           </DockIcon>
         ))}
@@ -44,9 +47,12 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={item.label}
-              className="flex h-full w-full items-center justify-center rounded-full bg-white/5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
+              className="group relative flex h-full w-full items-center justify-center rounded-full bg-white/5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
             >
               <item.icon className="size-[45%]" />
+              <span className="absolute -top-10 left-1/2 -translate-x-1/2 scale-0 whitespace-nowrap rounded-md border border-white/10 bg-black/90 px-2 py-1 text-[10px] text-white opacity-0 backdrop-blur-md transition-all group-hover:scale-100 group-hover:opacity-100 pointer-events-none">
+                {item.label}
+              </span>
             </a>
           </DockIcon>
         ))}
