@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Github, Linkedin, Mail, Send } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import { Globe } from './ui/Globe';
 
 const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT ?? 'https://formspree.io/f/xldonobr';
 const STATUS_TIMEOUT = 3000;
@@ -59,8 +60,12 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="px-5 py-24 md:px-8 md:py-32" aria-label="Contact">
-      <div ref={ref} className="mx-auto max-w-6xl">
+    <section id="contact" className="relative overflow-hidden px-5 py-24 md:px-8 md:py-32" aria-label="Contact">
+      <div className="absolute top-0 right-[-20%] w-[60%] opacity-30 md:opacity-50 blur-3xl pointer-events-none z-0">
+        <Globe />
+      </div>
+      
+      <div ref={ref} className="mx-auto max-w-6xl relative z-10">
         <div className="section-label">Get in touch</div>
 
         <div className="grid gap-6 lg:grid-cols-[0.55fr_1fr]">

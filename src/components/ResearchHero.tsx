@@ -1,17 +1,8 @@
-import { motion } from 'framer-motion';
 import { ArrowDownRight, FileText, Github, Linkedin, Mail } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { RetroGrid } from './ui/RetroGrid';
 import { ShimmerButton } from './ui/ShimmerButton';
-
-const item = {
-  hidden: { opacity: 0, y: 15 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.6, type: "spring", bounce: 0.2 } },
-};
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-};
+import { BlurFade } from './ui/BlurFade';
 
 const ResearchHero = () => (
   <section
@@ -21,67 +12,73 @@ const ResearchHero = () => (
   >
     <RetroGrid />
     <div className="relative z-10 mx-auto w-full max-w-5xl">
-      <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 relative z-20">
+      <div className="space-y-6 relative z-20">
 
 
 
         {/* Name — Magic UI / Aceternity style */}
-        <motion.div variants={item}>
+        <BlurFade delay={0.25} inView>
           <h1 className="text-[clamp(3.5rem,10vw,7rem)] font-bold leading-[0.9] tracking-tighter">
             <span className="text-zinc-50">Manan</span>
             <br />
             <span className="text-zinc-500">Rastogi</span>
           </h1>
-        </motion.div>
+        </BlurFade>
 
         {/* Descriptor */}
-        <motion.p variants={item} className="max-w-xl text-[1rem] leading-[1.6] text-zinc-400">
-          {portfolioData.positioning}
-        </motion.p>
+        <BlurFade delay={0.25 * 2} inView>
+          <p className="max-w-xl text-[1rem] leading-[1.6] text-zinc-400">
+            {portfolioData.positioning}
+          </p>
+        </BlurFade>
 
         {/* CTAs */}
-        <motion.div variants={item} className="flex flex-wrap items-center gap-3 pt-4">
-          <a id="cta-work" href="#projects">
-            <ShimmerButton className="shadow-2xl">
-              <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-base flex items-center gap-2">
-                See my work
-                <ArrowDownRight size={16} aria-hidden="true" />
-              </span>
-            </ShimmerButton>
-          </a>
-          <a
-            id="cta-resume"
-            href={portfolioData.resumeLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary"
-            aria-label="View resume (opens in new tab)"
-          >
-            <FileText size={16} aria-hidden="true" />
-            Resume
-          </a>
-        </motion.div>
+        <BlurFade delay={0.25 * 3} inView>
+          <div className="flex flex-wrap items-center gap-3 pt-4">
+            <a id="cta-work" href="#projects">
+              <ShimmerButton className="shadow-2xl">
+                <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-base flex items-center gap-2">
+                  See my work
+                  <ArrowDownRight size={16} aria-hidden="true" />
+                </span>
+              </ShimmerButton>
+            </a>
+            <a
+              id="cta-resume"
+              href={portfolioData.resumeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+              aria-label="View resume (opens in new tab)"
+            >
+              <FileText size={16} aria-hidden="true" />
+              Resume
+            </a>
+          </div>
+        </BlurFade>
 
         {/* Socials */}
-        <motion.div variants={item} className="flex items-center gap-5 pt-8">
-          {[
-            { href: portfolioData.socials.github, icon: <Github size={18} />, label: 'GitHub' },
-            { href: portfolioData.socials.linkedin, icon: <Linkedin size={18} />, label: 'LinkedIn' },
-            { href: `mailto:${portfolioData.socials.email}`, icon: <Mail size={18} />, label: 'Email' },
-          ].map(({ href, icon, label }) => (
-            <a
-              key={href}
-              href={href}
-              target={href.startsWith('mailto') ? undefined : '_blank'}
-              rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              aria-label={label}
-              className="text-zinc-500 transition-colors hover:text-zinc-50"
-            >
-              {icon}
-            </a>
-          ))}
-        </motion.div>
-      </motion.div>
+        <BlurFade delay={0.25 * 4} inView>
+          <div className="flex items-center gap-5 pt-8">
+            {[
+              { href: portfolioData.socials.github, icon: <Github size={18} />, label: 'GitHub' },
+              { href: portfolioData.socials.linkedin, icon: <Linkedin size={18} />, label: 'LinkedIn' },
+              { href: `mailto:${portfolioData.socials.email}`, icon: <Mail size={18} />, label: 'Email' },
+            ].map(({ href, icon, label }) => (
+              <a
+                key={href}
+                href={href}
+                target={href.startsWith('mailto') ? undefined : '_blank'}
+                rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                aria-label={label}
+                className="text-zinc-500 transition-colors hover:text-zinc-50"
+              >
+                {icon}
+              </a>
+            ))}
+          </div>
+        </BlurFade>
+      </div>
     </div>
   </section>
 );

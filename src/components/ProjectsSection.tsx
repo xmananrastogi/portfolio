@@ -4,6 +4,7 @@ import { ArrowUpRight, Github } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { SpotlightCard } from './ui/SpotlightCard';
 import { Meteors } from './ui/Meteors';
+import { NumberTicker } from './ui/NumberTicker';
 
 type Project = typeof portfolioData.projects[0];
 
@@ -39,12 +40,34 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         {/* Stats */}
         {project.stats && (
           <div className="mt-6 flex flex-wrap gap-x-8 gap-y-4 border-t border-zinc-800/50 pt-5 relative z-10">
-            {project.stats.map((s) => (
-              <div key={s.label}>
-                <div className="font-mono text-base font-bold text-zinc-200">{s.value}</div>
-                <div className="mt-0.5 text-[0.65rem] uppercase tracking-wider text-zinc-500">{s.label}</div>
-              </div>
-            ))}
+            {project.stats.map((s) => {
+              // Extract numeric value and potential prefix/suffix for NumberTicker
+              const numMatch = s.value.replace(/,/g, '').match(/([\+\-<]?)(\d+)(.*)/);
+              let renderStat = <>{s.value}</>;
+              
+              if (numMatch) {
+                const prefix = numMatch[1] || '';
+                const num = parseInt(numMatch[2], 10);
+                const suffix = numMatch[3] || '';
+                
+                renderStat = (
+                  <div className="flex items-center">
+                    {prefix}
+                    <NumberTicker value={num} delay={0.2} />
+                    {suffix}
+                  </div>
+                );
+              }
+
+              return (
+                <div key={s.label}>
+                  <div className="font-mono text-base font-bold text-zinc-200">
+                    {renderStat}
+                  </div>
+                  <div className="mt-0.5 text-[0.65rem] uppercase tracking-wider text-zinc-500">{s.label}</div>
+                </div>
+              );
+            })}
           </div>
         )}
 
