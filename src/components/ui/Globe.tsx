@@ -28,11 +28,11 @@ export function Globe({ className }: { className?: string }) {
         // default marker
         { location: [37.7595, -122.4367], size: 0.03 },
       ],
-      onRender: (state) => {
+      onRender: (state: Record<string, any>) => {
         state.phi = phi;
         phi += 0.005;
       },
-    });
+    } as any);
 
     return () => {
       globe.destroy();
