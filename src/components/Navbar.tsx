@@ -12,126 +12,101 @@ const navLinks = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
   }, []);
 
   useEffect(() => {
-    const onResize = () => { if (window.innerWidth >= 768) setMobileOpen(false); };
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    const fn = () => { if (window.innerWidth >= 768) setOpen(false); };
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
-  }, [mobileOpen]);
+  }, [open]);
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-[100]"
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      <div
-        className={`transition-all duration-300 ${
-          scrolled
-            ? 'bg-black/85 backdrop-blur-xl border-b border-white/[0.06]'
-            : 'bg-transparent'
-        }`}
-      >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-8">
+    <nav className="fixed left-0 right-0 top-0 z-[100]" role="navigation" aria-label="Main navigation">
+      <div className={`transition-all duration-300 ${scrolled ? 'border-b border-white/[0.05] bg-black/80 backdrop-blur-2xl' : 'bg-transparent'}`}>
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 md:px-10">
+
           {/* Logo */}
-          <a
-            href="#hero"
-            className="text-sm font-semibold tracking-widest text-text-primary uppercase hover:text-accent transition-colors duration-300"
-            aria-label="Back to top"
-          >
+          <a href="#hero" className="text-xs font-bold tracking-[0.2em] text-white uppercase hover:text-white/60 transition-colors" aria-label="Back to top">
             MR
           </a>
 
-          {/* Desktop nav */}
-          <div className="hidden items-center gap-7 md:flex">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="nav-link text-sm font-medium">
-                {link.label}
-              </a>
+          {/* Desktop links */}
+          <div className="hidden items-center gap-8 md:flex">
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} className="nav-link">{l.label}</a>
             ))}
             <a
               href={portfolioData.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-3 inline-flex items-center gap-2 rounded-md border border-white/[0.1] bg-white/[0.03] px-4 py-2 text-xs font-semibold tracking-wide text-text-primary transition hover:border-accent/40 hover:bg-accent/5 hover:text-accent"
+              className="inline-flex items-center gap-1.5 rounded-md border border-white/[0.1] bg-white/[0.03] px-4 py-2 text-[0.75rem] font-semibold text-white/60 transition hover:border-white/20 hover:text-white"
               aria-label="View resume (opens in new tab)"
             >
-              <FileText size={13} />
+              <FileText size={12} />
               Resume
             </a>
           </div>
 
           {/* Mobile toggle */}
           <button
-            className="rounded p-2 text-text-secondary transition hover:text-text-primary md:hidden"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-menu"
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            className="p-2 text-white/40 transition hover:text-white md:hidden"
+            onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            aria-label={open ? 'Close menu' : 'Open menu'}
           >
-            {mobileOpen ? <X size={21} /> : <Menu size={21} />}
+            {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile full-screen overlay */}
       <AnimatePresence>
-        {mobileOpen && (
+        {open && (
           <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/98 md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/97 backdrop-blur-xl md:hidden"
           >
-            {/* Close button */}
-            <button
-              onClick={() => setMobileOpen(false)}
-              className="absolute top-5 right-5 p-2 text-text-secondary hover:text-text-primary"
-              aria-label="Close menu"
-            >
-              <X size={22} />
+            <button onClick={() => setOpen(false)} className="absolute right-5 top-5 p-2 text-white/30 hover:text-white" aria-label="Close menu">
+              <X size={20} />
             </button>
-
-            <nav className="flex flex-col items-center gap-8">
-              {navLinks.map((link, i) => (
+            <nav className="flex flex-col items-center gap-9">
+              {navLinks.map((l, i) => (
                 <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.07 }}
-                  className="text-2xl font-semibold text-text-secondary hover:text-text-primary transition-colors"
+                  className="text-2xl font-bold text-white/70 hover:text-white transition-colors"
                 >
-                  {link.label}
+                  {l.label}
                 </motion.a>
               ))}
               <motion.a
                 href={portfolioData.resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => setMobileOpen(false)}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.07 }}
-                className="mt-4 inline-flex items-center gap-2 rounded-md border border-white/10 px-6 py-3 text-sm font-semibold text-text-primary"
+                className="btn-ghost mt-4"
               >
-                <FileText size={15} />
+                <FileText size={14} />
                 Resume
               </motion.a>
             </nav>

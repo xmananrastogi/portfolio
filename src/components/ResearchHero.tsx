@@ -1,137 +1,118 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, FileText, Github, Linkedin } from 'lucide-react';
+import { ArrowDownRight, FileText, Github, Linkedin, Mail } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
-const stagger = {
-  container: { hidden: {}, show: { transition: { staggerChildren: 0.1 } } },
-  item: {
-    hidden: { opacity: 0, y: 20 },
-    show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-  },
+const item = {
+  hidden: { opacity: 0, y: 22 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+};
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09 } },
 };
 
-const ResearchHero = () => {
-  return (
-    <section
-      id="hero"
-      className="relative flex min-h-screen flex-col items-center justify-center px-5 pb-20 pt-28 md:px-8"
-      aria-label="Hero section"
-    >
-      {/* Radial glow */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(59,130,246,0.07) 0%, transparent 70%)',
-        }}
-        aria-hidden="true"
-      />
+const ResearchHero = () => (
+  <section
+    id="hero"
+    className="relative flex min-h-screen flex-col justify-center px-5 pb-16 pt-28 md:px-10"
+    aria-label="Hero section"
+  >
+    {/* Blue radial glow behind name */}
+    <div
+      className="pointer-events-none absolute left-0 top-0 h-[55vh] w-full"
+      style={{ background: 'radial-gradient(ellipse 70% 50% at 30% 0%, rgba(59,130,246,0.09) 0%, transparent 65%)' }}
+      aria-hidden="true"
+    />
 
-      <div className="relative z-10 mx-auto w-full max-w-5xl">
-        <motion.div
-          variants={stagger.container}
-          initial="hidden"
-          animate="show"
-          className="flex flex-col items-start gap-6"
-        >
-          {/* Status badge */}
-          <motion.div variants={stagger.item}>
-            <span className="status-badge" role="status">
-              <span className="status-dot" aria-hidden="true" />
-              Available for opportunities
-            </span>
-          </motion.div>
+    <div className="relative z-10 mx-auto w-full max-w-5xl">
+      <motion.div variants={container} initial="hidden" animate="show" className="space-y-7">
 
-          {/* Name */}
-          <motion.h1 variants={stagger.item} className="text-5xl font-extrabold leading-none tracking-tight md:text-7xl lg:text-8xl">
-            <span className="name-aurora">Manan Rastogi</span>
-          </motion.h1>
-
-          {/* Role line */}
-          <motion.p
-            variants={stagger.item}
-            className="text-base font-medium tracking-widest text-muted uppercase"
-          >
-            Applied AI · Computer Vision · Full-Stack
-          </motion.p>
-
-          {/* Positioning */}
-          <motion.p
-            variants={stagger.item}
-            className="max-w-2xl text-lg leading-relaxed text-text-secondary"
-          >
-            {portfolioData.positioning}
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div variants={stagger.item} className="flex flex-wrap items-center gap-4 pt-2">
-            <a
-              id="cta-projects"
-              href="#projects"
-              className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-accent-hover hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]"
-            >
-              View work
-              <ArrowDown size={15} aria-hidden="true" />
-            </a>
-            <a
-              id="cta-resume"
-              href={portfolioData.resumeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-white/[0.1] px-6 py-3 text-sm font-semibold text-text-secondary transition-all hover:border-white/20 hover:text-text-primary"
-              aria-label="View resume (opens in new tab)"
-            >
-              <FileText size={15} aria-hidden="true" />
-              Resume
-            </a>
-          </motion.div>
-
-          {/* Social links */}
-          <motion.div variants={stagger.item} className="flex items-center gap-5 pt-1">
-            <a
-              href={portfolioData.socials.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted transition-colors hover:text-text-primary"
-              aria-label="GitHub"
-            >
-              <Github size={18} />
-            </a>
-            <a
-              href={portfolioData.socials.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted transition-colors hover:text-text-primary"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={18} />
-            </a>
-            <span className="h-px w-10 bg-white/10" />
-            <span className="text-xs text-muted font-mono">ECE @ VIT · DS @ IIT Madras</span>
-          </motion.div>
+        {/* Status */}
+        <motion.div variants={item}>
+          <span className="status-badge">
+            <span className="status-dot" aria-hidden="true" />
+            Available for opportunities · 2026
+          </span>
         </motion.div>
 
-        {/* Quick stats row */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-20 grid grid-cols-2 gap-3 sm:grid-cols-4"
-          id="about"
-        >
-          {portfolioData.metrics.map((m) => (
-            <div
-              key={m.label}
-              className="card rounded-xl p-5"
+        {/* Name — very large */}
+        <motion.div variants={item}>
+          <h1 className="text-[clamp(3rem,10vw,7rem)] font-black leading-[0.95] tracking-tight">
+            <span className="name-aurora">Manan</span>
+            <br />
+            <span className="text-white/10">Rastogi</span>
+          </h1>
+        </motion.div>
+
+        {/* Descriptor */}
+        <motion.p variants={item} className="max-w-xl text-[0.9375rem] leading-[1.7] text-white/50">
+          ECE undergrad at VIT · BS Data Science at IIT Madras.
+          Building computer vision pipelines, full-stack platforms,
+          and automation tools that actually ship.
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div variants={item} className="flex flex-wrap items-center gap-3 pt-1">
+          <a id="cta-work" href="#projects" className="btn-blue">
+            See my work
+            <ArrowDownRight size={15} aria-hidden="true" />
+          </a>
+          <a
+            id="cta-resume"
+            href={portfolioData.resumeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost"
+            aria-label="View resume (opens in new tab)"
+          >
+            <FileText size={14} aria-hidden="true" />
+            Resume
+          </a>
+        </motion.div>
+
+        {/* Socials */}
+        <motion.div variants={item} className="flex items-center gap-5 pt-1">
+          {[
+            { href: portfolioData.socials.github, icon: <Github size={17} />, label: 'GitHub' },
+            { href: portfolioData.socials.linkedin, icon: <Linkedin size={17} />, label: 'LinkedIn' },
+            { href: `mailto:${portfolioData.socials.email}`, icon: <Mail size={17} />, label: 'Email' },
+          ].map(({ href, icon, label }) => (
+            <a
+              key={href}
+              href={href}
+              target={href.startsWith('mailto') ? undefined : '_blank'}
+              rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+              aria-label={label}
+              className="text-white/25 transition-colors hover:text-white/70"
             >
-              <div className="font-mono text-2xl font-bold text-accent">{m.value}</div>
-              <div className="mt-1 text-xs font-medium text-text-secondary">{m.label}</div>
-              <div className="mt-0.5 text-[10px] text-muted">{m.sub}</div>
-            </div>
+              {icon}
+            </a>
           ))}
+          <span className="h-px w-8 bg-white/10" />
+          <span className="font-mono text-[0.65rem] tracking-wider text-white/20">
+            VIT · IIT Madras · IOCL
+          </span>
         </motion.div>
-      </div>
-    </section>
-  );
-};
+      </motion.div>
+
+      {/* Stats row */}
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.55, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        id="about"
+        className="mt-20 grid grid-cols-2 gap-3 sm:grid-cols-4"
+      >
+        {portfolioData.metrics.map((m) => (
+          <div key={m.label} className="card card-blue rounded-xl p-5">
+            <div className="font-mono text-[1.5rem] font-bold text-[#3b82f6]">{m.value}</div>
+            <div className="mt-1 text-[0.75rem] font-medium text-white/60">{m.label}</div>
+            <div className="mt-0.5 text-[0.625rem] text-white/25 tracking-wide">{m.sub}</div>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  </section>
+);
 
 export default ResearchHero;

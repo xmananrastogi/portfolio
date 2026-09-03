@@ -7,60 +7,58 @@ type Project = typeof portfolioData.projects[0];
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-60px' });
+  const inView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
     <motion.article
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className="card card-glow group relative flex flex-col overflow-hidden rounded-xl p-6"
+      initial={{ opacity: 0, y: 22 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+      className="card card-blue group flex flex-col rounded-xl p-6 md:p-7"
       aria-label={`Project: ${project.title}`}
     >
-      {/* Top row */}
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <span className="mb-2 block text-[10px] font-semibold tracking-widest text-accent uppercase">
-            {project.eyebrow}
-          </span>
-          <h3 className="text-xl font-bold text-text-primary leading-snug md:text-2xl">
-            {project.title}
-          </h3>
-        </div>
+      {/* Eyebrow */}
+      <div className="mb-2 text-[0.625rem] font-semibold uppercase tracking-[0.15em] text-[#3b82f6]">
+        {project.eyebrow}
       </div>
 
-      {/* Stats row */}
+      {/* Title */}
+      <h3 className="text-xl font-bold leading-tight text-white md:text-2xl">
+        {project.title}
+      </h3>
+
+      {/* Stats */}
       {project.stats && (
-        <div className="mt-4 flex gap-4">
+        <div className="mt-4 flex gap-5 border-t border-white/[0.05] pt-4">
           {project.stats.map((s) => (
             <div key={s.label}>
-              <div className="font-mono text-base font-bold text-accent">{s.value}</div>
-              <div className="text-[10px] text-muted uppercase tracking-wide">{s.label}</div>
+              <div className="font-mono text-sm font-bold text-[#3b82f6]">{s.value}</div>
+              <div className="text-[0.6rem] uppercase tracking-wider text-white/30">{s.label}</div>
             </div>
           ))}
         </div>
       )}
 
       {/* Description */}
-      <p className="mt-4 flex-1 text-sm leading-6 text-text-secondary">
+      <p className="mt-4 flex-1 text-[0.875rem] leading-[1.65] text-white/50">
         {project.desc}
       </p>
 
       {/* Tags */}
-      <div className="mt-5 flex flex-wrap gap-2">
+      <div className="mt-5 flex flex-wrap gap-1.5">
         {project.tags.map((tag) => (
           <span key={tag} className="tag">{tag}</span>
         ))}
       </div>
 
-      {/* Actions */}
-      <div className="mt-6 flex gap-3">
+      {/* Buttons */}
+      <div className="mt-6 flex gap-2.5">
         <a
           href={project.links.live}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-accent px-4 py-2.5 text-xs font-semibold text-white transition-all hover:bg-accent-hover hover:shadow-[0_0_16px_rgba(59,130,246,0.3)]"
+          className="btn-blue flex-1 justify-center py-2.5 text-xs"
           aria-label={`Live demo of ${project.title} (opens in new tab)`}
         >
           Live
@@ -70,7 +68,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           href={project.links.code}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-xs font-semibold text-text-secondary transition-all hover:border-white/[0.16] hover:bg-white/[0.05] hover:text-text-primary"
+          className="btn-ghost flex-1 justify-center py-2.5 text-xs"
           aria-label={`Source code for ${project.title} (opens in new tab)`}
         >
           <Github size={13} aria-hidden="true" />
@@ -82,27 +80,21 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 const ProjectsSection = () => {
-  const featuredProjects = portfolioData.projects.filter((p) => p.featured);
-  const otherProjects = portfolioData.projects.filter((p) => !p.featured);
+  const featured  = portfolioData.projects.filter((p) => p.featured);
+  const secondary = portfolioData.projects.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className="px-5 py-24 md:px-8 md:py-32" aria-label="Projects">
-      <div className="mx-auto max-w-6xl">
+    <section id="projects" className="px-5 py-24 md:px-10 md:py-32" aria-label="Projects">
+      <div className="mx-auto max-w-5xl">
         <div className="section-label">Projects</div>
 
-        {/* Featured 2-col grid */}
-        <div className="grid gap-5 md:grid-cols-2">
-          {featuredProjects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
-          ))}
+        <div className="grid gap-4 md:grid-cols-2">
+          {featured.map((p, i) => <ProjectCard key={p.id} project={p} index={i} />)}
         </div>
 
-        {/* Other projects row */}
-        {otherProjects.length > 0 && (
-          <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {otherProjects.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={featuredProjects.length + i} />
-            ))}
+        {secondary.length > 0 && (
+          <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {secondary.map((p, i) => <ProjectCard key={p.id} project={p} index={featured.length + i} />)}
           </div>
         )}
       </div>
