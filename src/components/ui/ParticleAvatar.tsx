@@ -302,10 +302,6 @@ export function ParticleAvatar({
       <div className="pointer-events-none absolute -bottom-1 -right-1 size-3 border-b-2 border-r-2 border-cyan-400/70" />
 
       {/* Futuristic Telemetry Badges */}
-      <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-black/60 px-2 py-0.5 text-[10px] font-mono tracking-wider text-cyan-400/90 backdrop-blur-md">
-        <span className="size-1.5 animate-pulse rounded-full bg-cyan-400" />
-        <span>NEURAL_AVATAR // v2.4</span>
-      </div>
 
       <div className="pointer-events-none absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2 py-0.5 text-[10px] font-mono tracking-wider text-zinc-400 backdrop-blur-md">
         <Terminal className="size-3 text-cyan-400" />
