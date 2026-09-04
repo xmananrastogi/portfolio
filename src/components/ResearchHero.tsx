@@ -83,8 +83,13 @@ const ResearchHero = () => (
         </div>
 
         {/* Right Column: Holographic Particle Avatar */}
-        <BlurFade delay={0.25 * 5} inView className="flex items-center justify-center h-[300px] sm:h-[400px] lg:h-[500px]">
-          <ParticleAvatar imageSrc={`${import.meta.env.BASE_URL}assets/images/image.png`} />
+        <BlurFade delay={0.25 * 5} inView className="flex items-center justify-center">
+          <ParticleAvatar
+            imageSrc={`${import.meta.env.BASE_URL}assets/images/avatar_optimized.png`}
+            className="w-full max-w-[380px] h-[380px] sm:h-[420px] lg:h-[460px]"
+            resolution={3}
+            particleSize={2.0}
+          />
         </BlurFade>
 
       </div>
