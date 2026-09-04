@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import ResearchHero from './components/ResearchHero';
 import ExperienceSection from './components/ExperienceSection';
 import ProjectsSection from './components/ProjectsSection';
+import GithubSection from './components/GithubSection';
 import StackSection from './components/StackSection';
 import ContactSection from './components/ContactSection';
 import SmoothScroll from './components/SmoothScroll';
@@ -26,6 +27,7 @@ function App() {
           <ResearchHero />
           <ExperienceSection />
           <ProjectsSection />
+          <GithubSection />
           <StackSection />
           <ContactSection />
 

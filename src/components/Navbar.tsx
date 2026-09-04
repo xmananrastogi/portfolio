@@ -1,13 +1,14 @@
-import { Home, Briefcase, FolderOpen, Layers, Mail, FileText, Github, Linkedin } from 'lucide-react';
+import { Home, Briefcase, FolderOpen, GitCommit, Layers, Mail, FileText, Github, Linkedin } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { Dock, DockIcon } from './ui/Dock';
 
 const dockItems = [
-  { icon: Home,       href: '#hero',       label: 'Home' },
-  { icon: Briefcase,  href: '#experience', label: 'Experience' },
-  { icon: FolderOpen, href: '#projects',   label: 'Projects' },
-  { icon: Layers,     href: '#stack',      label: 'Stack' },
-  { icon: Mail,       href: '#contact',    label: 'Contact' },
+  { icon: Home,        href: '#hero',       label: 'Home' },
+  { icon: Briefcase,   href: '#experience', label: 'Experience' },
+  { icon: FolderOpen,  href: '#projects',   label: 'Projects' },
+  { icon: GitCommit,   href: '#github',     label: 'Activity' },
+  { icon: Layers,      href: '#stack',      label: 'Stack' },
+  { icon: Mail,        href: '#contact',    label: 'Contact' },
 ];
 
 const socialItems = [
